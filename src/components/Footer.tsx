@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <Link to="/" className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight">
               <img src="/resumelog-icon.svg" alt="" width="18" height="20" />
-              Resume<span className="text-muted-foreground">Log</span>
+              ResumeLog
             </Link>
             <p className="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
               A quiet log of every job, company, and person you meet on your search — captured
