@@ -16,7 +16,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-16">
+          <div className="flex flex-wrap gap-x-12 gap-y-8">
             <div className="flex flex-col gap-3">
               <span className="eyebrow">Site</span>
               <Link to="/features" className="text-sm">
@@ -44,6 +44,16 @@ export default function Footer() {
               <a href="mailto:hello@resumelog.app" className="text-sm">
                 Email
               </a>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <span className="eyebrow">Legal</span>
+              <Link to="/privacy-policy" className="text-sm">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-and-conditions" className="text-sm">
+                Terms and Conditions
+              </Link>
             </div>
           </div>
         </div>
