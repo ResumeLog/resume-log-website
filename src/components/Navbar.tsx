@@ -52,7 +52,8 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6 md:px-16">
-        <NavLink to="/" className="font-mono text-base font-semibold tracking-tight">
+        <NavLink to="/" className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight">
+          <img src="/resumelog-icon.svg" alt="" width="18" height="20" />
           Resume<span className="text-muted-foreground">Log</span>
         </NavLink>
 

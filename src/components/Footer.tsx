@@ -6,7 +6,8 @@ export default function Footer() {
       <div className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-14 md:px-16">
         <div className="flex flex-col justify-between gap-8 md:flex-row">
           <div>
-            <Link to="/" className="font-mono text-base font-semibold tracking-tight">
+            <Link to="/" className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight">
+              <img src="/resumelog-icon.svg" alt="" width="18" height="20" />
               Resume<span className="text-muted-foreground">Log</span>
             </Link>
             <p className="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
