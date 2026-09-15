@@ -1,32 +1,36 @@
-# React + TypeScript + Vite
+# Resume Log — website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The public marketing site for [Resume Log](../resume-log-ai-kb/README.md): a Chrome extension +
+dashboard that automatically captures the jobs, companies, and people you encounter on LinkedIn,
+including what you submitted through Easy Apply.
 
-Currently, two official plugins are available:
+A single-page app built with React, TypeScript, and Vite, routed with `react-router-dom`. The
+visual design system (colors, type, and component patterns) is ported from
+`dewmith-mihisara-personal-portfolio-v2`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- Vite + React 19 + TypeScript
+- Tailwind CSS v4 (CSS-first config in `src/index.css`, no `tailwind.config.js`)
+- `react-router-dom` for client-side routing
+- Framer Motion for scroll reveals and micro-interactions
+- `lucide-react` for icons
+- `oxlint` for linting
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # start the dev server
+npm run build    # type-check and build for production
+npm run lint     # run oxlint
+npm run preview  # preview the production build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Pages
+
+- `/` — Home
+- `/features` — Features
+- `/how-it-works` — How It Works
+- `/about` — About
+- `/get-started` — Get Started (early-access waitlist form, front-end only)
