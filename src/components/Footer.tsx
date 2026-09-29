@@ -25,6 +25,9 @@ export default function Footer() {
               <Link to="/how-it-works" className="text-sm">
                 How It Works
               </Link>
+              <Link to="/pricing" className="text-sm">
+                Pricing
+              </Link>
               <Link to="/about" className="text-sm">
                 About
               </Link>

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "free",
+    "name": "Free",
+    "description": "Everything you need to start logging your job search.",
+    "price": "$0",
+    "period": "forever",
+    "features": [
+      "Automatic LinkedIn job capture",
+      "Companies & people saved alongside",
+      "One searchable dashboard",
+      "Sign in with Google"
+    ],
+    "cta": { "label": "Get started free", "action": "login" }
+  },
+  {
+    "id": "pro",
+    "name": "Pro",
+    "description": "For active job seekers who want every application remembered.",
+    "price": "$12",
+    "period": "/ month",
+    "features": [
+      "Everything in Free",
+      "Easy Apply questions & answers recorded",
+      "Résumé version linked to each application",
+      "Unlimited saved jobs, companies, and people",
+      "Priority access to new features"
+    ],
+    "cta": { "label": "Upgrade to Pro", "action": "contact" },
+    "highlighted": true
+  },
+  {
+    "id": "custom",
+    "name": "Custom",
+    "description": "For career coaches, bootcamps, and teams with specific needs.",
+    "price": "Custom",
+    "period": "let's talk",
+    "features": [
+      "Everything in Pro",
+      "Multiple seats under one account",
+      "Tailored onboarding",
+      "Direct support channel"
+    ],
+    "cta": { "label": "Contact us", "action": "contact" }
+  }
+]
