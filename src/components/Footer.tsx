@@ -57,6 +57,9 @@ export default function Footer() {
               <Link to="/terms-and-conditions" className="text-sm">
                 Terms and Conditions
               </Link>
+              <Link to="/refund-policy" className="text-sm">
+                Refund Policy
+              </Link>
             </div>
           </div>
         </div>
