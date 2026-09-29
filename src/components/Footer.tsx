@@ -11,7 +11,7 @@ export default function Footer() {
               ResumeLog
             </Link>
             <p className="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
-              A quiet log of every job, company, and person you meet on your search — captured
+              A quiet log of every job, company, and person you meet on your search captured
               automatically as you browse.
             </p>
           </div>
@@ -44,7 +44,7 @@ export default function Footer() {
               <a href="#" className="text-sm">
                 LinkedIn
               </a>
-              <a href="mailto:hello@resumelog.app" className="text-sm">
+              <a href="mailto:contact@resumeloghq.com" className="text-sm">
                 Email
               </a>
             </div>
@@ -63,7 +63,6 @@ export default function Footer() {
 
         <div className="border-border flex flex-col gap-2 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="tag">© {new Date().getFullYear()} Resume Log. Built for job seekers.</p>
-          <p className="tag">Early access — actively in development.</p>
         </div>
       </div>
     </footer>
