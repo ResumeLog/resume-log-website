@@ -61,6 +61,48 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Scrollbar — slim monochrome pill; thumb floats inside the track via a transparent border. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4;
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted-foreground);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--foreground);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--background);
+}
+
+/* Firefox — only here, since Chrome 121+ drops the ::-webkit-scrollbar styles above once scrollbar-color is set. */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d4 var(--background);
+  }
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
 a {
   @apply text-foreground transition-opacity duration-200;
 }
