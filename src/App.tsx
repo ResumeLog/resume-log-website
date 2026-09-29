@@ -8,6 +8,7 @@ import HowItWorks from './pages/HowItWorks'
 import NotFound from './pages/NotFound'
 import Pricing from './pages/Pricing'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import RefundPolicy from './pages/RefundPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="get-started" element={<GetStarted />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="refund-policy" element={<RefundPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
