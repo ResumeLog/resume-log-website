@@ -6,6 +6,7 @@ import GetStarted from './pages/GetStarted'
 import Home from './pages/Home'
 import HowItWorks from './pages/HowItWorks'
 import NotFound from './pages/NotFound'
+import Pricing from './pages/Pricing'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
 
@@ -17,6 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="features" element={<Features />} />
           <Route path="how-it-works" element={<HowItWorks />} />
+          <Route path="pricing" element={<Pricing />} />
           <Route path="about" element={<About />} />
           <Route path="get-started" element={<GetStarted />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
