@@ -9,6 +9,14 @@
   <meta name="description"
     content="Resume Log automatically captures every job, company, and person you encounter on LinkedIn — and remembers exactly what you submitted via Easy Apply." />
   <title>ResumeLog</title>
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <script>
+    (function () {
+      var token = '%VITE_PADDLE_CLIENT_TOKEN%';
+      if (token.indexOf('test_') === 0) Paddle.Environment.set('sandbox');
+      Paddle.Initialize({ token: token });
+    })();
+  </script>
 </head>
 
 <body>
