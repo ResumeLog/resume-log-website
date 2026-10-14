@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { dashboardUrl } from '../lib/dashboard'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -63,9 +64,9 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <NavLink to="/get-started" className="btn-solid">
+          <a href={dashboardUrl} className="btn-solid">
             Get Started
-          </NavLink>
+          </a>
         </div>
 
         <button
@@ -89,9 +90,9 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-4 px-6 py-6">
               <NavLinks onClick={() => setMobileOpen(false)} />
-              <NavLink to="/get-started" className="btn-solid mt-2" onClick={() => setMobileOpen(false)}>
+              <a href={dashboardUrl} className="btn-solid mt-2">
                 Get Started
-              </NavLink>
+              </a>
             </div>
           </motion.div>
         )}
