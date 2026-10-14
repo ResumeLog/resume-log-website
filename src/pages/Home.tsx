@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Briefcase, Building2, FileText, LayoutDashboard, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import { dashboardUrl } from '../lib/dashboard'
 
 const features = [
   {
@@ -87,13 +88,13 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-8 flex flex-wrap gap-4"
             >
-              <Link to="/get-started" className="btn-solid group">
+              <a href={dashboardUrl} className="btn-solid group">
                 Get Started
                 <ArrowRight
                   size={16}
                   className="ml-2 transition-transform group-hover:translate-x-1"
                 />
-              </Link>
+              </a>
               <Link to="/features" className="btn-outline">
                 See how it works
               </Link>
@@ -199,9 +200,9 @@ export default function Home() {
                 Join the early access list and get Resume Log the moment it’s ready for you.
               </p>
             </div>
-            <Link to="/get-started" className="btn-solid shrink-0">
+            <a href={dashboardUrl} className="btn-solid shrink-0">
               Get Started
-            </Link>
+            </a>
           </Reveal>
         </div>
       </section>

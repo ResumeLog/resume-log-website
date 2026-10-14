@@ -1,6 +1,6 @@
 import { ArrowRight, MousePointerClick, Puzzle, Save, Search } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import { dashboardUrl } from '../lib/dashboard'
 
 const steps = [
   {
@@ -85,10 +85,10 @@ export default function HowItWorks() {
                 Join the early access list to get Resume Log as soon as it’s ready for you.
               </p>
             </div>
-            <Link to="/get-started" className="btn-solid group shrink-0">
+            <a href={dashboardUrl} className="btn-solid group shrink-0">
               Get Started
               <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </a>
           </Reveal>
         </div>
       </section>

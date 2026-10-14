@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import { dashboardUrl } from '../lib/dashboard'
 
 const values = [
   {
@@ -97,10 +97,10 @@ export default function About() {
                 Join the early access list to hear about updates and get access as it opens up.
               </p>
             </div>
-            <Link to="/get-started" className="btn-solid group shrink-0">
+            <a href={dashboardUrl} className="btn-solid group shrink-0">
               Get Started
               <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </a>
           </Reveal>
         </div>
       </section>

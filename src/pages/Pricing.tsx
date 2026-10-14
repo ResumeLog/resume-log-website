@@ -2,9 +2,8 @@ import { CheckCircle2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import { dashboardUrl } from '../lib/dashboard'
 import { getPricingPlans, type PricingPlan } from '../lib/pricing'
-
-const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL ?? 'http://localhost:5173'
 
 function PlanCta({ plan }: { plan: PricingPlan }) {
   const className = `${plan.highlighted ? 'btn-solid' : 'btn-outline'} mt-8 w-full`

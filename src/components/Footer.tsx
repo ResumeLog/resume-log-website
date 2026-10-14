@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { dashboardUrl } from '../lib/dashboard'
 
 export default function Footer() {
   return (
@@ -31,9 +32,9 @@ export default function Footer() {
               <Link to="/about" className="text-sm">
                 About
               </Link>
-              <Link to="/get-started" className="text-sm">
+              <a href={dashboardUrl} className="text-sm">
                 Get Started
-              </Link>
+              </a>
             </div>
 
             <div className="flex flex-col gap-3">
