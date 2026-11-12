@@ -1,0 +1,5 @@
+node_modules/
+shots/
+fixtures/*.docx
+fixtures/*.pdf
+fixtures/ats-result.json

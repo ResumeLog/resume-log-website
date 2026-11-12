@@ -1,97 +1,146 @@
-import { ArrowRight, MousePointerClick, Puzzle, Save, Search } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import type { ReactNode } from 'react'
 import Reveal from '../components/Reveal'
-import { dashboardUrl } from '../lib/dashboard'
+import ScreenshotFrame from '../components/ScreenshotFrame'
+import { Label, Lede, Section, Stage } from '../components/ui'
+import { dashboardUrl, extensionUrl } from '../lib/links'
+import { screens } from '../lib/screens'
 
-const steps = [
+type Step = { title: string; body: ReactNode; visual: ReactNode }
+
+const steps: Step[] = [
   {
-    tag: '01',
-    icon: Puzzle,
-    title: 'Install the extension',
-    description:
-      'Add Resume Log to Chrome and sign in with your Google account. Your log is private and scoped to you — nobody else sees what you save.',
+    title: 'Add the extension and sign in',
+    body: (
+      <>
+        Install ResumeLog from the{' '}
+        <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-line-strong underline-offset-4">
+          Chrome Web Store
+        </a>{' '}
+        and pin it. The first time you open the side panel it asks you to sign in: the dashboard opens, you
+        continue with Google, and the extension connects itself. No new password.
+      </>
+    ),
+    visual: (
+      <Stage className="flex h-full min-h-[360px] items-end justify-center px-6 pt-10">
+        <ScreenshotFrame {...screens.extensionDetected} variant="panel" className="w-[50%] max-w-[240px] translate-y-10" />
+      </Stage>
+    ),
   },
   {
-    tag: '02',
-    icon: MousePointerClick,
-    title: 'Browse LinkedIn as usual',
-    description:
-      'Keep scrolling job postings, checking out companies, and looking through profiles the way you always do. Resume Log runs quietly in a side panel and detects what you’re looking at.',
+    title: 'Browse LinkedIn and press Save',
+    body: 'Go through jobs the way you normally would. When one is worth keeping, press Save. The same works on company pages and recruiters’ profiles. Each save is stored in the extension first and then synced.',
+    visual: (
+      <Stage className="flex h-full min-h-[360px] items-end justify-center px-6 pt-10">
+        <ScreenshotFrame {...screens.extensionSaved} variant="panel" className="w-[50%] max-w-[240px] translate-y-10" />
+      </Stage>
+    ),
   },
   {
-    tag: '03',
-    icon: Save,
-    title: 'Save with one click',
-    description:
-      'See something worth remembering? Hit save. Job postings, company pages, and profiles all get captured the same way. Apply through Easy Apply and your answers + résumé are recorded automatically.',
+    title: 'Tailor your résumé before you apply',
+    body: 'Upload your résumé as a Word file and open it in the editor. Run an ATS check against the job you saved, add the keywords that are genuinely true for you, and publish a PDF to your library.',
+    visual: (
+      <Stage bleed="left" className="h-full">
+        <ScreenshotFrame {...screens.editorAts} />
+      </Stage>
+    ),
   },
   {
-    tag: '04',
-    icon: Search,
-    title: 'Find it later in your dashboard',
-    description:
-      'Everything you’ve saved shows up in your dashboard, organized into Jobs, Companies, and People. Search, expand, or clean up entries whenever you need to.',
+    title: 'Apply, and let the log keep up',
+    body: 'Apply wherever the job is. With LinkedIn Easy Apply, your questions and answers are saved when you press Submit. Otherwise set the status to Applied and attach the PDF you sent.',
+    visual: (
+      <Stage className="flex h-full items-center justify-center p-6 sm:p-10">
+        <ScreenshotFrame {...screens.jobDetail} variant="plain" className="w-full max-w-md" />
+      </Stage>
+    ),
+  },
+  {
+    title: 'Check in once a week',
+    body: 'Open the dashboard to see what’s moved. Update statuses as replies arrive, follow up on anything that’s gone quiet (Pro), and use the funnel to see where things stall.',
+    visual: (
+      <Stage className="flex h-full items-center p-6 sm:p-10">
+        <ScreenshotFrame {...screens.followUpsFunnel} variant="plain" />
+      </Stage>
+    ),
+  },
+]
+
+const faqs = [
+  { q: 'Does it apply to jobs for me?', a: 'No. ResumeLog never submits anything on your behalf. It records what you did.' },
+  {
+    q: 'What does the extension read?',
+    a: 'Only the LinkedIn page in front of you: when you press Save, and the Easy Apply review screen when you press Submit. Not your messages, not your feed.',
+  },
+  {
+    q: 'Who can see my log?',
+    a: 'Only you. Everything is tied to your Google sign-in and is never shared or sold. You can delete any entry at any time.',
+  },
+  {
+    q: 'Which browsers does it work in?',
+    a: 'Chrome. Other Chromium browsers that install from the Chrome Web Store may work, but only Chrome is tested.',
+  },
+  {
+    q: 'Does it work outside LinkedIn?',
+    a: 'Saving works on LinkedIn today. The résumé editor and ATS check work with any job: pick one you saved, or paste the description.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Free covers saving, the editor and five ATS scans a day. Pro is $12 a month with a 14-day money-back guarantee.',
   },
 ]
 
 export default function HowItWorks() {
   return (
     <div>
-      <section className="mx-auto max-w-5xl px-6 pt-20 pb-16 md:px-16 md:pt-28">
+      <Section bare inner="px-6 pt-20 pb-16 md:px-14 md:pt-28">
         <Reveal>
-          <p className="eyebrow">How it works</p>
-          <h1 className="font-display mt-3 max-w-2xl text-4xl leading-tight font-semibold sm:text-5xl">
-            From open tab to organized log in four steps.
-          </h1>
-          <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
-            No manual data entry, no separate app to remember to open. Resume Log fits into the
-            browsing you’re already doing.
-          </p>
+          <Label>How it works</Label>
+          <Lede
+            as="h1"
+            className="mt-5 max-w-3xl text-[2.2rem] sm:text-5xl"
+            lead="Fits around how you already search."
+            tail="No new habits."
+          />
         </Reveal>
-      </section>
+      </Section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-20 md:px-16">
-          <div className="flex flex-col">
-            {steps.map((step, index) => (
-              <Reveal key={step.tag} delay={index * 0.08}>
-                <div
-                  className={`flex flex-col gap-6 py-10 sm:flex-row sm:items-start ${
-                    index !== 0 ? 'border-border border-t' : ''
-                  }`}
-                >
-                  <div className="flex items-center gap-4 sm:w-48 sm:shrink-0">
-                    <span className="tag text-3xl">{step.tag}</span>
-                    <step.icon size={22} className="text-foreground" />
-                  </div>
-                  <div>
-                    <h2 className="font-display text-xl font-semibold sm:text-2xl">{step.title}</h2>
-                    <p className="text-muted-foreground mt-2 max-w-2xl leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal className="card flex flex-col items-start gap-6 p-10 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-semibold sm:text-3xl">Ready to try it?</h2>
-              <p className="text-muted-foreground mt-2 max-w-md text-sm leading-relaxed">
-                Join the early access list to get Resume Log as soon as it’s ready for you.
-              </p>
-            </div>
-            <a href={dashboardUrl} className="btn-solid group shrink-0">
-              Get Started
-              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-            </a>
+      {steps.map((step, i) => (
+        <Section key={step.title} inner="grid md:grid-cols-[1fr_1.35fr]">
+          <Reveal className="border-line flex flex-col border-b p-8 md:border-r md:border-b-0 md:p-12">
+            <span className="text-subtle font-mono text-sm tabular-nums">0{i + 1}</span>
+            <h2 className="lede mt-3 text-2xl sm:text-[1.7rem]">{step.title}</h2>
+            <p className="text-muted-foreground mt-4 leading-relaxed">{step.body}</p>
           </Reveal>
+          <div className="min-h-[300px]">{step.visual}</div>
+        </Section>
+      ))}
+
+      <Section inner="grid md:grid-cols-[1fr_1.35fr]">
+        <div className="border-line border-b p-8 md:border-r md:border-b-0 md:p-12">
+          <Lede className="text-[1.7rem] sm:text-[2rem]" lead="Questions." tail="The ones people ask first." />
         </div>
-      </section>
+        <dl>
+          {faqs.map((faq, i) => (
+            <Reveal key={faq.q} className={`p-8 md:px-12 ${i > 0 ? 'border-line border-t' : ''}`}>
+              <dt className="font-medium">{faq.q}</dt>
+              <dd className="text-muted-foreground mt-2 leading-relaxed">{faq.a}</dd>
+            </Reveal>
+          ))}
+        </dl>
+      </Section>
+
+      <Section inner="flex flex-col items-start gap-6 px-6 py-20 md:flex-row md:items-center md:justify-between md:px-14">
+        <Lede className="max-w-xl text-[1.7rem] sm:text-[2rem]" lead="Step one takes a minute." tail="Everything after that happens as you browse." />
+        <div className="flex flex-wrap gap-2.5">
+          <a href={dashboardUrl} className="btn-outline btn-lg">
+            Open dashboard
+          </a>
+          <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid btn-lg">
+            Add to Chrome
+            <ArrowRight size={16} />
+          </a>
+        </div>
+      </Section>
     </div>
   )
 }

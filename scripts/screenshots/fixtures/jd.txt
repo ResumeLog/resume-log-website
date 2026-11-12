@@ -1,0 +1,17 @@
+Senior Frontend Engineer — Northwind Labs (Remote, APAC)
+
+We're looking for a Senior Frontend Engineer to lead the web experience for our analytics product.
+
+What you'll do
+- Build and own features in React and TypeScript, from design review to production.
+- Improve performance and accessibility across the app (Core Web Vitals, WCAG 2.1).
+- Work with designers in Figma and help grow our design system.
+- Write tests with Jest and Playwright and keep our CI/CD pipeline green.
+- Mentor other engineers and take part in code review.
+
+What we're looking for
+- 5+ years of frontend experience with React and TypeScript.
+- Strong CSS skills; Tailwind CSS is a plus.
+- Experience with Next.js, GraphQL and REST APIs.
+- Experience with data visualization (D3 or similar) and state management (Redux or Zustand).
+- Clear written communication and a collaborative attitude.

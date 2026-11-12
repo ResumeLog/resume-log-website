@@ -1,109 +1,95 @@
 import { ArrowRight } from 'lucide-react'
 import Reveal from '../components/Reveal'
-import { dashboardUrl } from '../lib/dashboard'
+import { Label, Lede, Section } from '../components/ui'
+import { contactEmail, extensionUrl } from '../lib/links'
 
-const values = [
+/*
+ * TODO(confirm): first-person story drafted for RES-24 from the site's earlier
+ * origin copy. The owner should check every personal detail before launch.
+ */
+
+const principles = [
   {
-    tag: '01',
-    title: 'Built from a real search',
-    description:
-      'Resume Log started as a personal tool for keeping track of a messy, months-long job search — too many tabs, too many spreadsheets, too much forgotten context.',
+    title: 'No extra work.',
+    body: 'If keeping a log takes longer than applying, nobody keeps it. So it’s one button on the page you already have open.',
   },
   {
-    tag: '02',
-    title: 'Low effort by design',
-    description:
-      'If it takes more work than just applying, nobody’s going to use it. Every part of Resume Log is built to add as close to zero friction as possible.',
+    title: 'Your search is yours.',
+    body: 'Your log is tied to your Google sign-in and nobody else can see it. No data is sold, and you can delete anything.',
   },
   {
-    tag: '03',
-    title: 'Your data stays yours',
-    description:
-      'Everything you capture is scoped to your own Google-authenticated account. Nothing is shared, sold, or visible to anyone else.',
+    title: 'Scores you can read.',
+    body: 'The ATS check shows how it reached its number: six parts, each with a reason. You should be able to disagree with it.',
+  },
+  {
+    title: 'It never applies for you.',
+    body: 'There are tools that mass-apply to hundreds of jobs. This isn’t one. You choose every application; ResumeLog remembers it.',
   },
 ]
 
 export default function About() {
   return (
     <div>
-      <section className="mx-auto max-w-5xl px-6 pt-20 pb-16 md:px-16 md:pt-28">
+      <Section bare inner="px-6 pt-20 pb-16 md:px-14 md:pt-28">
         <Reveal>
-          <p className="eyebrow">About</p>
-          <h1 className="font-display mt-3 max-w-2xl text-4xl leading-tight font-semibold sm:text-5xl">
-            A personal job-search tool, made public.
-          </h1>
+          <Label>About</Label>
+          <Lede
+            as="h1"
+            className="mt-5 max-w-3xl text-[2.2rem] sm:text-5xl"
+            lead="Built during a job search."
+            tail="Keeping track shouldn’t be a second job."
+          />
         </Reveal>
-      </section>
+      </Section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto grid max-w-5xl gap-12 px-6 py-20 md:grid-cols-2 md:px-16">
-          <Reveal>
-            <p className="text-muted-foreground leading-relaxed">
-              Resume Log began as a way to stop losing track of a job search — which postings
-              had already been seen, which companies were actually worth a second look, and what
-              had actually been said in that Easy Apply form three weeks ago.
-            </p>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              What started as a personal browser extension turned into something worth sharing:
-              a quiet layer that sits on top of LinkedIn and remembers the details so you don’t
-              have to.
+      <Section inner="grid md:grid-cols-[1fr_1.35fr]">
+        <div className="border-line text-subtle border-b p-8 text-sm md:border-r md:border-b-0 md:p-12">The story</div>
+        <Reveal className="text-muted-foreground flex max-w-2xl flex-col gap-5 p-8 text-[17px] leading-relaxed md:p-12">
+          <p>
+            <span className="text-foreground">A few months into a job search, I had a spreadsheet I’d stopped updating</span>, a
+            folder of résumés with names like <span className="text-foreground font-mono text-[15px]">cv-final-v3.pdf</span>,
+            and no idea which one I’d sent to which company.
+          </p>
+          <p>
+            Then a recruiter called about a role I’d applied to weeks earlier. I couldn’t remember the job description, or
+            what I’d said in the Easy Apply form about my notice period.
+          </p>
+          <p>
+            So I built a small extension that saved the LinkedIn job I was looking at. Then a page to see them all. Then a
+            way to check my résumé against the job before applying, because I kept guessing which keywords mattered.
+          </p>
+          <p>
+            That became ResumeLog. It’s a small, independent product and it’s still being built. If something is broken or
+            missing, I’d like to hear about it.
+          </p>
+        </Reveal>
+      </Section>
+
+      <Section inner="grid md:grid-cols-2">
+        {principles.map((p, i) => (
+          <Reveal
+            key={p.title}
+            className={`border-line p-8 md:p-12 ${i % 2 === 0 ? 'md:border-r' : ''} ${i < 2 ? 'border-b' : i === 2 ? 'border-b md:border-b-0' : ''}`}
+          >
+            <p className="lede max-w-md text-lg">
+              {p.title} <span className="tail">{p.body}</span>
             </p>
           </Reveal>
+        ))}
+      </Section>
 
-          <Reveal delay={0.1}>
-            <p className="text-muted-foreground leading-relaxed">
-              Resume Log is currently <span className="text-foreground font-medium">early and
-              actively in development</span>. It works end to end today — the extension
-              captures, the dashboard displays — but it’s still being shaped by real use,
-              not a finished product with a roadmap set in stone.
-            </p>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              If that sounds like something worth having in your own search, the early access
-              list is the best way to follow along and get access as it opens up.
-            </p>
-          </Reveal>
+      <Section inner="flex flex-col items-start gap-6 px-6 py-20 md:flex-row md:items-center md:justify-between md:px-14">
+        <div>
+          <Lede className="text-[1.7rem] sm:text-[2rem]" lead="Say hello." tail="Bugs, ideas or job search stories." />
+          <a href={`mailto:${contactEmail}`} className="text-muted-foreground hover:text-foreground mt-3 inline-block text-[15px]">
+            {contactEmail}
+          </a>
         </div>
-      </section>
-
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-20 md:px-16">
-          <Reveal>
-            <p className="eyebrow">What matters here</p>
-            <h2 className="font-display mt-3 text-3xl leading-tight sm:text-4xl">
-              A few things this is built around.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
-            {values.map((value, index) => (
-              <Reveal key={value.tag} delay={index * 0.08}>
-                <span className="tag text-2xl">{value.tag}</span>
-                <h3 className="font-display mt-3 text-lg font-semibold">{value.title}</h3>
-                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                  {value.description}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal className="card flex flex-col items-start gap-6 p-10 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-semibold sm:text-3xl">Follow along</h2>
-              <p className="text-muted-foreground mt-2 max-w-md text-sm leading-relaxed">
-                Join the early access list to hear about updates and get access as it opens up.
-              </p>
-            </div>
-            <a href={dashboardUrl} className="btn-solid group shrink-0">
-              Get Started
-              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Reveal>
-        </div>
-      </section>
+        <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid btn-lg shrink-0">
+          Try ResumeLog
+          <ArrowRight size={16} />
+        </a>
+      </Section>
     </div>
   )
 }

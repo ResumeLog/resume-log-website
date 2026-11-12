@@ -1,23 +1,38 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/inter/opsz.css";
 
+/*
+ * Quiet, premium, mostly monochrome: white surfaces, cool neutral greys,
+ * hairline borders and soft layered shadows. The product screenshots are the
+ * only real colour on the page.
+ */
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #0b0b0d;
+  --panel: #f8f8f9;
+  --panel-2: #f2f2f4;
+  --line: #ebebee;
+  --line-strong: #dcdce0;
+  --muted-foreground: #6c6c75;
+  --subtle: #9b9ba4;
+
   --card: #ffffff;
-  --card-foreground: #0a0a0a;
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #a1a1a1;
+  --card-foreground: var(--foreground);
+  --primary: #18181b;
+  --primary-foreground: #ffffff;
+  --secondary: var(--panel);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--panel);
+  --accent: var(--panel);
+  --accent-foreground: var(--foreground);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: #a1a1aa;
   --radius: 0.625rem;
+
+  --shadow-soft: 0 1px 2px rgb(16 16 20 / 0.04), 0 4px 12px -2px rgb(16 16 20 / 0.06);
+  --shadow-shot: 0 1px 1px rgb(16 16 20 / 0.03), 0 8px 24px -6px rgb(16 16 20 / 0.08),
+    0 32px 64px -24px rgb(16 16 20 / 0.16);
 }
 
 @theme inline {
@@ -36,14 +51,19 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-subtle: var(--subtle);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-sm: calc(var(--radius) * 0.6);
 
-  --font-sans: "Geist Variable", system-ui, sans-serif;
-  --font-display: "Geist Variable", system-ui, sans-serif;
-  --font-mono: ui-monospace, Consolas, monospace;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Consolas, monospace;
 }
 
 * {
@@ -59,43 +79,8 @@ body,
 body {
   @apply bg-background text-foreground antialiased;
   font-family: var(--font-sans);
-}
-
-/* Scrollbar — slim monochrome pill; thumb floats inside the track via a transparent border. */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #d4d4d4;
-  border: 3px solid transparent;
-  border-radius: 9999px;
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--muted-foreground);
-}
-
-::-webkit-scrollbar-thumb:active {
-  background-color: var(--foreground);
-}
-
-::-webkit-scrollbar-corner {
-  background: var(--background);
-}
-
-/* Firefox — only here, since Chrome 121+ drops the ::-webkit-scrollbar styles above once scrollbar-color is set. */
-@supports not selector(::-webkit-scrollbar) {
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: #d4d4d4 var(--background);
-  }
+  font-feature-settings: "cv11", "ss01", "ss03";
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -104,33 +89,139 @@ body {
 }
 
 a {
-  @apply text-foreground transition-opacity duration-200;
+  @apply text-foreground transition-colors duration-150;
 }
 
-a:hover {
-  opacity: 0.75;
+/* Scrollbar: slim, neutral. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--line-strong);
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--subtle);
+}
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) var(--background);
+  }
 }
 
-.btn-solid {
-  @apply bg-primary text-primary-foreground rounded-lg px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85 inline-flex items-center justify-center;
+/* ---------- Type ---------- */
+
+/* Large, tight headlines. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
+/* Section headline: a black lead sentence that continues in grey. */
+.lede {
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.22;
+  text-wrap: balance;
+}
+.lede > .tail {
+  color: var(--subtle);
+}
+
+/* ---------- Controls ---------- */
+
+.btn-solid,
 .btn-outline {
-  @apply border border-border text-foreground rounded-lg px-6 py-3 text-sm font-medium transition-colors hover:bg-secondary inline-flex items-center justify-center;
+  @apply inline-flex h-9 items-center justify-center gap-1.5 rounded-lg px-3.5 text-sm font-medium whitespace-nowrap transition-[background-color,box-shadow,color] duration-150;
+}
+.btn-solid {
+  background: var(--primary);
+  color: var(--primary-foreground) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 1px 2px rgb(0 0 0 / 0.2);
+}
+.btn-solid:hover {
+  background: #2a2a2e;
+}
+.btn-outline {
+  background: #fff;
+  color: var(--foreground);
+  box-shadow: 0 0 0 1px var(--line-strong), 0 1px 2px rgb(16 16 20 / 0.05);
+}
+.btn-outline:hover {
+  background: var(--panel);
+}
+.btn-lg {
+  @apply h-11 px-5 text-[15px];
 }
 
+/* Small pill above a hero headline. */
+.pill {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[13px] font-medium;
+  box-shadow: 0 0 0 1px var(--line-strong), 0 1px 2px rgb(16 16 20 / 0.04);
+}
+
+/* Tiny neutral label chip ("Capture", "Pro"). */
+.chip {
+  @apply inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-xs font-medium;
+  background: var(--panel-2);
+  color: var(--muted-foreground);
+}
+
+/* ---------- Surfaces ---------- */
+
+/* The page frame: vertical hairlines on both sides of the content column. */
+.frame {
+  @apply mx-auto w-full max-w-[1200px];
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+/* Soft grey stage that product screenshots sit on. */
+.stage {
+  background-color: var(--panel);
+  background-image: radial-gradient(rgb(16 16 20 / 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* A faint cool wash behind the hero. */
+.hero-wash {
+  background: radial-gradient(60% 50% at 50% 0%, #f1f1f4 0%, rgb(255 255 255 / 0) 100%),
+    linear-gradient(180deg, #fff 0%, #fafafb 100%);
+}
+
+.shadow-shot {
+  box-shadow: var(--shadow-shot);
+}
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Legacy classes still used by the legal pages. */
 .eyebrow {
-  @apply text-muted-foreground font-mono text-[11px] tracking-[0.2em] uppercase;
+  @apply text-muted-foreground text-sm font-medium;
 }
-
-.card {
-  @apply border border-border bg-background rounded-lg p-7 transition-colors duration-200;
-}
-
-.card:hover {
-  border-color: var(--foreground);
-}
-
 .tag {
-  @apply text-muted-foreground/60 font-mono text-xs tabular-nums;
+  @apply text-subtle text-xs tabular-nums;
+}
+.card {
+  @apply rounded-xl border border-line bg-white p-7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,211 +1,302 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Briefcase, Building2, FileText, LayoutDashboard, Users } from 'lucide-react'
+import { ArrowRight, BellRing, Bookmark, FileText, Gauge, Lock } from 'lucide-react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
-import { dashboardUrl } from '../lib/dashboard'
+import ScreenshotFrame from '../components/ScreenshotFrame'
+import { Label, Lede, Pill, Section, Stage } from '../components/ui'
+import { AtsScore, CaptureFlow, EasyApplyMemory, FollowUpOrbit, StatusBoard } from '../components/vignettes'
+import { dashboardUrl, extensionUrl } from '../lib/links'
+import { screens } from '../lib/screens'
 
-const features = [
+const strip = [
+  { icon: Bookmark, text: 'Save LinkedIn jobs, people and companies' },
+  { icon: Gauge, text: 'ATS check, scored in six parts' },
+  { icon: FileText, text: 'Edit Word résumés, publish PDFs' },
+  { icon: BellRing, text: 'Follow-up reminders' },
+]
+
+type Step = { id: string; name: string; lead: string; tail: string; visual: ReactNode; label?: string }
+
+const steps: Step[] = [
   {
-    icon: Briefcase,
-    title: 'Automatic capture',
-    description:
-      'Browse LinkedIn like you always do. One click on the extension saves the job posting — no copy-pasting into a spreadsheet.',
+    id: 'capture',
+    name: 'Capture',
+    lead: 'Save it while you’re looking at it.',
+    tail: 'The side panel sits next to LinkedIn. Press Save and the job, company or person is in your log, full description included.',
+    visual: (
+      <Stage className="flex justify-center gap-6 px-6 pt-10 pb-0 sm:gap-10">
+        <ScreenshotFrame {...screens.extensionDetected} variant="panel" className="w-[42%] max-w-[250px] translate-y-6" />
+        <ScreenshotFrame {...screens.extensionSaved} variant="panel" className="w-[42%] max-w-[250px] translate-y-14" />
+      </Stage>
+    ),
   },
   {
-    icon: Building2,
-    title: 'Companies & people',
-    description:
-      'Every company page and profile you check out along the way gets logged next to the roles you’re chasing.',
+    id: 'organise',
+    name: 'Organise',
+    lead: 'Every application, one table.',
+    tail: 'Status, salary expectation, the CV you sent and the original posting, all on one row you can sort and customise.',
+    visual: (
+      <Stage bleed>
+        <ScreenshotFrame {...screens.jobsTable} />
+      </Stage>
+    ),
   },
+  {
+    id: 'tailor',
+    name: 'Tailor',
+    lead: 'Fix your résumé for this job.',
+    tail: 'Run an ATS check against the job you saved. You get a score in six parts, the keywords you’re missing and specific fixes.',
+    visual: (
+      <Stage bleed="left">
+        <ScreenshotFrame {...screens.editorAts} />
+      </Stage>
+    ),
+  },
+  {
+    id: 'follow-up',
+    name: 'Follow up',
+    label: 'Pro',
+    lead: 'Follow up before it goes cold.',
+    tail: 'Applications with no reply after two weeks are listed for you, next to a funnel that shows where things usually stall.',
+    visual: (
+      <Stage className="p-6 sm:p-10">
+        <ScreenshotFrame {...screens.followUpsFunnel} variant="plain" />
+      </Stage>
+    ),
+  },
+]
+
+const bento: { title: string; body: string; visual: ReactNode; label?: string }[] = [
+  {
+    title: 'Easy Apply, remembered.',
+    body: 'Submit through LinkedIn Easy Apply and your questions, answers and résumé are saved with the job.',
+    visual: <EasyApplyMemory className="h-[300px]" />,
+  },
+  {
+    title: 'Statuses that move with you.',
+    body: 'Bookmarked to Applied to Interviewing in a click. Your response rate is worked out from them.',
+    visual: <StatusBoard className="h-[300px]" />,
+  },
+  {
+    title: 'A score you can read.',
+    body: 'Six parts, the keywords you have, and the ones you’re missing for this specific job.',
+    visual: <AtsScore className="h-[300px]" />,
+  },
+  {
+    title: 'Nothing goes quiet unnoticed.',
+    label: 'Pro',
+    body: 'Two weeks without a reply and the job is flagged for a follow-up.',
+    visual: <FollowUpOrbit className="h-[300px]" />,
+  },
+]
+
+const extras = [
   {
     icon: FileText,
-    title: 'Easy Apply memory',
-    description:
-      'Applied through LinkedIn Easy Apply? We record the exact questions you were asked and the résumé you used.',
+    title: 'A résumé library.',
+    body: 'Every tailored version in one place. Star the ones you use most and attach the exact PDF to each job.',
   },
   {
-    icon: LayoutDashboard,
-    title: 'One dashboard',
-    description: 'Jobs, companies, and people in a single searchable view — your whole search, one page.',
+    icon: Lock,
+    title: 'Private by default.',
+    body: 'Your log is tied to your Google sign-in. Nobody else can see it, and nothing is sold.',
   },
 ]
 
-const steps = [
-  {
-    tag: '01',
-    title: 'Install the extension',
-    description: 'Add Resume Log to Chrome and sign in with Google in a few seconds.',
-  },
-  {
-    tag: '02',
-    title: 'Browse & save',
-    description: 'Open the side panel on any LinkedIn job, company, or profile and hit save.',
-  },
-  {
-    tag: '03',
-    title: 'Review your dashboard',
-    description: 'Everything you’ve captured shows up automatically, organized and searchable.',
-  },
-]
+/** Which step block is currently in the middle of the viewport. */
+function useActiveStep(count: number) {
+  const refs = useRef<(HTMLDivElement | null)[]>([])
+  const [active, setActive] = useState(0)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(Number((entry.target as HTMLElement).dataset.index))
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    refs.current.slice(0, count).forEach((el) => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [count])
+  return { refs, active }
+}
 
 export default function Home() {
+  const { refs, active } = useActiveStep(steps.length)
+
   return (
     <div>
-      <section className="mx-auto max-w-5xl px-6 pt-20 pb-24 md:px-16 md:pt-28 md:pb-32">
-        <div className="grid items-center gap-14 md:grid-cols-2">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="border-border mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1"
-            >
-              <span className="eyebrow">Now in early access</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-display text-4xl leading-tight font-semibold sm:text-5xl lg:text-6xl"
-            >
-              Your job search, automatically logged.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-muted-foreground mt-6 max-w-md text-lg leading-relaxed"
-            >
-              Resume Log quietly captures every job, company, and person you encounter on
-              LinkedIn — and remembers exactly what you submitted when you hit Easy Apply.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 flex flex-wrap gap-4"
-            >
-              <a href={dashboardUrl} className="btn-solid group">
-                Get Started
-                <ArrowRight
-                  size={16}
-                  className="ml-2 transition-transform group-hover:translate-x-1"
-                />
-              </a>
-              <Link to="/features" className="btn-outline">
-                See how it works
-              </Link>
-            </motion.div>
-          </div>
+      {/* ───────── Hero ───────── */}
+      <section className="hero-wash">
+        <div className="mx-auto max-w-[1200px] px-5 pt-20 text-center md:px-8 md:pt-28">
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <Pill href={extensionUrl}>Now on the Chrome Web Store</Pill>
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="display mx-auto mt-6 max-w-4xl text-[2.6rem] sm:text-6xl lg:text-[4.4rem]"
+          >
+            Every job you apply to, remembered.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-muted-foreground mx-auto mt-5 max-w-xl text-lg leading-relaxed"
+          >
+            ResumeLog saves LinkedIn jobs in one click, checks your résumé against each one, and tells you
+            when it’s time to follow up.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-8 flex flex-wrap justify-center gap-2.5"
+          >
+            <a href={dashboardUrl} className="btn-outline btn-lg">
+              Open dashboard
+            </a>
+            <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid btn-lg">
+              Add to Chrome, it’s free
+            </a>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="card !p-1"
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto mt-16 max-w-[1080px] pb-16 md:mt-20 md:pb-24"
           >
-            <div className="rounded-md border border-border/60 p-6">
-              <div className="flex items-center justify-between border-b border-border pb-4">
-                <span className="eyebrow">Dashboard preview</span>
-                <div className="flex gap-1.5">
-                  <span className="bg-border size-2 rounded-full" />
-                  <span className="bg-border size-2 rounded-full" />
-                  <span className="bg-border size-2 rounded-full" />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 pt-4">
-                {[
-                  { icon: Briefcase, label: 'Senior Product Designer', sub: 'Northwind Labs' },
-                  { icon: Building2, label: 'Northwind Labs', sub: 'Company · saved' },
-                  { icon: Users, label: 'Alex Rivera', sub: 'Recruiter · saved' },
-                ].map((row) => (
-                  <div key={row.label} className="border-border flex items-center gap-3 rounded-md border p-3">
-                    <row.icon size={16} className="text-muted-foreground shrink-0" />
-                    <div className="min-w-0">
-                      <p className="truncate text-sm font-medium">{row.label}</p>
-                      <p className="tag">{row.sub}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <ScreenshotFrame {...screens.dashboard} eager className="md:mr-[12%]" />
+            <ScreenshotFrame
+              {...screens.extensionSaved}
+              variant="panel"
+              eager
+              className="absolute right-0 bottom-6 w-[30%] max-w-[250px] md:bottom-10"
+            />
           </motion.div>
         </div>
       </section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal>
-            <p className="eyebrow">What it does</p>
-            <h2 className="font-display mt-3 text-3xl leading-tight sm:text-4xl">
-              Everything your search touches, kept in one place.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2">
-            {features.map((feature, index) => (
-              <Reveal key={feature.title} delay={index * 0.08}>
-                <div className="card h-full">
-                  <feature.icon size={20} className="text-foreground" />
-                  <h3 className="font-display mt-4 text-lg font-semibold">{feature.title}</h3>
-                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+      {/* ───────── Capability strip ───────── */}
+      <Section inner="grid grid-cols-2 md:grid-cols-4">
+        {strip.map((item, i) => (
+          <div
+            key={item.text}
+            className={`border-line flex flex-col gap-3 p-6 md:p-8 ${i % 2 === 0 ? 'border-r' : ''} ${i < 2 ? 'border-b md:border-b-0' : ''} ${i === 1 ? 'md:border-r' : ''}`}
+          >
+            <item.icon size={18} strokeWidth={1.75} className="text-muted-foreground" />
+            <span className="text-[15px] leading-snug font-medium">{item.text}</span>
           </div>
-        </div>
-      </section>
+        ))}
+      </Section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal>
-            <p className="eyebrow">How it works</p>
-            <h2 className="font-display mt-3 text-3xl leading-tight sm:text-4xl">
-              Three steps. Zero spreadsheets.
-            </h2>
-          </Reveal>
+      {/* ───────── Intro ───────── */}
+      <Section inner="grid lg:grid-cols-[1fr_1.1fr]">
+        <Reveal className="border-line border-b px-6 py-16 md:px-14 md:py-24 lg:border-r lg:border-b-0">
+          <Label>How it works</Label>
+          <Lede
+            className="mt-5 max-w-xl text-[1.6rem] sm:text-[2.6rem]"
+            lead="Your whole job search, in one place."
+            tail="Save it on LinkedIn, tailor your résumé for it, and follow up before it goes cold."
+          />
+        </Reveal>
+        <CaptureFlow className="min-h-[340px]" />
+      </Section>
 
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
-            {steps.map((step, index) => (
-              <Reveal key={step.tag} delay={index * 0.1}>
-                <span className="tag text-2xl">{step.tag}</span>
-                <h3 className="font-display mt-3 text-lg font-semibold">{step.title}</h3>
-                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{step.description}</p>
-              </Reveal>
+      {/* ───────── Four steps with a sticky index ───────── */}
+      <Section inner="md:grid md:grid-cols-[240px_1fr]">
+        <aside className="border-line hidden md:block md:border-r">
+          <ol className="sticky top-14 flex flex-col gap-0.5 px-8 py-12">
+            {steps.map((step, i) => (
+              <li key={step.id}>
+                <a
+                  href={`#${step.id}`}
+                  className={`relative block py-1.5 text-[15px] transition-colors ${
+                    active === i ? 'text-foreground font-medium' : 'text-subtle hover:text-muted-foreground'
+                  }`}
+                >
+                  {active === i && <span className="bg-foreground absolute top-1.5 bottom-1.5 -left-8 w-px" />}
+                  {step.name}
+                </a>
+              </li>
             ))}
-          </div>
+          </ol>
+        </aside>
 
-          <Reveal delay={0.2} className="mt-14">
-            <Link to="/how-it-works" className="inline-flex items-center gap-2 text-sm font-medium group">
-              Walk through the details
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal className="card flex flex-col items-start gap-6 p-10 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-semibold sm:text-3xl">
-                Stop losing track of your search.
-              </h2>
-              <p className="text-muted-foreground mt-2 max-w-md text-sm leading-relaxed">
-                Join the early access list and get Resume Log the moment it’s ready for you.
-              </p>
+        <div>
+          {steps.map((step, i) => (
+            <div
+              key={step.id}
+              id={step.id}
+              ref={(el) => {
+                refs.current[i] = el
+              }}
+              data-index={i}
+              className={`scroll-mt-14 ${i > 0 ? 'border-line border-t' : ''}`}
+            >
+              <Reveal className="px-6 pt-14 pb-10 md:px-10 md:pt-16">
+                {step.label && <Label>{step.label}</Label>}
+                <Lede className={`max-w-xl text-[1.35rem] sm:text-2xl ${step.label ? 'mt-3' : ''}`} lead={step.lead} tail={step.tail} />
+              </Reveal>
+              <Reveal>{step.visual}</Reveal>
             </div>
-            <a href={dashboardUrl} className="btn-solid shrink-0">
-              Get Started
-            </a>
-          </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
+
+      {/* ───────── Extras bento ───────── */}
+      <Section inner="grid md:grid-cols-2">
+        {bento.map((cell, i) => (
+          <div
+            key={cell.title}
+            className={`border-line flex flex-col ${i % 2 === 0 ? 'md:border-r' : ''} ${i < bento.length - 1 ? 'border-b' : ''} ${i === bento.length - 2 ? 'md:border-b-0' : ''}`}
+          >
+            <Reveal className="p-8 md:p-10">
+              {cell.label && <Label>{cell.label}</Label>}
+              <p className={`lede max-w-md text-lg ${cell.label ? 'mt-3' : ''}`}>
+                {cell.title} <span className="tail">{cell.body}</span>
+              </p>
+            </Reveal>
+            <div className="mt-auto">{cell.visual}</div>
+          </div>
+        ))}
+      </Section>
+
+      <Section inner="grid md:grid-cols-2">
+        {extras.map((extra, i) => (
+          <Reveal key={extra.title} className={`border-line p-8 md:p-10 ${i === 0 ? 'border-b md:border-r md:border-b-0' : ''}`}>
+            <extra.icon size={18} strokeWidth={1.75} className="text-muted-foreground" />
+            <p className="lede mt-4 max-w-md text-lg">
+              {extra.title} <span className="tail">{extra.body}</span>
+            </p>
+          </Reveal>
+        ))}
+      </Section>
+
+      {/* ───────── Closing CTA ───────── */}
+      <Section inner="px-6 py-24 text-center md:py-32">
+        <Reveal>
+          <h2 className="display mx-auto max-w-2xl text-4xl sm:text-5xl">Start free. Upgrade when it gets busy.</h2>
+          <p className="text-muted-foreground mx-auto mt-5 max-w-lg leading-relaxed">
+            Saving, the résumé editor and five ATS scans a day are free. Pro is $12 a month for unlimited scans,
+            every fix, scan history and follow-up reminders.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-2.5">
+            <Link to="/pricing" className="btn-outline btn-lg">
+              Compare plans
+            </Link>
+            <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid btn-lg">
+              Add to Chrome
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </Reveal>
+      </Section>
     </div>
   )
 }

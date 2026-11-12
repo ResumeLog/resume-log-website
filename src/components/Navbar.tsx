@@ -1,98 +1,87 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { dashboardUrl } from '../lib/dashboard'
+import { dashboardUrl, extensionUrl } from '../lib/links'
 
 const links = [
-  { to: '/', label: 'Home' },
   { to: '/features', label: 'Features' },
-  { to: '/how-it-works', label: 'How It Works' },
+  { to: '/how-it-works', label: 'How it works' },
   { to: '/pricing', label: 'Pricing' },
   { to: '/about', label: 'About' },
 ]
 
-function NavLinks({ onClick }: { onClick?: () => void }) {
-  return (
-    <>
-      {links.map((link) => (
-        <NavLink
-          key={link.to}
-          to={link.to}
-          end={link.to === '/'}
-          onClick={onClick}
-          className={({ isActive }) =>
-            `text-sm font-medium transition-colors ${
-              isActive
-                ? 'border-foreground border-b text-foreground'
-                : 'text-muted-foreground hover:text-foreground border-b border-transparent'
-            }`
-          }
-        >
-          {link.label}
-        </NavLink>
-      ))}
-    </>
-  )
-}
-
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const [open, setOpen] = useState(false)
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 ${
-        scrolled ? 'bg-background/95 border-border border-b backdrop-blur' : 'border-b border-transparent'
-      }`}
-    >
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6 md:px-16">
-        <NavLink to="/" className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight">
-          <img src="/resumelog-icon.svg" alt="" width="18" height="20" />
-          ResumeLog
-        </NavLink>
+    <header className="border-line fixed inset-x-0 top-0 z-50 border-b bg-white/85 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-5 md:px-8">
+        <div className="flex items-center gap-10">
+          <NavLink to="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight">
+            <img src="/resumelog-icon.svg" alt="" width="17" height="19" />
+            ResumeLog
+          </NavLink>
+          <nav className="hidden items-center gap-1 md:flex">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                    isActive ? 'text-foreground bg-panel' : 'text-muted-foreground hover:text-foreground'
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          <NavLinks />
-        </nav>
-
-        <div className="hidden md:block">
-          <a href={dashboardUrl} className="btn-solid">
-            Get Started
+        <div className="hidden items-center gap-2 md:flex">
+          <a href={dashboardUrl} className="btn-outline !h-8 !px-3">
+            Log in
+          </a>
+          <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid !h-8 !px-3">
+            Add to Chrome
           </a>
         </div>
 
         <button
           type="button"
-          aria-label="Toggle menu"
-          className="text-foreground md:hidden"
-          onClick={() => setMobileOpen((v) => !v)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          className="text-foreground -mr-1 p-1 md:hidden"
+          onClick={() => setOpen((v) => !v)}
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       <AnimatePresence>
-        {mobileOpen && (
+        {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="bg-background border-border overflow-hidden border-b md:hidden"
+            className="border-line overflow-hidden border-t bg-white md:hidden"
           >
-            <div className="flex flex-col gap-4 px-6 py-6">
-              <NavLinks onClick={() => setMobileOpen(false)} />
-              <a href={dashboardUrl} className="btn-solid mt-2">
-                Get Started
-              </a>
+            <div className="flex flex-col px-5 py-4">
+              {links.map((link) => (
+                <NavLink key={link.to} to={link.to} onClick={() => setOpen(false)} className="py-2.5 text-[15px] font-medium">
+                  {link.label}
+                </NavLink>
+              ))}
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <a href={dashboardUrl} className="btn-outline">
+                  Log in
+                </a>
+                <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid">
+                  Add to Chrome
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

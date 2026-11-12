@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+const BE = new URL('../../../resume-log-be/dist/ats/analysis/', import.meta.url).href;
+const { extractDocx } = await import(BE + 'extract-docx.js');
+const { extractJobProfile } = await import(BE + 'job-keywords.js');
+const { scoreResume } = await import(BE + 'score.js');
+const jd = fs.readFileSync('fixtures/jd.txt', 'utf8');
+const doc = await extractDocx(fs.readFileSync('fixtures/jordan-ellis-resume.docx'));
+const result = scoreResume(doc, extractJobProfile('Senior Frontend Engineer', jd, []));
+fs.writeFileSync('fixtures/ats-result.json', JSON.stringify(result, null, 2));
+console.log('score', result.score, result.categories.map(c => c.id + ':' + c.score).join(' '), 'matched', result.keywords.matched.length, 'missing', result.keywords.missing.length);

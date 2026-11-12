@@ -1,93 +1,83 @@
-import { CheckCircle2 } from 'lucide-react'
-import { useState, type FormEvent } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import Reveal from '../components/Reveal'
+import { Label, Lede, Section } from '../components/ui'
+import { contactEmail, dashboardUrl, extensionUrl } from '../lib/links'
+
+const steps = [
+  {
+    title: 'Add the extension to Chrome',
+    body: 'It’s free on the Chrome Web Store. Pin it so it’s always in your toolbar.',
+    action: { label: 'Chrome Web Store', href: extensionUrl, external: true, solid: true },
+  },
+  {
+    title: 'Sign in with Google',
+    body: 'Open the side panel and press Sign in. You’ll land on the dashboard; continue with Google and the extension connects itself.',
+    action: { label: 'Open dashboard', href: dashboardUrl, external: false, solid: false },
+  },
+  {
+    title: 'Save your first job',
+    body: 'Open any job on LinkedIn, open the side panel and press Save. It appears in your dashboard straight away.',
+    action: null,
+  },
+]
 
 export default function GetStarted() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    if (!email) return
-    setSubmitted(true)
-  }
-
   return (
-    <div className="mx-auto max-w-5xl px-6 pt-20 pb-24 md:px-16 md:pt-28">
-      <div className="grid gap-14 md:grid-cols-2">
+    <div>
+      <Section bare inner="px-6 pt-20 pb-16 md:px-14 md:pt-28">
         <Reveal>
-          <p className="eyebrow">Get started</p>
-          <h1 className="font-display mt-3 text-4xl leading-tight font-semibold sm:text-5xl">
-            Join the early access list.
-          </h1>
-          <p className="text-muted-foreground mt-6 max-w-md leading-relaxed">
-            Resume Log isn’t on the Chrome Web Store yet — it’s still early and actively
-            being built. Leave your email and you’ll be one of the first to get access once
-            it’s ready.
+          <Label>Get started</Label>
+          <Lede
+            as="h1"
+            className="mt-5 max-w-3xl text-[2.2rem] sm:text-5xl"
+            lead="Set up in about two minutes."
+            tail="Three steps, no onboarding call."
+          />
+        </Reveal>
+      </Section>
+
+      <Section inner="grid md:grid-cols-3">
+        {steps.map((step, i) => (
+          <Reveal
+            key={step.title}
+            className={`border-line flex flex-col p-8 md:p-10 ${i < steps.length - 1 ? 'border-b md:border-r md:border-b-0' : ''}`}
+          >
+            <span className="text-subtle font-mono text-sm tabular-nums">0{i + 1}</span>
+            <h2 className="mt-3 text-lg font-medium tracking-tight">{step.title}</h2>
+            <p className="text-muted-foreground mt-2 flex-1 leading-relaxed">{step.body}</p>
+            {step.action && (
+              <a
+                href={step.action.href}
+                {...(step.action.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className={`${step.action.solid ? 'btn-solid' : 'btn-outline'} mt-6 self-start`}
+              >
+                {step.action.label}
+                <ArrowUpRight size={15} />
+              </a>
+            )}
+          </Reveal>
+        ))}
+      </Section>
+
+      <Section inner="grid md:grid-cols-2">
+        <Reveal className="border-line border-b p-8 md:border-r md:border-b-0 md:p-12">
+          <p className="lede max-w-md text-lg">
+            Want Pro?{' '}
+            <span className="tail">
+              Start on the free plan, then open Plans in the dashboard sidebar and upgrade. Checkout is handled by Paddle.
+            </span>
           </p>
-
-          <ul className="mt-8 flex flex-col gap-3">
-            {[
-              'No spam — just a note when access opens up',
-              'Priority access before the public launch',
-              'A chance to shape what ships next',
-            ].map((point) => (
-              <li key={point} className="flex items-start gap-3 text-sm">
-                <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-foreground" />
-                <span className="text-muted-foreground">{point}</span>
-              </li>
-            ))}
-          </ul>
         </Reveal>
-
-        <Reveal delay={0.1} className="card p-8">
-          {submitted ? (
-            <div className="flex h-full flex-col items-center justify-center gap-4 py-12 text-center">
-              <CheckCircle2 size={32} />
-              <h2 className="font-display text-xl font-semibold">You’re on the list</h2>
-              <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
-                Thanks for signing up — we’ll be in touch at <strong>{email}</strong> as soon
-                as early access opens.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm font-medium">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Jane Doe"
-                  className="border-border focus:border-foreground rounded-lg border px-4 py-3 text-sm focus:outline-none"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="jane@example.com"
-                  className="border-border focus:border-foreground rounded-lg border px-4 py-3 text-sm focus:outline-none"
-                />
-              </div>
-
-              <button type="submit" className="btn-solid mt-2">
-                Join the waitlist
-              </button>
-
-              <p className="tag text-center">Currently in early access — Chrome Web Store coming soon.</p>
-            </form>
-          )}
+        <Reveal className="p-8 md:p-12">
+          <p className="lede max-w-md text-lg">
+            Coaching a group? <span className="tail">If you run a bootcamp or coach job seekers, email</span>{' '}
+            <a href={`mailto:${contactEmail}`} className="underline decoration-line-strong underline-offset-4">
+              {contactEmail}
+            </a>
+            <span className="tail">.</span>
+          </p>
         </Reveal>
-      </div>
+      </Section>
     </div>
   )
 }
