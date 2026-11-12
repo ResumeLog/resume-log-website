@@ -2,31 +2,30 @@
   {
     "id": "free",
     "name": "Free",
-    "description": "Everything you need to start logging your job search.",
+    "description": "Try the ATS checker and track your job search.",
     "price": "$0",
     "period": "forever",
     "features": [
-      "Up to 5 ATS scans per day",
-      "See up to 5 missing keywords per resume",
-      "View all passed ATS checks",
-      "Limited ATS insights",
-      "No ATS scan history"
+      "Up to 5 ATS scans per 24 hours",
+      "Up to 5 missing keywords per resume",
+      "All passed ATS checks",
+      "Fix count (details with Pro)"
     ],
     "cta": { "label": "Get started free", "action": "login" }
   },
   {
     "id": "pro",
     "name": "Pro",
-    "description": "For active job seekers who want every application remembered.",
+    "description": "Unlimited ATS scans with every keyword, fix and past scan, plus follow-ups and cover letters.",
     "price": "$12",
     "period": "/ month",
     "features": [
       "Unlimited ATS scans",
-      "Unlimited missing keywords",
-      "See all ATS fixes and passed points",
+      "Unlimited missing keywords per resume",
+      "All fixes and passed checks in ATS",
       "Unlimited ATS history",
-      "Follow-ups & reminders",
-      "AI powered cover letter generator"
+      "Follow-ups and reminders",
+      "Cover letter generator"
     ],
     "cta": { "label": "Upgrade to Pro", "action": "contact" },
     "highlighted": true
