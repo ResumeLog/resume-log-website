@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Footer from './Footer'
-import { RoughPenFilter } from './illustrations/Ink'
 import Navbar from './Navbar'
 
 export default function Layout() {
@@ -13,7 +12,6 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <RoughPenFilter />
       <Navbar />
       <main className="flex-1 pt-14">
         <Outlet />

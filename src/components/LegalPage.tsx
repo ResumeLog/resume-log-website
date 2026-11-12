@@ -29,9 +29,9 @@ export default function LegalPage({
   return (
     <div className="mx-auto max-w-3xl px-6 pt-20 pb-24 md:px-16 md:pt-28">
       <Reveal>
-        <p className="hand text-2xl">the fine print, in plain words</p>
-        <h1 className="display mt-3 text-5xl sm:text-6xl">{title}</h1>
-        <p className="text-ash-500 mt-4 text-sm">
+        <span className="chip">Legal</span>
+        <h1 className="display mt-5 text-4xl sm:text-5xl">{title}</h1>
+        <p className="text-muted-foreground mt-4 text-sm">
           {dateLabel}: {date}
         </p>
       </Reveal>

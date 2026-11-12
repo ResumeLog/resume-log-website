@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { contactEmail, dashboardUrl, extensionUrl } from '../lib/links'
 
-const columns = [
+type FooterLink = { label: string; to?: string; href?: string; external?: boolean }
+
+const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: 'Product',
     links: [
@@ -9,15 +11,15 @@ const columns = [
       { label: 'How it works', to: '/how-it-works' },
       { label: 'Pricing', to: '/pricing' },
       { label: 'Chrome extension', href: extensionUrl, external: true },
-      { label: 'Log in', href: dashboardUrl },
     ],
   },
   {
-    title: 'About',
+    title: 'Company',
     links: [
-      { label: 'Why I built it', to: '/about' },
+      { label: 'About', to: '/about' },
       { label: 'Get started', to: '/get-started' },
-      { label: 'Email me', href: `mailto:${contactEmail}` },
+      { label: 'Contact', href: `mailto:${contactEmail}` },
+      { label: 'Log in', href: dashboardUrl },
     ],
   },
   {
@@ -32,48 +34,47 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="border-ash-100 border-t bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16 md:px-12">
-        <div className="flex flex-col justify-between gap-10 md:flex-row">
-          <div className="max-w-xs">
-            <Link to="/" className="flex items-center gap-2 text-base font-semibold tracking-tight">
-              <img src="/resumelog-icon.svg" alt="" width="18" height="20" />
+    <footer className="border-line border-t">
+      <div className="frame">
+        <div className="grid md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div className="border-line border-b p-8 md:border-r md:border-b-0">
+            <Link to="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight">
+              <img src="/resumelog-icon.svg" alt="" width="17" height="19" />
               ResumeLog
             </Link>
-            <p className="text-ash-600 mt-4 text-sm leading-relaxed">
-              A log of every job you save, every résumé you send and every application still waiting
-              on a reply.
+            <p className="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
+              The job search log that keeps up with you. Save jobs, tailor your résumé, follow up on time.
             </p>
-            <p className="hand mt-5 text-xl">good luck out there ✶</p>
           </div>
-
-          <div className="flex flex-wrap gap-x-14 gap-y-8">
-            {columns.map((column) => (
-              <div key={column.title} className="flex flex-col gap-3">
-                <span className="text-ink text-sm font-semibold">{column.title}</span>
-                {column.links.map((link) =>
-                  'to' in link && link.to ? (
-                    <Link key={link.label} to={link.to} className="text-ash-600 text-sm">
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="text-ash-600 text-sm"
-                      {...('external' in link && link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    >
-                      {link.label}
-                    </a>
-                  ),
-                )}
-              </div>
-            ))}
-          </div>
+          {columns.map((column, i) => (
+            <div
+              key={column.title}
+              className={`border-line flex flex-col gap-2.5 p-8 ${i < columns.length - 1 ? 'border-b md:border-r md:border-b-0' : ''}`}
+            >
+              <span className="text-subtle mb-1 text-[13px] font-medium">{column.title}</span>
+              {column.links.map((link) =>
+                link.to ? (
+                  <Link key={link.label} to={link.to} className="text-muted-foreground hover:text-foreground text-sm">
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-muted-foreground hover:text-foreground text-sm"
+                    {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {link.label}
+                  </a>
+                ),
+              )}
+            </div>
+          ))}
         </div>
-
-        <div className="rough-rule" />
-        <p className="text-ash-500 -mt-6 text-xs">© {new Date().getFullYear()} ResumeLog</p>
+        <div className="border-line text-subtle flex items-center justify-between border-t px-8 py-5 text-[13px]">
+          <span>© {new Date().getFullYear()} ResumeLog</span>
+          <span>Made for job seekers</span>
+        </div>
       </div>
     </footer>
   )
