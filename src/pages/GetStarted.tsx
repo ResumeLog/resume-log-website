@@ -1,93 +1,92 @@
-import { CheckCircle2 } from 'lucide-react'
-import { useState, type FormEvent } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import Reveal from '../components/Reveal'
+import { Note } from '../components/illustrations/Doodles'
+import { PaperPlane } from '../components/illustrations/Scenes'
+import { contactEmail, dashboardUrl, extensionUrl } from '../lib/links'
+
+const steps = [
+  {
+    title: 'Add the extension to Chrome',
+    body: 'It’s free on the Chrome Web Store. Pin it so the icon is always in your toolbar.',
+    action: { label: 'Open the Chrome Web Store', href: extensionUrl, external: true },
+  },
+  {
+    title: 'Sign in with Google',
+    body: 'Open the side panel and press Sign in. You’ll land on the dashboard, continue with Google, and the extension connects itself.',
+    action: { label: 'Open the dashboard', href: dashboardUrl, external: false },
+  },
+  {
+    title: 'Save your first job',
+    body: 'Go to any job on LinkedIn, open the side panel and press Save. Then check the dashboard: it’s there.',
+    action: null,
+  },
+]
 
 export default function GetStarted() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    if (!email) return
-    setSubmitted(true)
-  }
-
   return (
-    <div className="mx-auto max-w-5xl px-6 pt-20 pb-24 md:px-16 md:pt-28">
-      <div className="grid gap-14 md:grid-cols-2">
-        <Reveal>
-          <p className="eyebrow">Get started</p>
-          <h1 className="font-display mt-3 text-4xl leading-tight font-semibold sm:text-5xl">
-            Join the early access list.
-          </h1>
-          <p className="text-muted-foreground mt-6 max-w-md leading-relaxed">
-            Resume Log isn’t on the Chrome Web Store yet — it’s still early and actively
-            being built. Leave your email and you’ll be one of the first to get access once
-            it’s ready.
-          </p>
+    <div>
+      <section className="dot-grid">
+        <div className="mx-auto grid max-w-6xl items-end gap-10 px-6 pt-16 pb-16 md:grid-cols-[1.4fr_1fr] md:px-12 md:pt-24">
+          <Reveal>
+            <p className="hand text-2xl">three steps, about two minutes</p>
+            <h1 className="display mt-3 text-5xl sm:text-7xl">Let’s get you set up.</h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <PaperPlane className="text-ink mx-auto w-full max-w-xs" />
+          </Reveal>
+        </div>
+      </section>
 
-          <ul className="mt-8 flex flex-col gap-3">
-            {[
-              'No spam — just a note when access opens up',
-              'Priority access before the public launch',
-              'A chance to shape what ships next',
-            ].map((point) => (
-              <li key={point} className="flex items-start gap-3 text-sm">
-                <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-foreground" />
-                <span className="text-muted-foreground">{point}</span>
+      <section className="border-ash-100 border-t bg-white">
+        <ol className="mx-auto flex max-w-3xl flex-col gap-6 px-6 py-20 md:px-12">
+          {steps.map((step, i) => (
+            <Reveal key={step.title}>
+              <li className="border-ash-200 flex gap-6 rounded-xl border-[1.5px] bg-white p-7 shadow-[5px_5px_0_var(--ash-100)]">
+                <span className="hand text-5xl leading-none text-ink">{i + 1}</span>
+                <div>
+                  <h2 className="text-xl font-semibold">{step.title}</h2>
+                  <p className="text-ash-600 mt-2 leading-relaxed">{step.body}</p>
+                  {step.action && (
+                    <a
+                      href={step.action.href}
+                      {...(step.action.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className={`${i === 0 ? 'btn-solid' : 'btn-outline'} mt-5`}
+                    >
+                      {step.action.label}
+                      <ArrowUpRight size={16} className="ml-2" />
+                    </a>
+                  )}
+                </div>
               </li>
-            ))}
-          </ul>
-        </Reveal>
+            </Reveal>
+          ))}
+        </ol>
+        <div className="mx-auto max-w-3xl px-6 pb-20 md:px-12">
+          <Note className="-rotate-2">that’s it, honestly. no onboarding call.</Note>
+        </div>
+      </section>
 
-        <Reveal delay={0.1} className="card p-8">
-          {submitted ? (
-            <div className="flex h-full flex-col items-center justify-center gap-4 py-12 text-center">
-              <CheckCircle2 size={32} />
-              <h2 className="font-display text-xl font-semibold">You’re on the list</h2>
-              <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
-                Thanks for signing up — we’ll be in touch at <strong>{email}</strong> as soon
-                as early access opens.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm font-medium">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Jane Doe"
-                  className="border-border focus:border-foreground rounded-lg border px-4 py-3 text-sm focus:outline-none"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="jane@example.com"
-                  className="border-border focus:border-foreground rounded-lg border px-4 py-3 text-sm focus:outline-none"
-                />
-              </div>
-
-              <button type="submit" className="btn-solid mt-2">
-                Join the waitlist
-              </button>
-
-              <p className="tag text-center">Currently in early access — Chrome Web Store coming soon.</p>
-            </form>
-          )}
-        </Reveal>
-      </div>
+      <section className="border-ash-100 border-t">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:px-12">
+          <Reveal>
+            <h2 className="display text-3xl sm:text-4xl">Want Pro?</h2>
+            <p className="text-ash-600 mt-3 max-w-md leading-relaxed">
+              Start on the free plan, then open <strong className="text-ink font-medium">Plans</strong> in the
+              dashboard sidebar and upgrade there. Checkout is handled by Paddle and takes a minute.
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="display text-3xl sm:text-4xl">Coaching a group?</h2>
+            <p className="text-ash-600 mt-3 max-w-md leading-relaxed">
+              If you run a bootcamp or coach job seekers and want ResumeLog for your group, email{' '}
+              <a href={`mailto:${contactEmail}`} className="text-ink underline decoration-ash-300 underline-offset-4">
+                {contactEmail}
+              </a>{' '}
+              and tell me what you need.
+            </p>
+          </Reveal>
+        </div>
+      </section>
     </div>
   )
 }
