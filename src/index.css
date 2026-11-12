@@ -1,22 +1,40 @@
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
+@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
+@import "@fontsource-variable/caveat";
 
+/*
+ * Monochrome on purpose: ink, paper, and a ramp of ash greys. No accent color —
+ * the hand-drawn illustrations and the real screenshots carry the personality.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  --paper: #fbfbfa;
+  --ink: #141414;
+  --ash-50: #f3f3f2;
+  --ash-100: #e9e9e7;
+  --ash-200: #d9d9d6;
+  --ash-300: #bdbdb9;
+  --ash-400: #9a9a96;
+  --ash-500: #75756f;
+  --ash-600: #575753;
+  --ash-700: #3b3b39;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
   --card: #ffffff;
-  --card-foreground: #0a0a0a;
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #a1a1a1;
+  --card-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--ash-50);
+  --secondary-foreground: var(--ink);
+  --muted: var(--ash-50);
+  --muted-foreground: var(--ash-500);
+  --accent: var(--ash-50);
+  --accent-foreground: var(--ink);
+  --border: var(--ash-100);
+  --input: var(--ash-200);
+  --ring: var(--ash-400);
   --radius: 0.625rem;
 }
 
@@ -36,13 +54,24 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ash-50: var(--ash-50);
+  --color-ash-100: var(--ash-100);
+  --color-ash-200: var(--ash-200);
+  --color-ash-300: var(--ash-300);
+  --color-ash-400: var(--ash-400);
+  --color-ash-500: var(--ash-500);
+  --color-ash-600: var(--ash-600);
+  --color-ash-700: var(--ash-700);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-sm: calc(var(--radius) * 0.6);
 
   --font-sans: "Geist Variable", system-ui, sans-serif;
-  --font-display: "Geist Variable", system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-hand: "Caveat Variable", "Comic Sans MS", cursive;
   --font-mono: ui-monospace, Consolas, monospace;
 }
 
@@ -111,12 +140,97 @@ a:hover {
   opacity: 0.75;
 }
 
+/* Buttons sit on a hard offset "shadow" like a sticker on paper — pressed, it lands. */
+.btn-solid,
+.btn-outline {
+  @apply inline-flex items-center justify-center rounded-lg border px-6 py-3 text-sm font-medium transition-[transform,box-shadow] duration-150;
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
 .btn-solid {
-  @apply bg-primary text-primary-foreground rounded-lg px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85 inline-flex items-center justify-center;
+  background: var(--ink);
+  color: var(--paper) !important;
+  box-shadow: 3px 3px 0 var(--ash-300);
 }
 
 .btn-outline {
-  @apply border border-border text-foreground rounded-lg px-6 py-3 text-sm font-medium transition-colors hover:bg-secondary inline-flex items-center justify-center;
+  background: #fff;
+  color: var(--ink);
+}
+
+.btn-solid:hover,
+.btn-outline:hover {
+  opacity: 1;
+  transform: translate(-1px, -1px);
+}
+
+.btn-solid:hover {
+  box-shadow: 4px 4px 0 var(--ash-300);
+}
+
+.btn-outline:hover {
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.btn-solid:active,
+.btn-outline:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Big editorial headlines. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+/* Handwritten margin notes. */
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ash-600);
+}
+
+/* A grey highlighter swipe behind a word — slightly uneven, like a real marker. */
+.marker {
+  background-image: linear-gradient(
+    100deg,
+    transparent 0.4em,
+    var(--ash-100) 0.5em,
+    var(--ash-100) calc(100% - 0.5em),
+    transparent calc(100% - 0.35em)
+  );
+  background-size: 100% 0.42em;
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+}
+
+/* Faint dotted grid, like a bullet-journal page. */
+.dot-grid {
+  background-image: radial-gradient(var(--ash-200) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* A slightly wonky rule between sections instead of a perfect 1px border. */
+.rough-rule {
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='10' viewBox='0 0 600 10'%3E%3Cpath d='M2 6 C 80 3, 150 8, 230 5 S 390 3, 460 6 S 560 4, 598 5' fill='none' stroke='%23bdbdb9' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")
+    repeat-x center / 600px 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .eyebrow {
