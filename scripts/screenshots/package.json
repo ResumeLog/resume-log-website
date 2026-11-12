@@ -1,0 +1,17 @@
+{
+  "name": "resume-log-website-screenshots",
+  "private": true,
+  "type": "module",
+  "description": "Regenerates the product screenshots in src/assets/screens from fictional demo data.",
+  "scripts": {
+    "resume": "node gen-resume.mjs && node ats-score.mjs",
+    "capture": "node capture.mjs && node capture-panel.mjs",
+    "process": "node process.mjs",
+    "all": "npm run resume && npm run capture && npm run process"
+  },
+  "dependencies": {
+    "docx": "9.5.1",
+    "playwright": "1.55.0",
+    "sharp": "0.34.3"
+  }
+}
