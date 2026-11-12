@@ -185,6 +185,7 @@ a:hover {
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.02;
+  text-wrap: balance;
 }
 
 /* Handwritten margin notes. */
@@ -200,8 +201,8 @@ a:hover {
   background-image: linear-gradient(
     100deg,
     transparent 0.4em,
-    var(--ash-100) 0.5em,
-    var(--ash-100) calc(100% - 0.5em),
+    var(--ash-200) 0.5em,
+    var(--ash-200) calc(100% - 0.5em),
     transparent calc(100% - 0.35em)
   );
   background-size: 100% 0.42em;

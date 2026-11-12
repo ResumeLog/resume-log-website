@@ -1,208 +1,294 @@
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Briefcase, Building2, FileText, LayoutDashboard, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
-import { dashboardUrl } from '../lib/dashboard'
+import ScreenshotFrame from '../components/ScreenshotFrame'
+import { Arrow, Circle, Note, Sparkle, Underline } from '../components/illustrations/Doodles'
+import { BrowserPanel, Calendar, Magnifier, Notebook, PaperPlane, TabChaos } from '../components/illustrations/Scenes'
+import { dashboardUrl, extensionUrl } from '../lib/links'
+import { screens } from '../lib/screens'
 
-const features = [
-  {
-    icon: Briefcase,
-    title: 'Automatic capture',
-    description:
-      'Browse LinkedIn like you always do. One click on the extension saves the job posting — no copy-pasting into a spreadsheet.',
-  },
-  {
-    icon: Building2,
-    title: 'Companies & people',
-    description:
-      'Every company page and profile you check out along the way gets logged next to the roles you’re chasing.',
-  },
-  {
-    icon: FileText,
-    title: 'Easy Apply memory',
-    description:
-      'Applied through LinkedIn Easy Apply? We record the exact questions you were asked and the résumé you used.',
-  },
-  {
-    icon: LayoutDashboard,
-    title: 'One dashboard',
-    description: 'Jobs, companies, and people in a single searchable view — your whole search, one page.',
-  },
+const pains = [
+  'Forty tabs open, and you’re scared to close any of them.',
+  'A spreadsheet you stopped updating in week two.',
+  '“Which version of my résumé did I send them?”',
+  'A recruiter who never replied. Or did they?',
 ]
 
-const steps = [
-  {
-    tag: '01',
-    title: 'Install the extension',
-    description: 'Add Resume Log to Chrome and sign in with Google in a few seconds.',
-  },
-  {
-    tag: '02',
-    title: 'Browse & save',
-    description: 'Open the side panel on any LinkedIn job, company, or profile and hit save.',
-  },
-  {
-    tag: '03',
-    title: 'Review your dashboard',
-    description: 'Everything you’ve captured shows up automatically, organized and searchable.',
-  },
+const extras = [
+  { title: 'Easy Apply, remembered', body: 'When you submit through LinkedIn Easy Apply, the questions and your answers are saved with the job.' },
+  { title: 'People and companies', body: 'Save the recruiter’s profile and the company page from the same side panel.' },
+  { title: 'A résumé library', body: 'Every tailored PDF in one place, with the one you sent attached to each job.' },
+  { title: 'Statuses that mean something', body: 'Bookmarked, Applied, Interviewing, Negotiating, Accepted, Closed. Change it in one click.' },
 ]
 
 export default function Home() {
   return (
     <div>
-      <section className="mx-auto max-w-5xl px-6 pt-20 pb-24 md:px-16 md:pt-28 md:pb-32">
-        <div className="grid items-center gap-14 md:grid-cols-2">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="border-border mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1"
-            >
-              <span className="eyebrow">Now in early access</span>
-            </motion.div>
+      {/* ───────────── Hero ───────────── */}
+      <section className="dot-grid relative overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 pt-16 pb-10 md:px-12 md:pt-24">
+          <motion.p
+            initial={{ opacity: 0, rotate: -4 }}
+            animate={{ opacity: 1, rotate: -3 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="hand text-2xl"
+          >
+            made by a job seeker, for job seekers
+          </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-display text-4xl leading-tight font-semibold sm:text-5xl lg:text-6xl"
-            >
-              Your job search, automatically logged.
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-muted-foreground mt-6 max-w-md text-lg leading-relaxed"
-            >
-              Resume Log quietly captures every job, company, and person you encounter on
-              LinkedIn — and remembers exactly what you submitted when you hit Easy Apply.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 flex flex-wrap gap-4"
-            >
-              <a href={dashboardUrl} className="btn-solid group">
-                Get Started
-                <ArrowRight
-                  size={16}
-                  className="ml-2 transition-transform group-hover:translate-x-1"
-                />
-              </a>
-              <Link to="/features" className="btn-outline">
-                See how it works
-              </Link>
-            </motion.div>
-          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="display mt-5 max-w-4xl text-[2.9rem] sm:text-7xl lg:text-[5.6rem]"
+          >
+            Every job you apply to,{' '}
+            <span className="relative inline-block italic">
+              remembered.
+              <Underline className="text-ink absolute -bottom-2 left-0 h-4 w-full sm:-bottom-3 sm:h-5" delay={0.7} />
+            </span>
+          </motion.h1>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="card !p-1"
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="mt-8 grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end"
           >
-            <div className="rounded-md border border-border/60 p-6">
-              <div className="flex items-center justify-between border-b border-border pb-4">
-                <span className="eyebrow">Dashboard preview</span>
-                <div className="flex gap-1.5">
-                  <span className="bg-border size-2 rounded-full" />
-                  <span className="bg-border size-2 rounded-full" />
-                  <span className="bg-border size-2 rounded-full" />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 pt-4">
-                {[
-                  { icon: Briefcase, label: 'Senior Product Designer', sub: 'Northwind Labs' },
-                  { icon: Building2, label: 'Northwind Labs', sub: 'Company · saved' },
-                  { icon: Users, label: 'Alex Rivera', sub: 'Recruiter · saved' },
-                ].map((row) => (
-                  <div key={row.label} className="border-border flex items-center gap-3 rounded-md border p-3">
-                    <row.icon size={16} className="text-muted-foreground shrink-0" />
-                    <div className="min-w-0">
-                      <p className="truncate text-sm font-medium">{row.label}</p>
-                      <p className="tag">{row.sub}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <p className="text-ash-600 max-w-xl text-lg leading-relaxed">
+              ResumeLog is a Chrome extension and a dashboard for your job search. Save a LinkedIn job in
+              one click, check your résumé against it before you apply, and see which applications have
+              gone quiet.
+            </p>
+            <div className="flex flex-wrap items-center gap-4 md:justify-end">
+              <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid group">
+                Add to Chrome, it’s free
+                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a href={dashboardUrl} className="btn-outline">
+                Open the dashboard
+              </a>
             </div>
           </motion.div>
         </div>
+
+        {/* screenshot collage */}
+        <div className="relative mx-auto max-w-6xl px-6 pb-20 md:px-12 md:pb-28">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="relative md:mr-24"
+          >
+            <ScreenshotFrame {...screens.dashboard} tilt={-1} tape eager />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40, rotate: 6 }}
+            animate={{ opacity: 1, y: 0, rotate: 3 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="absolute right-4 bottom-8 w-[34%] max-w-[230px] sm:right-8 md:right-6 md:bottom-6"
+          >
+            <ScreenshotFrame {...screens.extensionSaved} variant="panel" eager />
+          </motion.div>
+
+          <Note
+            className="absolute right-[24%] -bottom-1 hidden w-72 lg:flex lg:items-end lg:gap-2"
+            arrow="swoop"
+            arrowClassName="mb-3 h-12 w-24 shrink-0"
+            delay={1.2}
+          >
+            saved straight from LinkedIn, in one click
+          </Note>
+          <Sparkle className="text-ink absolute top-2 right-2 hidden size-9 md:block" delay={1.4} />
+        </div>
       </section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal>
-            <p className="eyebrow">What it does</p>
-            <h2 className="font-display mt-3 text-3xl leading-tight sm:text-4xl">
-              Everything your search touches, kept in one place.
-            </h2>
-          </Reveal>
+      <div className="rough-rule mx-auto max-w-6xl" />
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2">
-            {features.map((feature, index) => (
-              <Reveal key={feature.title} delay={index * 0.08}>
-                <div className="card h-full">
-                  <feature.icon size={20} className="text-foreground" />
-                  <h3 className="font-display mt-4 text-lg font-semibold">{feature.title}</h3>
-                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </Reveal>
+      {/* ───────────── The problem ───────────── */}
+      <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 md:grid-cols-2 md:px-12">
+        <Reveal>
+          <TabChaos className="text-ink mx-auto w-full max-w-md" />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="display text-4xl sm:text-5xl">Job hunting turns into a mess fast.</h2>
+          <ul className="mt-8 flex flex-col gap-4">
+            {pains.map((pain) => (
+              <li key={pain} className="flex gap-3 text-lg leading-snug">
+                <span className="hand text-ash-400 mt-[-2px] text-2xl">✗</span>
+                <span>{pain}</span>
+              </li>
             ))}
+          </ul>
+          <p className="text-ash-600 mt-8 leading-relaxed">
+            That was my search. I built ResumeLog so the details get written down while I’m looking at
+            them, not three weeks later when I’m trying to remember.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* ───────────── 1. Capture ───────────── */}
+      <section className="border-ash-100 border-t bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 py-24 md:grid-cols-[1fr_1.15fr] md:px-12">
+          <Reveal>
+            <div className="flex items-end gap-4">
+              <span className="hand text-6xl text-ink">1.</span>
+              <BrowserPanel className="text-ink h-16 w-auto" />
+            </div>
+            <h2 className="display mt-4 text-4xl sm:text-5xl">Save it while you’re looking at it.</h2>
+            <p className="text-ash-600 mt-5 max-w-md leading-relaxed">
+              Open a job on LinkedIn and the ResumeLog side panel notices. Press Save and the title,
+              company, location and full description go into your log, marked as Bookmarked. It works
+              for company pages and people’s profiles too.
+            </p>
+            <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-medium underline decoration-ash-300 underline-offset-4">
+              Get the extension <ArrowRight size={14} />
+            </a>
+          </Reveal>
+          <Reveal delay={0.1} className="relative flex justify-center gap-6 sm:gap-10">
+            <ScreenshotFrame {...screens.extensionDetected} variant="panel" tilt={-2} className="w-[44%] max-w-[250px]" />
+            <ScreenshotFrame {...screens.extensionSaved} variant="panel" tilt={2} className="mt-12 w-[44%] max-w-[250px]" />
+            <Arrow variant="swoop" className="text-ash-600 absolute top-[38%] left-1/2 h-10 w-20 -translate-x-1/2" delay={0.4} />
+            <p className="hand absolute -top-9 left-1/2 -translate-x-1/2 text-xl whitespace-nowrap">press save…</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────── 2. Organise ───────────── */}
+      <section className="border-ash-100 border-t">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-12">
+          <Reveal className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-end">
+            <div>
+              <div className="flex items-end gap-4">
+                <span className="hand text-6xl text-ink">2.</span>
+                <Notebook className="text-ink h-16 w-auto" />
+              </div>
+              <h2 className="display mt-4 text-4xl sm:text-5xl">Your whole search, on one page.</h2>
+            </div>
+            <p className="text-ash-600 max-w-md leading-relaxed">
+              Every job you’ve saved, with its status, your salary expectation and the résumé you sent.
+              Open one to read the original description again before the interview.
+            </p>
+          </Reveal>
+          <div className="relative mt-14">
+            <Reveal>
+              <ScreenshotFrame {...screens.jobsTable} tilt={0.6} className="md:mr-40" />
+            </Reveal>
+            <Reveal delay={0.15} className="absolute -bottom-10 right-0 hidden w-[42%] md:block">
+              <ScreenshotFrame {...screens.jobDetail} variant="plain" tilt={-2.5} tape />
+            </Reveal>
+            <Note className="absolute -top-12 right-4 hidden w-60 md:block" arrow="hook" arrowClassName="ml-24 h-16 w-16" delay={0.6}>
+              the CV you actually sent is attached
+            </Note>
           </div>
         </div>
       </section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal>
-            <p className="eyebrow">How it works</p>
-            <h2 className="font-display mt-3 text-3xl leading-tight sm:text-4xl">
-              Three steps. Zero spreadsheets.
-            </h2>
+      {/* ───────────── 3. Tailor ───────────── */}
+      <section className="border-ash-100 border-t bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-12">
+          <Reveal className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-end">
+            <div>
+              <div className="flex items-end gap-4">
+                <span className="hand text-6xl text-ink">3.</span>
+                <Magnifier className="text-ink h-16 w-auto" />
+              </div>
+              <h2 className="display mt-4 text-4xl sm:text-5xl">Fix your résumé for <em>this</em> job.</h2>
+            </div>
+            <div className="max-w-md">
+              <p className="text-ash-600 leading-relaxed">
+                Open your résumé in the built-in editor and run an ATS check against the job description
+                you saved. You get a score, the keywords you’re missing and specific things to fix. Edit,
+                scan again, then publish it as a PDF.
+              </p>
+              <p className="text-ash-500 mt-3 text-sm leading-relaxed">
+                The check follows plain rules you can read: keyword match, job title, sections, whether a
+                parser can read the file, and content quality.
+              </p>
+            </div>
           </Reveal>
+          <Reveal className="relative mt-14">
+            <ScreenshotFrame {...screens.editorAts} url="app.resumeloghq.com/editor" tilt={-0.5} />
+            <Circle className="text-ink absolute top-[17%] right-[4%] h-[19%] w-[22%]" delay={0.5} />
+            <Note className="absolute right-4 -bottom-14 hidden w-72 text-right md:block" delay={0.8}>
+              ↑ 83 / 100, and it tells you why
+            </Note>
+          </Reveal>
+        </div>
+      </section>
 
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
-            {steps.map((step, index) => (
-              <Reveal key={step.tag} delay={index * 0.1}>
-                <span className="tag text-2xl">{step.tag}</span>
-                <h3 className="font-display mt-3 text-lg font-semibold">{step.title}</h3>
-                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{step.description}</p>
+      {/* ───────────── 4. Follow up ───────────── */}
+      <section className="border-ash-100 border-t">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-12">
+          <Reveal className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-end">
+            <div>
+              <div className="flex items-end gap-4">
+                <span className="hand text-6xl text-ink">4.</span>
+                <Calendar className="text-ink h-16 w-auto" />
+              </div>
+              <h2 className="display mt-4 text-4xl sm:text-5xl">Follow up before it goes cold.</h2>
+            </div>
+            <p className="text-ash-600 max-w-md leading-relaxed">
+              On Pro, anything you applied to more than two weeks ago without hearing back shows up in one
+              list. The funnel next to it, free for everyone, shows where your applications usually stall.
+            </p>
+          </Reveal>
+          <Reveal className="relative mt-14">
+            <ScreenshotFrame {...screens.followUpsFunnel} variant="plain" tilt={-0.5} tape />
+            <Note className="absolute -bottom-20 left-6 hidden w-64 md:block" delay={0.6}>
+              ↑ these four are waiting on me
+            </Note>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────── Also in there ───────────── */}
+      <section className="border-ash-100 border-t bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:px-12">
+          <Reveal>
+            <h2 className="display text-4xl sm:text-5xl">A few more things it does.</h2>
+          </Reveal>
+          <dl className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
+            {extras.map((extra, i) => (
+              <Reveal key={extra.title} delay={(i % 2) * 0.08} className="border-ash-200 border-l-2 pl-5">
+                <dt className="text-lg font-semibold">{extra.title}</dt>
+                <dd className="text-ash-600 mt-1.5 leading-relaxed">{extra.body}</dd>
               </Reveal>
             ))}
-          </div>
-
-          <Reveal delay={0.2} className="mt-14">
-            <Link to="/how-it-works" className="inline-flex items-center gap-2 text-sm font-medium group">
-              Walk through the details
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </dl>
+          <Reveal className="mt-12">
+            <Link to="/features" className="inline-flex items-center gap-2 text-sm font-medium underline decoration-ash-300 underline-offset-4">
+              See every feature <ArrowRight size={14} />
             </Link>
           </Reveal>
         </div>
       </section>
 
-      <section className="border-border border-t">
-        <div className="mx-auto max-w-5xl px-6 py-24 md:px-16">
-          <Reveal className="card flex flex-col items-start gap-6 p-10 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-semibold sm:text-3xl">
-                Stop losing track of your search.
-              </h2>
-              <p className="text-muted-foreground mt-2 max-w-md text-sm leading-relaxed">
-                Join the early access list and get Resume Log the moment it’s ready for you.
-              </p>
+      {/* ───────────── Pricing teaser + CTA ───────────── */}
+      <section className="dot-grid border-ash-100 border-t">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 md:grid-cols-[1.3fr_1fr] md:px-12">
+          <Reveal>
+            <h2 className="display text-5xl sm:text-6xl">
+              Start with the <span className="marker">free plan.</span>
+            </h2>
+            <p className="text-ash-600 mt-6 max-w-lg text-lg leading-relaxed">
+              Saving jobs, people and companies is free, and so are the editor and five ATS scans a day.
+              Pro is $12 a month for unlimited scans, every fix, your scan history and follow-up
+              reminders.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid">
+                Add to Chrome
+              </a>
+              <Link to="/pricing" className="btn-outline">
+                Compare plans
+              </Link>
             </div>
-            <a href={dashboardUrl} className="btn-solid shrink-0">
-              Get Started
-            </a>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <PaperPlane className="text-ink mx-auto w-full max-w-sm" />
           </Reveal>
         </div>
       </section>

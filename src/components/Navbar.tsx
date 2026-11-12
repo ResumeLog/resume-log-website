@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { dashboardUrl } from '../lib/dashboard'
+import { dashboardUrl, extensionUrl } from '../lib/links'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -24,8 +24,8 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
           className={({ isActive }) =>
             `text-sm font-medium transition-colors ${
               isActive
-                ? 'border-foreground border-b text-foreground'
-                : 'text-muted-foreground hover:text-foreground border-b border-transparent'
+                ? 'decoration-ink text-foreground underline decoration-wavy decoration-1 underline-offset-[6px]'
+                : 'text-ash-600 hover:text-foreground'
             }`
           }
         >
@@ -50,11 +50,11 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 ${
-        scrolled ? 'bg-background/95 border-border border-b backdrop-blur' : 'border-b border-transparent'
+        scrolled ? 'bg-paper/95 border-ash-100 border-b backdrop-blur' : 'border-b border-transparent'
       }`}
     >
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6 md:px-16">
-        <NavLink to="/" className="flex items-center gap-2 font-mono text-base font-semibold tracking-tight">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 md:px-12">
+        <NavLink to="/" className="flex items-center gap-2 text-base font-semibold tracking-tight">
           <img src="/resumelog-icon.svg" alt="" width="18" height="20" />
           ResumeLog
         </NavLink>
@@ -63,9 +63,12 @@ export default function Navbar() {
           <NavLinks />
         </nav>
 
-        <div className="hidden md:block">
-          <a href={dashboardUrl} className="btn-solid">
-            Get Started
+        <div className="hidden items-center gap-5 md:flex">
+          <a href={dashboardUrl} className="text-ash-600 text-sm font-medium">
+            Log in
+          </a>
+          <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid !px-4 !py-2">
+            Add to Chrome
           </a>
         </div>
 
@@ -86,12 +89,15 @@ export default function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="bg-background border-border overflow-hidden border-b md:hidden"
+            className="bg-paper border-ash-100 overflow-hidden border-b md:hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-6">
               <NavLinks onClick={() => setMobileOpen(false)} />
-              <a href={dashboardUrl} className="btn-solid mt-2">
-                Get Started
+              <a href={dashboardUrl} className="text-sm font-medium">
+                Log in
+              </a>
+              <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid mt-2">
+                Add to Chrome
               </a>
             </div>
           </motion.div>
