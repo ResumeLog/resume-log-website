@@ -233,7 +233,7 @@ a:hover {
 /* A slightly wonky rule between sections instead of a perfect 1px border. */
 .rough-rule {
   height: 10px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='10' viewBox='0 0 600 10'%3E%3Cpath d='M2 6 C 80 3, 150 8, 230 5 S 390 3, 460 6 S 560 4, 598 5' fill='none' stroke='%23bdbdb9' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='10' viewBox='0 0 600 10'%3E%3Cpath d='M0 5 C 80 3, 150 8, 230 5 S 390 3, 460 6 S 560 4, 600 5' fill='none' stroke='%23bdbdb9' stroke-width='1.4' stroke-linecap='butt'/%3E%3C/svg%3E")
     repeat-x center / 600px 10px;
 }
 

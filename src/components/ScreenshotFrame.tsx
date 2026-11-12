@@ -34,7 +34,7 @@ export default function ScreenshotFrame({
 }) {
   return (
     <figure
-      className={`relative ${className}`}
+      className={`${/\babsolute\b/.test(className) ? '' : 'relative'} ${className}`}
       style={{ transform: tilt ? `rotate(${tilt}deg)` : undefined, ...style }}
     >
       {tape && (
