@@ -13,32 +13,39 @@ import jobDetail from '../assets/screens/job-detail.webp'
 import jobsTable from '../assets/screens/jobs-table.webp'
 import recentActivity from '../assets/screens/recent-activity.webp'
 import resumeLibrary from '../assets/screens/resume-library.webp'
+import dashboardSmall from '../assets/screens/dashboard-800.webp'
+import followUpsFunnelSmall from '../assets/screens/follow-ups-funnel-800.webp'
+import recentActivitySmall from '../assets/screens/recent-activity-800.webp'
+import jobsTableSmall from '../assets/screens/jobs-table-800.webp'
+import jobDetailSmall from '../assets/screens/job-detail-800.webp'
+import editorAtsSmall from '../assets/screens/editor-ats-800.webp'
+import resumeLibrarySmall from '../assets/screens/resume-library-800.webp'
 
-export type Screen = { src: string; width: number; height: number; alt: string }
+export type Screen = { src: string; srcSet?: string; width: number; height: number; alt: string }
 
 export const screens = {
   dashboard: {
-    src: dashboard, width: 1600, height: 1000,
+    src: dashboard, srcSet: `${dashboardSmall} 800w, ${dashboard} 1600w`, width: 1600, height: 1000,
     alt: 'ResumeLog dashboard: totals for jobs, people and companies, and a response-rate chart by week',
   },
   followUpsFunnel: {
-    src: followUpsFunnel, width: 1400, height: 476,
+    src: followUpsFunnel, srcSet: `${followUpsFunnelSmall} 800w, ${followUpsFunnel} 1400w`, width: 1400, height: 476,
     alt: 'Needs follow-up list with jobs applied 15 to 33 days ago, next to an outcome funnel from saved to accepted',
   },
   recentActivity: {
-    src: recentActivity, width: 1400, height: 676,
+    src: recentActivity, srcSet: `${recentActivitySmall} 800w, ${recentActivity} 1400w`, width: 1400, height: 676,
     alt: 'Recent activity feed listing recently saved jobs and companies with their status',
   },
   jobsTable: {
-    src: jobsTable, width: 1600, height: 867,
+    src: jobsTable, srcSet: `${jobsTableSmall} 800w, ${jobsTable} 1600w`, width: 1600, height: 867,
     alt: 'Jobs table with position, company, status, salary expectation, location and date applied',
   },
   jobDetail: {
-    src: jobDetail, width: 1100, height: 1085,
+    src: jobDetail, srcSet: `${jobDetailSmall} 800w, ${jobDetail} 1100w`, width: 1100, height: 1085,
     alt: 'Job details dialog with status, salary expectation, the attached résumé PDF and the full job description',
   },
   editorAts: {
-    src: editorAts, width: 1600, height: 1000,
+    src: editorAts, srcSet: `${editorAtsSmall} 800w, ${editorAts} 1600w`, width: 1600, height: 1000,
     alt: 'Résumé editor with the ATS check open: a score of 83 out of 100, a breakdown, and missing and found keywords',
   },
   atsPanel: {
@@ -46,7 +53,7 @@ export const screens = {
     alt: 'ATS check panel showing a score of 83, a category breakdown and missing keywords',
   },
   resumeLibrary: {
-    src: resumeLibrary, width: 1400, height: 766,
+    src: resumeLibrary, srcSet: `${resumeLibrarySmall} 800w, ${resumeLibrary} 1400w`, width: 1400, height: 766,
     alt: 'Résumé library with thumbnails of several tailored résumé PDFs',
   },
   extensionDetected: {

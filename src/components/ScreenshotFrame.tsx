@@ -7,6 +7,8 @@ import type { CSSProperties } from 'react'
  */
 export default function ScreenshotFrame({
   src,
+  srcSet,
+  sizes = '(max-width: 768px) 100vw, 1000px',
   alt,
   width,
   height,
@@ -19,6 +21,9 @@ export default function ScreenshotFrame({
   style,
 }: {
   src: string
+  /** Optional responsive set — phones get the 800px variant. */
+  srcSet?: string
+  sizes?: string
   alt: string
   /** Intrinsic pixel size of the image — prevents layout shift. */
   width: number
@@ -59,6 +64,8 @@ export default function ScreenshotFrame({
         )}
         <img
           src={src}
+          srcSet={srcSet}
+          sizes={srcSet ? sizes : undefined}
           alt={alt}
           width={width}
           height={height}
