@@ -4,7 +4,27 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import { Label, Lede, Section } from '../components/ui'
 import { dashboardUrl } from '../lib/links'
-import { getPricingPlans, type PricingPlan } from '../lib/pricing'
+import { getCachedPricingPlans, getPricingPlans, type PricingPlan } from '../lib/pricing'
+
+function PlanSkeleton({ last }: { last: boolean }) {
+  return (
+    <div
+      aria-hidden
+      className={`border-line flex animate-pulse flex-col p-8 md:p-10 ${last ? '' : 'border-b md:border-r md:border-b-0'}`}
+    >
+      <div className="bg-line h-5 w-20 rounded" />
+      <div className="bg-line mt-3 h-3 w-4/5 rounded" />
+      <div className="bg-line mt-2 h-3 w-3/5 rounded" />
+      <div className="bg-line mt-8 h-10 w-24 rounded" />
+      <div className="bg-line mt-6 h-10 w-full rounded" />
+      <div className="border-line mt-8 flex flex-col gap-3 border-t pt-8">
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="bg-line h-3 w-3/4 rounded" />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function PlanCta({ plan }: { plan: PricingPlan }) {
   const className = `${plan.highlighted ? 'btn-solid' : 'btn-outline'} w-full`
@@ -25,10 +45,16 @@ function PlanCta({ plan }: { plan: PricingPlan }) {
 }
 
 export default function Pricing() {
-  const [plans, setPlans] = useState<PricingPlan[]>([])
+  const [plans, setPlans] = useState<PricingPlan[]>(() => getCachedPricingPlans() ?? [])
 
   useEffect(() => {
-    getPricingPlans().then(setPlans)
+    let cancelled = false
+    getPricingPlans().then((p) => {
+      if (!cancelled) setPlans(p)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   return (
@@ -46,6 +72,7 @@ export default function Pricing() {
       </Section>
 
       <Section inner="grid md:grid-cols-3">
+        {plans.length === 0 && [0, 1, 2].map((i) => <PlanSkeleton key={i} last={i === 2} />)}
         {plans.map((plan, i) => (
           <div
             key={plan.id}

@@ -7,6 +7,7 @@ import ScreenshotFrame from '../components/ScreenshotFrame'
 import { Label, Lede, Pill, Section, Stage } from '../components/ui'
 import { AtsScore, CaptureFlow, EasyApplyMemory, FollowUpOrbit, StatusBoard } from '../components/vignettes'
 import { dashboardUrl, extensionUrl } from '../lib/links'
+import { getPricingPlans } from '../lib/pricing'
 import { screens } from '../lib/screens'
 
 const strip = [
@@ -287,7 +288,12 @@ export default function Home() {
             every fix, scan history and follow-up reminders.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-            <Link to="/pricing" className="btn-outline btn-lg">
+            <Link
+              to="/pricing"
+              className="btn-outline btn-lg"
+              onMouseEnter={() => void getPricingPlans()}
+              onFocus={() => void getPricingPlans()}
+            >
               Compare plans
             </Link>
             <a href={extensionUrl} target="_blank" rel="noopener noreferrer" className="btn-solid btn-lg">
