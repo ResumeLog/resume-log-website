@@ -29,7 +29,7 @@ function respond(route, url, method) {
   if (/^\/resumes\/[^/]+\/content$/.test(p)) return route.fulfill({ status: 200, contentType: 'application/pdf', body: PDF });
   if (/^\/editor\/files\/[^/]+\/content$/.test(p))
     return route.fulfill({ status: 200, contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', body: DOCX });
-  if (p === '/ats/scans') return json([F.atsScan].map(({ result, jobDescription, ...s }) => s));
+  if (p === '/ats/scans') return json([F.atsScan].map((s) => ({ id: s.id, documentId: s.documentId, jobId: s.jobId, jobTitle: s.jobTitle, company: s.company, score: s.score, algorithmVersion: s.algorithmVersion, createdAt: s.createdAt })));
   if (p.startsWith('/ats/scans/')) return json(F.atsScan);
   if (p.startsWith('/resumes/') || p.startsWith('/editor/files/') || p.startsWith('/cv/')) return json({ downloadUrl: 'about:blank' });
   console.warn('unmocked', method, p);
