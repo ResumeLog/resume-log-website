@@ -211,6 +211,18 @@ a:hover {
   margin: 0 -0.12em;
 }
 
+/* A strip of semi-transparent masking tape holding a screenshot down. */
+.tape {
+  position: absolute;
+  z-index: 10;
+  width: 84px;
+  height: 24px;
+  background: rgba(217, 217, 214, 0.72);
+  border-left: 1px dashed rgba(117, 117, 111, 0.35);
+  border-right: 1px dashed rgba(117, 117, 111, 0.35);
+  backdrop-filter: blur(0.5px);
+}
+
 /* Faint dotted grid, like a bullet-journal page. */
 .dot-grid {
   background-image: radial-gradient(var(--ash-200) 1px, transparent 1px);
