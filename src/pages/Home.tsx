@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, BellRing, Bookmark, FileText, Gauge, Lock, MessageSquareText, Star } from 'lucide-react'
+import { ArrowRight, BellRing, Bookmark, FileText, Gauge, Lock } from 'lucide-react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import ScreenshotFrame from '../components/ScreenshotFrame'
 import { Label, Lede, Pill, Section, Stage } from '../components/ui'
+import { AtsScore, CaptureFlow, EasyApplyMemory, FollowUpOrbit, StatusBoard } from '../components/vignettes'
 import { dashboardUrl, extensionUrl } from '../lib/links'
 import { screens } from '../lib/screens'
 
@@ -66,26 +67,40 @@ const steps: Step[] = [
   },
 ]
 
-const extras = [
+const bento: { title: string; body: string; visual: ReactNode; label?: string }[] = [
   {
-    icon: MessageSquareText,
     title: 'Easy Apply, remembered.',
-    body: 'Submit through LinkedIn Easy Apply and the questions, your answers and the résumé you used are saved with the job.',
+    body: 'Submit through LinkedIn Easy Apply and your questions, answers and résumé are saved with the job.',
+    visual: <EasyApplyMemory className="h-[300px]" />,
   },
+  {
+    title: 'Statuses that move with you.',
+    body: 'Bookmarked to Applied to Interviewing in a click. Your response rate is worked out from them.',
+    visual: <StatusBoard className="h-[300px]" />,
+  },
+  {
+    title: 'A score you can read.',
+    body: 'Six parts, the keywords you have, and the ones you’re missing for this specific job.',
+    visual: <AtsScore className="h-[300px]" />,
+  },
+  {
+    title: 'Nothing goes quiet unnoticed.',
+    label: 'Pro',
+    body: 'Two weeks without a reply and the job is flagged for a follow-up.',
+    visual: <FollowUpOrbit className="h-[300px]" />,
+  },
+]
+
+const extras = [
   {
     icon: FileText,
     title: 'A résumé library.',
     body: 'Every tailored version in one place. Star the ones you use most and attach the exact PDF to each job.',
   },
   {
-    icon: Star,
-    title: 'Statuses that mean something.',
-    body: 'Bookmarked, Applied, Interviewing, Negotiating, Accepted, Closed. Your response rate is worked out from them.',
-  },
-  {
     icon: Lock,
     title: 'Private by default.',
-    body: 'Your log is tied to your Google sign-in. Nobody else can see it, and nothing is sold. Delete anything, any time.',
+    body: 'Your log is tied to your Google sign-in. Nobody else can see it, and nothing is sold.',
   },
 ]
 
@@ -181,15 +196,16 @@ export default function Home() {
       </Section>
 
       {/* ───────── Intro ───────── */}
-      <Section inner="px-6 py-20 md:px-14 md:py-28">
-        <Reveal>
+      <Section inner="grid lg:grid-cols-[1fr_1.1fr]">
+        <Reveal className="border-line border-b px-6 py-16 md:px-14 md:py-24 lg:border-r lg:border-b-0">
           <Label>How it works</Label>
           <Lede
-            className="mt-5 max-w-3xl text-[1.6rem] sm:text-[2.75rem]"
+            className="mt-5 max-w-xl text-[1.6rem] sm:text-[2.6rem]"
             lead="Your whole job search, in one place."
             tail="Save it on LinkedIn, tailor your résumé for it, and follow up before it goes cold."
           />
         </Reveal>
+        <CaptureFlow className="min-h-[340px]" />
       </Section>
 
       {/* ───────── Four steps with a sticky index ───────── */}
@@ -235,11 +251,25 @@ export default function Home() {
 
       {/* ───────── Extras bento ───────── */}
       <Section inner="grid md:grid-cols-2">
-        {extras.map((extra, i) => (
-          <Reveal
-            key={extra.title}
-            className={`border-line p-8 md:p-10 ${i % 2 === 0 ? 'md:border-r' : ''} ${i < 2 ? 'border-b' : i === 2 ? 'border-b md:border-b-0' : ''}`}
+        {bento.map((cell, i) => (
+          <div
+            key={cell.title}
+            className={`border-line flex flex-col ${i % 2 === 0 ? 'md:border-r' : ''} ${i < bento.length - 1 ? 'border-b' : ''} ${i === bento.length - 2 ? 'md:border-b-0' : ''}`}
           >
+            <Reveal className="p-8 md:p-10">
+              {cell.label && <Label>{cell.label}</Label>}
+              <p className={`lede max-w-md text-lg ${cell.label ? 'mt-3' : ''}`}>
+                {cell.title} <span className="tail">{cell.body}</span>
+              </p>
+            </Reveal>
+            <div className="mt-auto">{cell.visual}</div>
+          </div>
+        ))}
+      </Section>
+
+      <Section inner="grid md:grid-cols-2">
+        {extras.map((extra, i) => (
+          <Reveal key={extra.title} className={`border-line p-8 md:p-10 ${i === 0 ? 'border-b md:border-r md:border-b-0' : ''}`}>
             <extra.icon size={18} strokeWidth={1.75} className="text-muted-foreground" />
             <p className="lede mt-4 max-w-md text-lg">
               {extra.title} <span className="tail">{extra.body}</span>

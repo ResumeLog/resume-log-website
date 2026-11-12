@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import Reveal from '../components/Reveal'
 import ScreenshotFrame from '../components/ScreenshotFrame'
 import { Label, Lede, Section, Stage } from '../components/ui'
+import { CaptureFlow } from '../components/vignettes'
 import { extensionUrl } from '../lib/links'
 import { screens } from '../lib/screens'
 
@@ -137,23 +138,26 @@ const features: Feature[] = [
 export default function Features() {
   return (
     <div>
-      <Section bare inner="px-6 pt-20 pb-16 md:px-14 md:pt-28">
-        <Reveal>
-          <Label>Features</Label>
-          <Lede
-            as="h1"
-            className="mt-5 max-w-3xl text-[2.2rem] sm:text-5xl"
-            lead="Everything in ResumeLog."
-            tail="Capture, track, tailor and follow up."
-          />
-        </Reveal>
-        <nav className="mt-10 flex flex-wrap gap-2">
-          {features.map((f) => (
-            <a key={f.id} href={`#${f.id}`} className="btn-outline !h-8 !px-3 !text-[13px]">
-              {f.short}
-            </a>
-          ))}
-        </nav>
+      <Section bare inner="grid lg:grid-cols-[1fr_1fr]">
+        <div className="border-line border-b px-6 pt-20 pb-16 md:px-14 md:pt-28 lg:border-r lg:border-b-0">
+          <Reveal>
+            <Label>Features</Label>
+            <Lede
+              as="h1"
+              className="mt-5 max-w-xl text-[2.2rem] sm:text-5xl"
+              lead="Everything in ResumeLog."
+              tail="Capture, track, tailor and follow up."
+            />
+          </Reveal>
+          <nav className="mt-10 flex flex-wrap gap-2">
+            {features.map((f) => (
+              <a key={f.id} href={`#${f.id}`} className="btn-outline !h-8 !px-3 !text-[13px]">
+                {f.short}
+              </a>
+            ))}
+          </nav>
+        </div>
+        <CaptureFlow className="min-h-[340px]" />
       </Section>
 
       {features.map((f) => (
