@@ -17,7 +17,7 @@
     "id": "pro",
     "name": "Pro",
     "description": "Unlimited ATS scans with every keyword, fix and past scan, plus follow-ups and cover letters.",
-    "price": "$12",
+    "price": "$11",
     "period": "/ month",
     "features": [
       "Unlimited ATS scans",
@@ -33,7 +33,7 @@
   {
     "id": "enterprise",
     "name": "Enterprise",
-    "description": "For career coaches, bootcamps, and teams with specific needs.",
+    "description": "Pro plus SSO and a direct support channel.",
     "price": "Custom",
     "period": "let's talk",
     "features": [
