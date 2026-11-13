@@ -72,7 +72,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="border-line text-subtle flex items-center justify-between border-t px-8 py-5 text-[13px]">
-          <span>© {new Date().getFullYear()} ResumeLog</span>
+          <span>© {__BUILD_DATE__.slice(0, 4)} ResumeLog</span>
           <span>Made for job seekers</span>
         </div>
       </div>
