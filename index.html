@@ -4,21 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="w_056cLxJ-jlPvXckAw0qUqlCdF7ITEkW5H-jkH1MNk" />
-  <meta name="description"
-    content="ResumeLog is a Chrome extension and dashboard for your job search. Save LinkedIn jobs in one click, check your résumé against each job with an ATS scan, and follow up before applications go cold." />
   <meta name="theme-color" content="#fbfbfa" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ResumeLog" />
-  <meta property="og:title" content="ResumeLog: every job you apply to, remembered" />
-  <meta property="og:description"
-    content="Save LinkedIn jobs in one click, tailor your résumé with an ATS check, and follow up before it goes cold." />
-  <meta property="og:image" content="/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>ResumeLog: every job you apply to, remembered</title>
+  <!--app-head-->
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
   <script>
     (function () {
@@ -40,7 +37,7 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root"><!--app-html--></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
