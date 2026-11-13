@@ -7,4 +7,4 @@ export const extensionUrl =
 export const contactEmail = 'contact@resumeloghq.com'
 
 /** ResumeLog LinkedIn company page — listed in the Organization structured data (`sameAs`). Empty = omitted. */
-export const linkedinUrl = ''
+export const linkedinUrl = 'https://www.linkedin.com/company/resumelog'
