@@ -6,6 +6,19 @@ import { Label, Lede, Section } from '../components/ui'
 import { dashboardUrl } from '../lib/links'
 import { getCachedPricingPlans, getPricingPlans, type PricingPlan } from '../lib/pricing'
 
+/** "$11.99" → "$11" at full size with ".99" smaller, top-aligned; "$12" / "Custom" render as-is. */
+function PriceAmount({ price }: { price: string }) {
+  const match = /^(.*\d)(\.\d+)$/.exec(price)
+  if (!match) return <span className="display text-[2.6rem]">{price}</span>
+  const [, whole, cents] = match
+  return (
+    <span className="display inline-flex items-start text-[2.6rem]">
+      {whole}
+      <span className="mt-[0.3em] text-[0.5em] leading-none">{cents}</span>
+    </span>
+  )
+}
+
 function PlanSkeleton({ last }: { last: boolean }) {
   return (
     <div
@@ -87,7 +100,7 @@ export default function Pricing() {
             <p className="text-muted-foreground mt-2 min-h-[3rem] text-sm leading-relaxed">{plan.description}</p>
 
             <div className="mt-6 flex items-baseline gap-1.5">
-              <span className="display text-[2.6rem]">{plan.price}</span>
+              <PriceAmount price={plan.price} />
               {plan.period && <span className="text-muted-foreground text-sm">{plan.period}</span>}
             </div>
 
