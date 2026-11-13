@@ -11,13 +11,16 @@
       "All passed ATS checks",
       "Fix count (details with Pro)"
     ],
-    "cta": { "label": "Get started free", "action": "login" }
+    "cta": {
+      "label": "Get started free",
+      "action": "login"
+    }
   },
   {
     "id": "pro",
     "name": "Pro",
     "description": "Unlimited ATS scans with every keyword, fix and past scan, plus follow-ups and cover letters.",
-    "price": "$11",
+    "price": "$11.99",
     "period": "/ month",
     "features": [
       "Unlimited ATS scans",
@@ -27,7 +30,10 @@
       "Follow-ups and reminders",
       "Cover letter generator"
     ],
-    "cta": { "label": "Upgrade to Pro", "action": "contact" },
+    "cta": {
+      "label": "Upgrade to Pro",
+      "action": "contact"
+    },
     "highlighted": true
   },
   {
@@ -41,6 +47,9 @@
       "SAML / SSO",
       "Direct support channel"
     ],
-    "cta": { "label": "Contact us", "action": "contact" }
+    "cta": {
+      "label": "Contact us",
+      "action": "contact"
+    }
   }
 ]
