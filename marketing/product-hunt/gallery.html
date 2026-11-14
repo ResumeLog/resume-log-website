@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>ResumeLog gallery</title>
+<link rel="stylesheet" href="shared.css" />
+<style>
+  body { width: 1270px; height: 760px; }
+  .slide { position: relative; width: 1270px; height: 760px; overflow: hidden; display: none; }
+  .slide.on { display: block; }
+
+  /* ---------- 1. Hero ---------- */
+  #s1 .top { position: absolute; inset: 0 0 auto 0; text-align: center; padding-top: 58px; }
+  #s1 .brand { justify-content: center; font-size: 20px; }
+  #s1 h1 { font-size: 54px; margin: 22px auto 0; max-width: 900px; }
+  #s1 .sub { font-size: 19px; margin: 16px auto 0; max-width: 640px; }
+  #s1 .dash { position: absolute; left: 150px; top: 330px; width: 900px; }
+  #s1 .pane { position: absolute; left: 960px; top: 410px; width: 200px; }
+
+  /* ---------- 2. Capture ---------- */
+  #s2 .left { position: absolute; left: 72px; top: 0; bottom: 0; width: 470px; display: flex; flex-direction: column; justify-content: center; }
+  #s2 h2 { font-size: 50px; margin-top: 20px; }
+  #s2 .sub { font-size: 18px; margin-top: 20px; max-width: 420px; }
+  #s2 .stage { position: absolute; left: 600px; top: 40px; right: 40px; bottom: 40px; border-radius: 20px; box-shadow: 0 0 0 1px var(--line); }
+  #s2 .p1 { position: absolute; left: 650px; top: 90px; width: 255px; }
+  #s2 .p2 { position: absolute; left: 945px; top: 150px; width: 255px; }
+  #s2 .tag {
+    position: absolute; left: 880px; top: 610px; z-index: 3;
+    background: var(--fg); color: #fff; border-radius: 999px; padding: 10px 18px;
+    font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+    box-shadow: 0 10px 30px -8px rgb(0 0 0 / 0.35);
+  }
+  .list { list-style: none; margin-top: 26px; display: grid; gap: 12px; }
+  .list li { display: flex; gap: 10px; align-items: flex-start; font-size: 17px; color: #2b2b31; line-height: 1.4; }
+  .list li::before { content: ''; flex: none; margin-top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--fg); }
+
+  /* ---------- 3. ATS ---------- */
+  #s3 .left { position: absolute; left: 72px; top: 0; bottom: 0; width: 420px; display: flex; flex-direction: column; justify-content: center; }
+  #s3 h2 { font-size: 50px; margin-top: 20px; }
+  #s3 .sub { font-size: 18px; margin-top: 20px; }
+  #s3 .stage { position: absolute; left: 560px; top: 40px; right: 40px; bottom: 40px; border-radius: 20px; box-shadow: 0 0 0 1px var(--line); overflow: hidden; }
+  #s3 .ed { position: absolute; left: 50px; top: 70px; width: 860px; }
+  #s3 .ats { position: absolute; left: 860px; top: 76px; width: 300px; z-index: 2; }
+  #s3 .ats .frame { height: 610px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Hero -->
+<section class="slide wash" id="s1">
+  <div class="top">
+    <div class="brand"><img src="../../public/resumelog-icon.svg" width="22" height="25" alt="" />ResumeLog</div>
+    <h1 class="lede">Save jobs, tailor your résumé, and follow up on time.</h1>
+    <p class="sub">Your whole job search in one place: a Chrome extension and a dashboard, free to start.</p>
+  </div>
+  <figure class="shot dash"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img class="s" src="../../src/assets/screens/dashboard.webp" alt="" /></div></figure>
+  <figure class="shot panel pane"><div class="frame"><img class="s" src="../../src/assets/screens/extension-saved.webp" alt="" /></div></figure>
+</section>
+
+<!-- 2. Capture -->
+<section class="slide" id="s2">
+  <div class="left">
+    <span class="chip" style="align-self:flex-start">Capture</span>
+    <h2 class="lede">Save a job in one click. <span class="tail">Right where you found it.</span></h2>
+    <ul class="list">
+      <li>The side panel spots the posting as you browse</li>
+      <li>Full description and company saved with it</li>
+      <li>Status, salary and the CV you sent, on one row</li>
+    </ul>
+  </div>
+  <div class="stage dots"></div>
+  <figure class="shot panel p1"><div class="frame"><img class="s" src="../../src/assets/screens/extension-detected.webp" alt="" /></div></figure>
+  <figure class="shot panel p2"><div class="frame"><img class="s" src="../../src/assets/screens/extension-saved.webp" alt="" /></div></figure>
+</section>
+
+<!-- 3. ATS -->
+<section class="slide" id="s3">
+  <div class="left">
+    <span class="chip" style="align-self:flex-start">ATS check</span>
+    <h2 class="lede">Fix your résumé <span class="tail">for this exact job.</span></h2>
+    <ul class="list">
+      <li>Scored against the posting you saved, in six parts</li>
+      <li>See the keywords you’re missing</li>
+      <li>Edit your Word résumé and publish a PDF</li>
+    </ul>
+  </div>
+  <div class="stage dots">
+    <figure class="shot ed"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img class="s" src="../../src/assets/screens/editor-ats.webp" alt="" /></div></figure>
+  </div>
+  <figure class="shot panel ats"><div class="frame"><img class="s" src="../../src/assets/screens/ats-panel.webp" alt="" /></div></figure>
+</section>
+
+<script>
+  const n = new URLSearchParams(location.search).get('n') || '1'
+  document.getElementById('s' + n).classList.add('on')
+</script>
+</body>
+</html>

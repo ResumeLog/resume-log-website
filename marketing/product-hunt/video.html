@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>ResumeLog demo video</title>
+<link rel="stylesheet" href="shared.css" />
+<style>
+  body { width: 1920px; height: 1080px; position: relative; }
+  .scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+  .center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .abs { position: absolute; }
+
+  /* 1. Problem */
+  #p .l { font-size: 84px; font-weight: 600; letter-spacing: -0.04em; line-height: 1.12; opacity: 0; }
+  #p .l.g { color: var(--subtle); }
+
+  /* 2. Intro */
+  #i .brand { font-size: 34px; gap: 16px; }
+  #i h1 { font-size: 76px; margin-top: 28px; max-width: 1300px; }
+  #i .dash { left: 260px; top: 470px; width: 1400px; }
+
+  /* shared split layout */
+  .copy { position: absolute; left: 140px; top: 0; bottom: 0; width: 660px; display: flex; flex-direction: column; justify-content: center; }
+  .copy h2 { font-size: 80px; margin-top: 26px; }
+  .copy .sub { font-size: 28px; margin-top: 28px; max-width: 600px; }
+  .copy .chip { align-self: flex-start; font-size: 20px; padding: 8px 16px; }
+  .stage { position: absolute; left: 880px; top: 60px; right: 60px; bottom: 60px; border-radius: 28px; box-shadow: 0 0 0 1px var(--line); overflow: hidden; }
+
+  /* 3. Capture */
+  #c .pd, #c .ps { left: 300px; top: 50px; width: 400px; }
+  #c .ps { opacity: 0; }
+  #c .cursor { left: 1460px; top: 760px; width: 34px; z-index: 5; filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.3)); }
+  #c .toast {
+    left: 1306px; top: 960px; z-index: 6; opacity: 0;
+    background: var(--fg); color: #fff; border-radius: 999px; padding: 14px 26px;
+    font-size: 24px; font-weight: 600; box-shadow: 0 12px 34px -10px rgb(0 0 0 / 0.4);
+  }
+
+  /* 4. Table */
+  #t .tbl { left: 60px; top: 110px; width: 1300px; }
+
+  /* 5. ATS */
+  #a .ed { left: 60px; top: 90px; width: 1100px; }
+  #a .ed .frame { width: 800px; }
+  #a .ed .frame img { width: 1100px; max-width: none; }
+  #a .ats { left: 520px; top: 50px; width: 400px; z-index: 2; }
+  #a .ats .frame { height: 860px; }
+
+  /* 6. Follow-ups */
+  #f .fu { left: 40px; top: 270px; width: 1180px; }
+
+  /* 7. End */
+  #e .brand { font-size: 64px; gap: 24px; }
+  #e .brand img { width: 58px; height: 65px; }
+  #e .tag { font-size: 40px; font-weight: 500; letter-spacing: -0.025em; color: var(--muted); margin-top: 30px; }
+  #e .cta { margin-top: 56px; display: flex; gap: 18px; align-items: center; }
+  #e .btn { background: var(--fg); color: #fff; border-radius: 14px; padding: 22px 36px; font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+  #e .url { font-size: 28px; color: var(--muted); font-weight: 500; }
+</style>
+</head>
+<body class="wash">
+
+<section class="scene center" id="p">
+  <div class="l">Job hunting means 12 tabs,</div>
+  <div class="l">a messy spreadsheet,</div>
+  <div class="l g">and no idea which CV you sent.</div>
+</section>
+
+<section class="scene center" id="i" style="justify-content:flex-start;padding-top:150px">
+  <div class="brand"><img src="../../public/resumelog-icon.svg" width="30" height="34" alt="" />ResumeLog</div>
+  <h1 class="lede">Every job you apply to, <span class="tail">remembered.</span></h1>
+  <figure class="shot abs dash"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img class="s" src="../../src/assets/screens/dashboard.webp" alt="" /></div></figure>
+</section>
+
+<section class="scene" id="c">
+  <div class="copy">
+    <span class="chip">1 · Capture</span>
+    <h2 class="lede">Save a job in one click.</h2>
+    <p class="sub">The side panel spots the posting while you browse. Press Save and it’s in your log.</p>
+  </div>
+  <div class="stage dots">
+    <figure class="shot panel abs pd"><div class="frame"><img class="s" src="../../src/assets/screens/extension-detected.webp" alt="" /></div></figure>
+    <figure class="shot panel abs ps"><div class="frame"><img class="s" src="../../src/assets/screens/extension-saved.webp" alt="" /></div></figure>
+  </div>
+  <svg class="abs cursor" viewBox="0 0 24 24"><path d="M4 2l16 10-7 1.5L9.5 21z" fill="#0b0b0d" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+  <div class="abs toast">Saved ✓</div>
+</section>
+
+<section class="scene" id="t">
+  <div class="copy">
+    <span class="chip">2 · Organise</span>
+    <h2 class="lede">Every application, <span class="tail">one table.</span></h2>
+    <p class="sub">Status, salary, the CV you sent and the original posting, on one row.</p>
+  </div>
+  <div class="stage dots">
+    <figure class="shot abs tbl"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img class="s" src="../../src/assets/screens/jobs-table.webp" alt="" /></div></figure>
+  </div>
+</section>
+
+<section class="scene" id="a">
+  <div class="copy">
+    <span class="chip">3 · Tailor</span>
+    <h2 class="lede">Fix your résumé <span class="tail">for this job.</span></h2>
+    <p class="sub">An ATS check against the posting: a score in six parts, missing keywords and specific fixes.</p>
+  </div>
+  <div class="stage dots">
+    <figure class="shot abs ed"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img class="s" src="../../src/assets/screens/editor-ats.webp" alt="" /></div></figure>
+    <figure class="shot panel abs ats"><div class="frame"><img class="s" src="../../src/assets/screens/ats-panel.webp" alt="" /></div></figure>
+  </div>
+</section>
+
+<section class="scene" id="f">
+  <div class="copy">
+    <span class="chip">4 · Follow up</span>
+    <h2 class="lede">Follow up <span class="tail">before it goes cold.</span></h2>
+    <p class="sub">See which applications have gone quiet, and where your search stalls.</p>
+  </div>
+  <div class="stage dots">
+    <figure class="shot abs fu"><div class="frame"><img class="s" src="../../src/assets/screens/follow-ups-funnel.webp" alt="" /></div></figure>
+  </div>
+</section>
+
+<section class="scene center" id="e">
+  <div class="brand"><img src="../../public/resumelog-icon.svg" alt="" />ResumeLog</div>
+  <div class="tag">Save jobs, tailor your résumé, and follow up on time.</div>
+  <div class="cta"><span class="btn">Add to Chrome, it’s free</span><span class="url">resumeloghq.com</span></div>
+</section>
+
+<script>
+  // Timeline in seconds. Every animation is created paused and then seeked by
+  // the renderer (window.seek), so frames are deterministic.
+  const ease = 'cubic-bezier(0.22, 1, 0.36, 1)'
+  const $ = (s) => document.querySelector(s)
+  const A = (el, frames, start, dur, easing = ease, fill = 'both') =>
+    (typeof el === 'string' ? $(el) : el).animate(frames, { delay: start * 1000, duration: dur * 1000, fill, easing })
+  // A follow-up animation on a property an earlier one already drives: only applies once it starts.
+  const then = (el, frames, start, dur, easing = ease) => A(el, frames, start, dur, easing, 'forwards')
+
+  const rise = (el, start, dy = 30, dur = 0.8) =>
+    A(el, [{ opacity: 0, transform: `translateY(${dy}px)` }, { opacity: 1, transform: 'none' }], start, dur)
+
+  // Scene in/out. fill:'both' on two animations of the same property would fight,
+  // so the scene opacity is one keyframe track.
+  function scene(sel, start, end, fade = 0.45) {
+    const total = end - start
+    A(sel, [
+      { opacity: 0, offset: 0 },
+      { opacity: 1, offset: fade / total },
+      { opacity: 1, offset: 1 - fade / total },
+      { opacity: 0, offset: 1 },
+    ], start, total, 'linear')
+  }
+
+  // 1. Problem 0 – 4.2
+  scene('#p', 0, 4.2, 0.3)
+  document.querySelectorAll('#p .l').forEach((l, k) => rise(l, 0.25 + k * 0.85, 24))
+
+  // 2. Intro 4.2 – 9
+  scene('#i', 4.2, 9)
+  rise('#i .brand', 4.4, 16)
+  rise('#i h1', 4.6, 24)
+  A('#i .dash', [{ opacity: 0, transform: 'translateY(160px)' }, { opacity: 1, transform: 'none' }], 5.2, 1.4)
+  then('#i .dash', [{ transform: 'translateY(0)' }, { transform: 'translateY(-60px)' }], 6.6, 2.4, 'ease-in-out')
+
+  // 3. Capture 9 – 15
+  scene('#c', 9, 15)
+  rise('#c .copy', 9.2, 24)
+  rise('#c .pd', 9.4, 50, 1)
+  A('#c .cursor', [
+    { opacity: 0, transform: 'translate(260px, 200px)' },
+    { opacity: 1, transform: 'translate(260px, 200px)', offset: 0.15 },
+    { opacity: 1, transform: 'translate(-80px, 172px)' },
+  ], 10.3, 1.2)
+  then('#c .cursor', [{ transform: 'translate(-80px, 172px) scale(1)' }, { transform: 'translate(-80px, 172px) scale(0.82)' }, { transform: 'translate(-80px, 172px) scale(1)' }], 11.55, 0.25, 'ease-in-out')
+  A('#c .ps', [{ opacity: 0 }, { opacity: 1 }], 11.8, 0.5, 'ease-out')
+  then('#c .pd', [{ opacity: 1 }, { opacity: 0 }], 11.8, 0.5, 'ease-out')
+  then('#c .cursor', [{ opacity: 1 }, { opacity: 0 }], 12.1, 0.4, 'ease-out')
+  A('#c .toast', [{ opacity: 0, transform: 'translateY(20px) scale(0.95)' }, { opacity: 1, transform: 'none' }], 12.0, 0.6)
+
+  // 4. Table 15 – 20
+  scene('#t', 15, 20)
+  rise('#t .copy', 15.2, 24)
+  A('#t .tbl', [{ opacity: 0, transform: 'translateX(120px)' }, { opacity: 1, transform: 'none' }], 15.4, 1.2)
+  A('#t .tbl img', [{ transform: 'scale(1)', transformOrigin: '0 0' }, { transform: 'scale(1.08)', transformOrigin: '0 0' }], 16.6, 3.4, 'ease-in-out')
+
+  // 5. ATS 20 – 26
+  scene('#a', 20, 26)
+  rise('#a .copy', 20.2, 24)
+  A('#a .ed', [{ opacity: 0, transform: 'translateY(60px)' }, { opacity: 1, transform: 'none' }], 20.4, 1.1)
+  A('#a .ats', [{ opacity: 0, transform: 'translateX(200px)' }, { opacity: 1, transform: 'none' }], 21.4, 1.1)
+  A('#a .ats img', [{ transform: 'translateY(0)' }, { transform: 'translateY(-36px)' }], 23.0, 2.6, 'ease-in-out')
+
+  // 6. Follow-ups 26 – 30.5
+  scene('#f', 26, 30.5)
+  rise('#f .copy', 26.2, 24)
+  rise('#f .fu', 26.5, 60, 1.2)
+
+  // 7. End 30.5 – 35
+  scene('#e', 30.5, 35.5, 0.5)
+  rise('#e .brand', 30.7, 20)
+  rise('#e .tag', 31.0, 20)
+  rise('#e .cta', 31.4, 20)
+
+  window.DURATION = 35.5
+  const anims = document.getAnimations()
+  anims.forEach((a) => a.pause())
+  window.seek = (t) => anims.forEach((a) => (a.currentTime = t * 1000))
+  window.seek(0)
+</script>
+</body>
+</html>

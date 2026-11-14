@@ -1,0 +1,68 @@
+/* Shared look for the Product Hunt gallery images + demo video — mirrors src/index.css. */
+@font-face {
+  font-family: 'Inter';
+  src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+}
+
+:root {
+  --bg: #ffffff;
+  --fg: #0b0b0d;
+  --panel: #f8f8f9;
+  --panel-2: #f2f2f4;
+  --line: #ebebee;
+  --muted: #6c6c75;
+  --subtle: #9b9ba4;
+  --shadow-shot: 0 1px 1px rgb(16 16 20 / 0.03), 0 8px 24px -6px rgb(16 16 20 / 0.08),
+    0 32px 64px -24px rgb(16 16 20 / 0.16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.wash {
+  background:
+    radial-gradient(70% 60% at 50% 0%, #f1f1f4 0%, rgb(255 255 255 / 0) 100%),
+    linear-gradient(180deg, #fff 0%, #fafafb 100%);
+}
+
+.dots {
+  background-color: var(--panel);
+  background-image: radial-gradient(rgb(16 16 20 / 0.09) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; }
+.brand img { display: block; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  border-radius: 999px; padding: 6px 12px;
+  background: #fff; box-shadow: 0 0 0 1px var(--line);
+  color: var(--muted); font-weight: 500; font-size: 14px;
+}
+
+.lede { font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; text-wrap: balance; }
+.lede .tail { color: var(--subtle); }
+.sub { color: var(--muted); line-height: 1.5; letter-spacing: -0.005em; }
+
+/* Screenshot frame (ScreenshotFrame.tsx) */
+.shot { position: relative; }
+.shot > .frame {
+  overflow: hidden; background: #fff; border-radius: 12px;
+  box-shadow: var(--shadow-shot), 0 0 0 1px rgb(0 0 0 / 0.07);
+}
+.shot.panel > .frame { border-radius: 14px; }
+.shot .bar {
+  height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 13px;
+  border-bottom: 1px solid var(--line); background: #fff;
+}
+.shot .bar i { width: 10px; height: 10px; border-radius: 50%; background: #e6e6e9; }
+.shot img.s { display: block; width: 100%; height: auto; }
