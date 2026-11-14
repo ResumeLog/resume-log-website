@@ -6,6 +6,7 @@ Gallery images (1270×760 @2x) and a 35 s, 1080p demo video, built from the real
 | --- | --- |
 | `out/1-hero.png`, `out/2-capture.png`, `out/3-ats-check.png` | Gallery images |
 | `out/resumelog-demo.mp4` | Demo video (H.264, 1920×1080, 30 fps, no audio) |
+| `out/youtube-thumbnail.png` | YouTube thumbnail (1280×720 @1.5x = 1920×1080) — `thumbnail.html`, `render-thumbnail.mjs` |
 | `gallery.html` (`?n=1..3`), `video.html`, `shared.css` | Sources — open in Chrome to preview |
 
 ## Regenerate
