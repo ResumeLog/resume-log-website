@@ -5,3 +5,6 @@ export const extensionUrl =
   'https://chromewebstore.google.com/detail/resumelog-extension/fimphednbonojldchmdmeinknejflibo'
 
 export const contactEmail = 'contact@resumeloghq.com'
+
+/** ResumeLog LinkedIn company page — listed in the Organization structured data (`sameAs`). Empty = omitted. */
+export const linkedinUrl = 'https://www.linkedin.com/company/resumelog'

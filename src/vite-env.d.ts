@@ -9,3 +9,6 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+/** YYYY-MM-DD the site was built (vite.config.ts). */
+declare const __BUILD_DATE__: string
