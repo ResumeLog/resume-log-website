@@ -42,11 +42,11 @@ export const screens = {
   },
   jobDetail: {
     src: jobDetail, srcSet: `${jobDetailSmall} 800w, ${jobDetail} 1100w`, width: 1100, height: 1085,
-    alt: 'Job details dialog with status, salary expectation, the attached résumé PDF and the full job description',
+    alt: 'Job details dialog with status, salary expectation, the attached resume PDF and the full job description',
   },
   editorAts: {
     src: editorAts, srcSet: `${editorAtsSmall} 800w, ${editorAts} 1600w`, width: 1600, height: 1000,
-    alt: 'Résumé editor with the ATS check open: a score of 83 out of 100, a breakdown, and missing and found keywords',
+    alt: 'Resume editor with the ATS check open: a score of 83 out of 100, a breakdown, and missing and found keywords',
   },
   atsPanel: {
     src: atsPanel, width: 760, height: 1704,
@@ -54,7 +54,7 @@ export const screens = {
   },
   resumeLibrary: {
     src: resumeLibrary, srcSet: `${resumeLibrarySmall} 800w, ${resumeLibrary} 1400w`, width: 1400, height: 766,
-    alt: 'Résumé library with thumbnails of several tailored résumé PDFs',
+    alt: 'Resume library with thumbnails of several tailored resume PDFs',
   },
   extensionDetected: {
     src: extensionDetected, width: 800, height: 1720,
@@ -65,3 +65,5 @@ export const screens = {
     alt: 'ResumeLog side panel after saving: "Saved as Bookmarked" and a history of synced jobs',
   },
 } satisfies Record<string, Screen>
+
+export type ScreenKey = keyof typeof screens

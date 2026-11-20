@@ -27,7 +27,7 @@ npm run all
 
 | Step | Script | Output |
 | --- | --- | --- |
-| Demo résumé | `gen-resume.mjs` | `fixtures/jordan-ellis-resume.docx` + `.pdf` |
+| Demo resume | `gen-resume.mjs` | `fixtures/jordan-ellis-resume.docx` + `.pdf` |
 | Real ATS score | `ats-score.mjs` | `fixtures/ats-result.json` (scored against `fixtures/jd.txt`) |
 | Dashboard shots | `capture.mjs [name…]` | `shots/*.png` at 1440×900 @2x |
 | Side panel shots | `capture-panel.mjs` | `shots/extension-*.png` — the built panel with a stubbed `chrome.*` |

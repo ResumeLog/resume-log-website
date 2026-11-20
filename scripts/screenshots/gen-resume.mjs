@@ -1,4 +1,4 @@
-// Generates a fictional demo résumé as DOCX (for the editor) and PDF (for the library previews).
+// Generates a fictional demo resume as DOCX (for the editor) and PDF (for the library previews).
 import fs from 'node:fs';
 import { chromium } from 'playwright';
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, BorderStyle } from 'docx';

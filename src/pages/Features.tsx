@@ -1,5 +1,6 @@
 import { ArrowRight, Check } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import ScreenshotFrame from '../components/ScreenshotFrame'
 import { Label, Lede, Section, Stage } from '../components/ui'
@@ -15,6 +16,17 @@ type Feature = {
   body: string
   points: string[]
   visual: ReactNode
+}
+
+/** Each feature links to the use-case page that targets its search. */
+const learnMore: Record<string, { to: string; label: string }> = {
+  capture: { to: '/job-tracker-chrome-extension', label: 'More on the job tracker Chrome extension' },
+  'easy-apply': { to: '/linkedin-job-tracker', label: 'More on the LinkedIn job tracker' },
+  tracker: { to: '/job-application-tracker', label: 'More on the job application tracker' },
+  dashboard: { to: '/job-search-organizer', label: 'More on the job search organizer' },
+  ats: { to: '/ats-resume-checker', label: 'More on the ATS resume checker' },
+  editor: { to: '/resume-manager', label: 'More on the resume manager' },
+  'follow-ups': { to: '/guides/how-to-follow-up-on-a-job-application', label: 'How to follow up on an application' },
 }
 
 const features: Feature[] = [
@@ -42,10 +54,10 @@ const features: Feature[] = [
     short: 'Easy Apply',
     title: 'Easy Apply answers, kept with the job',
     plan: 'Free',
-    body: 'Finish a LinkedIn Easy Apply and press Submit: ResumeLog keeps the questions, your answers and the résumé you uploaded. Before the call, you can see exactly what you told them.',
+    body: 'Finish a LinkedIn Easy Apply and press Submit: ResumeLog keeps the questions, your answers and the resume you uploaded. Before the call, you can see exactly what you told them.',
     points: [
       'Captured automatically when you press Submit',
-      'Works when you reuse a résumé LinkedIn already has',
+      'Works when you reuse a resume LinkedIn already has',
       'Stored against the job, so it’s there when you open it',
     ],
     visual: (
@@ -63,7 +75,7 @@ const features: Feature[] = [
     points: [
       'Bookmarked, Applied, Interviewing, Negotiating, Accepted, Closed',
       'Choose which columns you see, and add your own',
-      'Attach a PDF résumé to each job',
+      'Attach a PDF resume to each job',
       'Separate lists for people and companies',
     ],
     visual: (
@@ -94,11 +106,11 @@ const features: Feature[] = [
     short: 'ATS check',
     title: 'An ATS check against the job you saved',
     plan: 'Free · more on Pro',
-    body: 'Pick a saved job, or paste a description, and scan your résumé against it. The score is made of six parts you can see, so you know what to change instead of guessing.',
+    body: 'Pick a saved job, or paste a description, and scan your resume against it. The score is made of six parts you can see, so you know what to change instead of guessing.',
     points: [
       'Keyword match, with what’s missing and what’s already there',
       'Job title, sections, parseability, content and qualifications',
-      'Click a found keyword to highlight it in your résumé',
+      'Click a found keyword to highlight it in your resume',
       'Free: 5 scans a day. Pro: unlimited, every fix, scan history',
     ],
     visual: (
@@ -109,10 +121,10 @@ const features: Feature[] = [
   },
   {
     id: 'editor',
-    short: 'Résumé editor',
-    title: 'Edit Word résumés, publish PDFs',
+    short: 'Resume editor',
+    title: 'Edit Word resumes, publish PDFs',
     plan: 'Free',
-    body: 'Upload a .docx and edit it in the browser with its formatting intact. When it’s ready, publish a PDF straight into your résumé library.',
+    body: 'Upload a .docx and edit it in the browser with its formatting intact. When it’s ready, publish a PDF straight into your resume library.',
     points: ['Fonts, lists, headings and comments', 'Saves as you go', 'One click from Word to PDF', 'Star the versions you use most'],
     visual: (
       <Stage bleed className="h-full">
@@ -174,6 +186,15 @@ export default function Features() {
                 </li>
               ))}
             </ul>
+            {learnMore[f.id] && (
+              <Link
+                to={learnMore[f.id].to}
+                className="text-foreground mt-6 inline-flex items-center gap-1 text-sm font-medium underline decoration-line-strong underline-offset-4"
+              >
+                {learnMore[f.id].label}
+                <ArrowRight size={14} />
+              </Link>
+            )}
           </Reveal>
           <div className="min-h-[320px]">{f.visual}</div>
         </Section>
