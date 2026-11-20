@@ -47,7 +47,7 @@ export default function About() {
         <Reveal className="text-muted-foreground flex max-w-2xl flex-col gap-5 p-8 text-[17px] leading-relaxed md:p-12">
           <p>
             <span className="text-foreground">A few months into a job search, I had a spreadsheet I’d stopped updating</span>, a
-            folder of résumés with names like <span className="text-foreground font-mono text-[15px]">cv-final-v3.pdf</span>,
+            folder of resumes with names like <span className="text-foreground font-mono text-[15px]">cv-final-v3.pdf</span>,
             and no idea which one I’d sent to which company.
           </p>
           <p>
@@ -56,7 +56,7 @@ export default function About() {
           </p>
           <p>
             So I built a small extension that saved the LinkedIn job I was looking at. Then a page to see them all. Then a
-            way to check my résumé against the job before applying, because I kept guessing which keywords mattered.
+            way to check my resume against the job before applying, because I kept guessing which keywords mattered.
           </p>
           <p>
             That became ResumeLog. It’s a small, independent product and it’s still being built. If something is broken or

@@ -1,5 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import { FaqSection } from '../components/content'
 import Reveal from '../components/Reveal'
 import ScreenshotFrame from '../components/ScreenshotFrame'
 import { Label, Lede, Section, Stage } from '../components/ui'
@@ -38,8 +40,8 @@ const steps: Step[] = [
     ),
   },
   {
-    title: 'Tailor your résumé before you apply',
-    body: 'Upload your résumé as a Word file and open it in the editor. Run an ATS check against the job you saved, add the keywords that are genuinely true for you, and publish a PDF to your library.',
+    title: 'Tailor your resume before you apply',
+    body: 'Upload your resume as a Word file and open it in the editor. Run an ATS check against the job you saved, add the keywords that are genuinely true for you, and publish a PDF to your library.',
     visual: (
       <Stage bleed="left" className="h-full">
         <ScreenshotFrame {...screens.editorAts} />
@@ -92,18 +94,19 @@ export default function HowItWorks() {
         </Section>
       ))}
 
-      <Section inner="grid md:grid-cols-[1fr_1.35fr]">
-        <div className="border-line border-b p-8 md:border-r md:border-b-0 md:p-12">
-          <Lede className="text-[1.7rem] sm:text-[2rem]" lead="Questions." tail="The ones people ask first." />
-        </div>
-        <dl>
-          {faqs.map((faq, i) => (
-            <Reveal key={faq.q} className={`p-8 md:px-12 ${i > 0 ? 'border-line border-t' : ''}`}>
-              <dt className="font-medium">{faq.q}</dt>
-              <dd className="text-muted-foreground mt-2 leading-relaxed">{faq.a}</dd>
-            </Reveal>
-          ))}
-        </dl>
+      <FaqSection faqs={faqs} />
+      <Section inner="px-8 py-6 md:px-12">
+        <p className="text-muted-foreground text-sm">
+          More answers in the{' '}
+          <Link to="/faq" className="text-foreground underline decoration-line-strong underline-offset-4">
+            full FAQ
+          </Link>
+          , or read{' '}
+          <Link to="/guides/how-to-track-job-applications" className="text-foreground underline decoration-line-strong underline-offset-4">
+            how to track job applications
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section inner="flex flex-col items-start gap-6 px-6 py-20 md:flex-row md:items-center md:justify-between md:px-14">

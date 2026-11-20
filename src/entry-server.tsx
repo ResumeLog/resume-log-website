@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './App'
 
-export { headTags, pages, siteUrl } from './lib/seo'
+export { headTags, lastmodFor, llmsTxt, pages, siteUrl } from './lib/seo'
 
 export function render(url: string): string {
   return renderToString(

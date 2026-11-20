@@ -4,16 +4,19 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import ScreenshotFrame from '../components/ScreenshotFrame'
+import { FaqSection } from '../components/content'
 import { Label, Lede, Pill, Section, Stage } from '../components/ui'
+import { faqGroups } from '../data/faqs'
+import { landingPages } from '../data/landing'
 import { AtsScore, CaptureFlow, EasyApplyMemory, FollowUpOrbit, StatusBoard } from '../components/vignettes'
 import { dashboardUrl, extensionUrl } from '../lib/links'
-import { getPricingPlans } from '../lib/pricing'
+import { proPrice, proYearlyPrice } from '../lib/pricing'
 import { screens } from '../lib/screens'
 
 const strip = [
   { icon: Bookmark, text: 'Save LinkedIn jobs, people and companies' },
   { icon: Gauge, text: 'ATS check, scored in six parts' },
-  { icon: FileText, text: 'Edit Word résumés, publish PDFs' },
+  { icon: FileText, text: 'Edit Word resumes, publish PDFs' },
   { icon: BellRing, text: 'Follow-up reminders' },
 ]
 
@@ -46,7 +49,7 @@ const steps: Step[] = [
   {
     id: 'tailor',
     name: 'Tailor',
-    lead: 'Fix your résumé for this job.',
+    lead: 'Fix your resume for this job.',
     tail: 'Run an ATS check against the job you saved. You get a score in six parts, the keywords you’re missing and specific fixes.',
     visual: (
       <Stage bleed="left">
@@ -71,7 +74,7 @@ const steps: Step[] = [
 const bento: { title: string; body: string; visual: ReactNode; label?: string }[] = [
   {
     title: 'Easy Apply, remembered.',
-    body: 'Submit through LinkedIn Easy Apply and your questions, answers and résumé are saved with the job.',
+    body: 'Submit through LinkedIn Easy Apply and your questions, answers and resume are saved with the job.',
     visual: <EasyApplyMemory className="h-[300px]" />,
   },
   {
@@ -92,10 +95,23 @@ const bento: { title: string; body: string; visual: ReactNode; label?: string }[
   },
 ]
 
+/** Home FAQ: the "what is it / is it free / is it an ATS" questions people (and answer engines) ask first. */
+const homeFaqs = faqGroups[0].faqs.slice(0, 3)
+
+/** One line per use-case landing page. */
+const useCases: Record<string, string> = {
+  'job-application-tracker': 'Every application, status and resume in one table.',
+  'job-tracker-chrome-extension': 'Save from a side panel next to LinkedIn.',
+  'linkedin-job-tracker': 'Keep Easy Apply answers with the job.',
+  'ats-resume-checker': 'Score your resume against the job, in six parts.',
+  'resume-manager': 'Every tailored version, and which one you sent.',
+  'job-search-organizer': 'Jobs, people and companies, with a response rate.',
+}
+
 const extras = [
   {
     icon: FileText,
-    title: 'A résumé library.',
+    title: 'A resume library.',
     body: 'Every tailored version in one place. Star the ones you use most and attach the exact PDF to each job.',
   },
   {
@@ -133,7 +149,7 @@ export default function Home() {
       <section className="hero-wash">
         <div className="mx-auto max-w-[1200px] px-5 pt-20 text-center md:px-8 md:pt-28">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Pill href={extensionUrl}>Now on the Chrome Web Store</Pill>
+            <Pill href={extensionUrl}>Free job application tracker &amp; ATS resume checker for Chrome</Pill>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
@@ -149,8 +165,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-muted-foreground mx-auto mt-5 max-w-xl text-lg leading-relaxed"
           >
-            ResumeLog saves LinkedIn jobs in one click, checks your résumé against each one, and tells you
-            when it’s time to follow up.
+            ResumeLog is a free job tracker for Chrome. It saves LinkedIn jobs in one click, checks your resume
+            against each one with an ATS scan, and tells you when it’s time to follow up.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -203,7 +219,7 @@ export default function Home() {
           <Lede
             className="mt-5 max-w-xl text-[1.6rem] sm:text-[2.6rem]"
             lead="Your whole job search, in one place."
-            tail="Save it on LinkedIn, tailor your résumé for it, and follow up before it goes cold."
+            tail="Save it on LinkedIn, tailor your resume for it, and follow up before it goes cold."
           />
         </Reveal>
         <CaptureFlow className="min-h-[340px]" />
@@ -279,20 +295,37 @@ export default function Home() {
         ))}
       </Section>
 
+      {/* ───────── Use cases (internal links to the intent pages) ───────── */}
+      <Section inner="grid sm:grid-cols-2 lg:grid-cols-3">
+        {landingPages.map((p, i) => (
+          <Link
+            key={p.slug}
+            to={`/${p.slug}`}
+            className={`border-line group hover:bg-panel flex flex-col gap-2 p-8 transition-colors ${i < landingPages.length - 1 ? 'border-b' : ''} ${i >= landingPages.length - 3 ? 'lg:border-b-0' : ''} ${i >= landingPages.length - 2 ? 'sm:border-b-0' : ''} ${i % 2 === 0 ? 'sm:border-r' : ''} ${i % 3 !== 2 ? 'lg:border-r' : 'lg:border-r-0'}`}
+          >
+            <h2 className="flex items-center gap-1 text-[15px] font-medium">
+              {p.name}
+              <ArrowRight size={14} className="text-subtle transition-transform group-hover:translate-x-0.5" />
+            </h2>
+            <p className="text-muted-foreground text-sm leading-relaxed">{useCases[p.slug]}</p>
+          </Link>
+        ))}
+      </Section>
+
+      <FaqSection faqs={homeFaqs} lead="What is ResumeLog?" tail="The short answers." />
+
       {/* ───────── Closing CTA ───────── */}
       <Section inner="px-6 py-24 text-center md:py-32">
         <Reveal>
           <h2 className="display mx-auto max-w-2xl text-4xl sm:text-5xl">Start free. Upgrade when it gets busy.</h2>
           <p className="text-muted-foreground mx-auto mt-5 max-w-lg leading-relaxed">
-            Saving, the résumé editor and five ATS scans a day are free. Pro is $12 a month for unlimited scans,
+            Saving, the resume editor and five ATS scans a day are free. Pro is {proPrice()} a month (or {proYearlyPrice()} a year) for unlimited scans,
             every fix, scan history and follow-up reminders.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-2.5">
             <Link
-              to="/pricing"
+              to="/pricing#compare"
               className="btn-outline btn-lg"
-              onMouseEnter={() => void getPricingPlans()}
-              onFocus={() => void getPricingPlans()}
             >
               Compare plans
             </Link>
