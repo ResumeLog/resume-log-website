@@ -28,7 +28,6 @@ const base: [string, string][] = [
   ['Price of the paid plan', '{proPrice}/month or {proYearlyPrice}/year'],
   ['Free plan', 'Yes: unlimited tracking, 5 ATS scans a day, 50 resumes a month'],
   ['One-click save from LinkedIn', 'Yes (jobs, people, companies)'],
-  ['Saves LinkedIn Easy Apply answers', 'Yes'],
   ['Other job boards', 'Yes: Indeed, Glassdoor, Ashby, Y Combinator (more coming)'],
   ['ATS resume check against a job', 'Yes, six-part score'],
   ['Edit Word (.docx) resumes in the browser', 'Yes'],
@@ -47,14 +46,13 @@ export const comparisons: Comparison[] = [
     site: 'https://www.tealhq.com',
     title: 'ResumeLog vs Teal: Job Tracker & Resume Tools Compared',
     description:
-      'ResumeLog vs Teal compared: price, LinkedIn capture, Easy Apply answers, ATS checks and resume editing. A neutral side-by-side to help you pick.',
+      'ResumeLog vs Teal compared: price, LinkedIn capture, ATS checks and resume editing. A neutral side-by-side to help you pick.',
     summary:
-      'Teal is a broad job search platform with a job tracker, an AI resume builder and a Chrome extension that saves jobs from many boards. ResumeLog is narrower and cheaper: it goes deep on LinkedIn (including Easy Apply answers), edits your own Word resume, and scores it against each job in six visible parts.',
+      'Teal is a broad job search platform with a job tracker, an AI resume builder and a Chrome extension that saves jobs from many boards. ResumeLog is narrower and cheaper: it goes deep on job capture, edits your own Word resume, and scores it against each job in six visible parts.',
     rows: rows([
       'Teal+ about $29/month (also weekly and quarterly billing)',
       'Yes: tracker, extension, basic resume builder',
       'Yes',
-      'No',
       'Yes, many job boards',
       'Keyword match score on Teal+',
       'No (builds resumes in Teal’s own builder)',
@@ -66,14 +64,14 @@ export const comparisons: Comparison[] = [
       'You want to build a resume from scratch with AI writing help',
     ],
     pickUs: [
-      'Most of your search happens on LinkedIn and Easy Apply',
+      'Most of your search happens on LinkedIn, Indeed or Glassdoor',
       'You already have a Word resume and want to keep its formatting',
       'You want a lower monthly price and a score you can read part by part',
     ],
     faqs: [
       {
         q: 'Is ResumeLog a good Teal alternative?',
-        a: 'Yes, if you search on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator. ResumeLog saves jobs, recruiters, companies and Easy Apply answers, and its Pro plan costs {proPrice}/month. Teal covers more job boards and has an AI resume builder.',
+        a: 'Yes, if you search on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator. ResumeLog saves jobs, recruiters and companies, and its Pro plan costs {proPrice}/month. Teal covers more job boards and has an AI resume builder.',
       },
     ],
   },
@@ -83,14 +81,13 @@ export const comparisons: Comparison[] = [
     site: 'https://huntr.co',
     title: 'ResumeLog vs Huntr: Job Application Trackers Compared',
     description:
-      'ResumeLog vs Huntr compared: price, job tracking limits, LinkedIn Easy Apply capture, ATS resume checks and autofill. A neutral side-by-side.',
+      'ResumeLog vs Huntr compared: price, job tracking limits, one-click job capture, ATS resume checks and autofill. A neutral side-by-side.',
     summary:
-      'Huntr is a job tracker with a job clipper extension, a resume builder, contact tracking and application autofill; its free plan tracks up to 100 jobs and Pro is $40/month. ResumeLog focuses on one-click capture from job boards, Easy Apply answers and an ATS check against each job, with Pro at {proPrice}/month.',
+      'Huntr is a job tracker with a job clipper extension, a resume builder, contact tracking and application autofill; its free plan tracks up to 100 jobs and Pro is $40/month. ResumeLog focuses on one-click capture from job boards and an ATS check against each job, with Pro at {proPrice}/month.',
     rows: rows([
       'Pro $40/month (less on quarterly or 6-month billing)',
       'Yes: up to 100 tracked jobs',
       'Job clipper extension',
-      'No',
       'Yes, via the job clipper',
       'Basic job matching; advanced on Pro',
       'No (builds resumes in Huntr’s own builder)',
@@ -100,7 +97,7 @@ export const comparisons: Comparison[] = [
     pickThem: ['You want application autofill', 'You prefer building resumes from templates'],
     pickUs: [
       'You want unlimited job tracking on the free plan',
-      'You apply mostly on LinkedIn and want Easy Apply answers kept',
+      'You want an ATS check tied to each job you track',
       'You want a cheaper Pro plan',
     ],
     faqs: [
@@ -123,7 +120,6 @@ export const comparisons: Comparison[] = [
       'Premium about $49.95/month (cheaper quarterly)',
       'Yes: a few scans a month',
       'Yes, via its extension',
-      'No',
       'Yes',
       'Yes, match rate (its core product)',
       'No (has its own resume builder)',
@@ -152,14 +148,13 @@ export const comparisons: Comparison[] = [
     site: 'https://simplify.jobs',
     title: 'ResumeLog vs Simplify: Job Trackers Compared',
     description:
-      'ResumeLog vs Simplify compared: autofill, job tracking, LinkedIn Easy Apply capture, ATS checks and price. A neutral side-by-side.',
+      'ResumeLog vs Simplify compared: autofill, job tracking, one-click job capture, ATS checks and price. A neutral side-by-side.',
     summary:
-      'Simplify’s free Copilot extension autofills applications on over 100,000 company career sites and logs them in its tracker; Simplify+ (about $39.99/month) adds AI-tailored resumes and cover letters. ResumeLog doesn’t autofill: it records LinkedIn jobs and Easy Apply answers and scores your resume against each job.',
+      'Simplify’s free Copilot extension autofills applications on over 100,000 company career sites and logs them in its tracker; Simplify+ (about $39.99/month) adds AI-tailored resumes and cover letters. ResumeLog doesn’t autofill: it saves jobs from LinkedIn, Indeed, Glassdoor and more and scores your resume against each job.',
     rows: rows([
       'Simplify+ about $39.99/month (also weekly and quarterly)',
       'Yes: Copilot autofill, tracker, resume builder',
       'Tracks applications you submit',
-      'No',
       'Yes, company career sites',
       'AI tailoring on Simplify+',
       'No (has its own resume builder)',
@@ -169,13 +164,13 @@ export const comparisons: Comparison[] = [
     pickThem: ['You apply mostly on company career sites and want autofill'],
     pickUs: [
       'You apply mostly on job boards like LinkedIn, Indeed or Glassdoor',
-      'You want a record of Easy Apply answers and the resume you sent',
+      'You want a record of each job and the resume you sent',
       'You want a transparent ATS score and a lower price',
     ],
     faqs: [
       {
         q: 'Can I use ResumeLog and Simplify together?',
-        a: 'Yes. They do different jobs: Simplify autofills forms, ResumeLog keeps your LinkedIn jobs, Easy Apply answers and resume versions in one tracker.',
+        a: 'Yes. They do different jobs: Simplify autofills forms, ResumeLog keeps your saved jobs and resume versions in one tracker.',
       },
     ],
   },

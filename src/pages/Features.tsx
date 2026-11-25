@@ -21,7 +21,6 @@ type Feature = {
 /** Each feature links to the use-case page that targets its search. */
 const learnMore: Record<string, { to: string; label: string }> = {
   capture: { to: '/job-tracker-chrome-extension', label: 'More on the job tracker Chrome extension' },
-  'easy-apply': { to: '/linkedin-job-tracker', label: 'More on the LinkedIn job tracker' },
   tracker: { to: '/job-application-tracker', label: 'More on the job application tracker' },
   dashboard: { to: '/job-search-organizer', label: 'More on the job search organizer' },
   ats: { to: '/ats-resume-checker', label: 'More on the ATS resume checker' },
@@ -46,23 +45,6 @@ const features: Feature[] = [
       <Stage className="flex h-full min-h-[420px] items-end justify-center gap-6 px-6 pt-10">
         <ScreenshotFrame {...screens.extensionDetected} variant="panel" className="w-[42%] max-w-[230px] translate-y-8" />
         <ScreenshotFrame {...screens.extensionSaved} variant="panel" className="w-[42%] max-w-[230px] translate-y-16" />
-      </Stage>
-    ),
-  },
-  {
-    id: 'easy-apply',
-    short: 'Easy Apply',
-    title: 'Easy Apply answers, kept with the job',
-    plan: 'Free',
-    body: 'Finish a LinkedIn Easy Apply and press Submit: ResumeLog keeps the questions, your answers and the resume you uploaded. Before the call, you can see exactly what you told them.',
-    points: [
-      'Captured automatically when you press Submit',
-      'Works when you reuse a resume LinkedIn already has',
-      'Stored against the job, so it’s there when you open it',
-    ],
-    visual: (
-      <Stage className="flex h-full items-center justify-center p-6 sm:p-10">
-        <ScreenshotFrame {...screens.jobDetail} variant="plain" className="w-full max-w-md" />
       </Stage>
     ),
   },

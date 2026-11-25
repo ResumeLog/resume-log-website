@@ -57,7 +57,7 @@ export const pages: Record<string, PageMeta> = {
   '/features': {
     title: 'Features | ResumeLog Job Tracker, ATS Check & Follow-ups',
     description:
-      'Save jobs, people and companies from LinkedIn, Indeed, Glassdoor and more, keep Easy Apply answers, run a six-part ATS resume check, edit Word resumes and get follow-up reminders.',
+      'Save jobs, people and companies from LinkedIn, Indeed, Glassdoor and more, run a six-part ATS resume check, edit Word resumes and get follow-up reminders.',
     crumbs: [{ to: '/features', label: 'Features' }],
   },
   '/how-it-works': {
@@ -75,7 +75,7 @@ export const pages: Record<string, PageMeta> = {
   '/faq': {
     title: 'FAQ: Job Tracker, ATS Resume Check & Pricing | ResumeLog',
     description:
-      'Answers about ResumeLog: how the job application tracker and ATS resume checker work, LinkedIn Easy Apply, privacy, the free plan and Pro pricing.',
+      'Answers about ResumeLog: how the job application tracker and ATS resume checker work, supported job boards, privacy, the free plan and Pro pricing.',
     crumbs: [{ to: '/faq', label: 'FAQ' }],
   },
   ...Object.fromEntries(
@@ -194,7 +194,6 @@ const website = {
 export const featureList = [
   'Job application tracker with statuses, salary expectation and attached resume',
   'One-click save of jobs, companies and recruiters from LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator (more job boards coming)',
-  'Saves LinkedIn Easy Apply questions, answers and resume',
   'ATS resume checker with a six-part score and missing keywords',
   'Word (.docx) resume editor with PDF publishing and a resume library',
   'Response-rate chart and outcome funnel',

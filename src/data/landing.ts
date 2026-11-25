@@ -28,7 +28,7 @@ export const landingPages: LandingPage[] = [
     name: 'Job application tracker',
     title: 'Free Job Application Tracker | ResumeLog',
     description:
-      'Track every job application in one table. ResumeLog saves jobs from LinkedIn, Indeed, Glassdoor and more in one click, keeps statuses, resumes and answers, and flags what needs a follow-up.',
+      'Track every job application in one table. ResumeLog saves jobs from LinkedIn, Indeed, Glassdoor and more in one click, keeps statuses and resumes, and flags what needs a follow-up.',
     h1: { lead: 'A job application tracker', tail: 'that fills itself in.' },
     intro:
       'ResumeLog is a free job application tracker for Chrome. Press Save on a job on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator and it lands in one sortable table with the full description, your status, salary expectation and the resume you sent, so you always know where every application stands.',
@@ -51,7 +51,7 @@ export const landingPages: LandingPage[] = [
             items: [
               'Add ResumeLog to Chrome and sign in with Google (about two minutes).',
               'Open a job on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator and press Save in the side panel.',
-              'Apply. With Easy Apply, your answers and resume are saved when you press Submit.',
+              'Apply, then set the status to Applied and attach the resume you sent.',
               'Update the status as replies arrive; the dashboard works out your response rate.',
             ],
           },
@@ -61,7 +61,7 @@ export const landingPages: LandingPage[] = [
         id: 'what-is-saved',
         heading: 'What does each row keep?',
         answer:
-          'Each job keeps the title, company, location and the full job description, plus your status, salary expectation, the PDF resume you sent and any Easy Apply questions and answers. You choose which columns you see and can add your own.',
+          'Each job keeps the title, company, location and the full job description, plus your status, salary expectation and the PDF resume you sent. You choose which columns you see and can add your own.',
       },
       {
         id: 'vs-spreadsheet',
@@ -159,19 +159,19 @@ export const landingPages: LandingPage[] = [
   {
     slug: 'linkedin-job-tracker',
     name: 'LinkedIn job tracker',
-    title: 'LinkedIn Job Tracker & Easy Apply Log | ResumeLog',
+    title: 'LinkedIn Job Tracker: Save Jobs, Recruiters & Companies | ResumeLog',
     description:
-      'Track LinkedIn jobs and Easy Apply applications automatically. ResumeLog saves the job, your answers and the resume you sent, so nothing gets lost.',
-    h1: { lead: 'Track every LinkedIn job', tail: 'and every Easy Apply.' },
+      'Track LinkedIn jobs, recruiters and companies in one click. ResumeLog keeps the full job description, your status and the resume you sent, so nothing gets lost.',
+    h1: { lead: 'Track every LinkedIn job', tail: 'without copy and paste.' },
     intro:
-      'ResumeLog is a LinkedIn job tracker for Chrome. It saves LinkedIn jobs, recruiters and companies in one click, and when you submit an Easy Apply it keeps the questions, your answers and the resume you uploaded, stored with the job in your tracker.',
+      'ResumeLog is a LinkedIn job tracker for Chrome. It saves LinkedIn jobs, recruiters and companies in one click, and keeps the full job description, your status and the resume you sent together in your tracker.',
     screen: 'jobDetail',
     sections: [
       {
-        id: 'easy-apply',
-        heading: 'How do I keep track of LinkedIn Easy Apply applications?',
+        id: 'applied',
+        heading: 'How do I keep track of jobs I applied to on LinkedIn?',
         answer:
-          'LinkedIn’s own “Applied” list doesn’t keep your answers or a copy of the job description. With ResumeLog installed, pressing Submit on Easy Apply saves the questions, your answers and the resume you sent against the job, so you can review them before a recruiter calls.',
+          'LinkedIn’s own “Applied” list doesn’t keep a copy of the job description, your notes or the resume you sent. Press Save on the job in the ResumeLog side panel, then set it to Applied and attach your resume, so it’s all there when a recruiter calls.',
       },
       {
         id: 'saved-jobs',
@@ -189,7 +189,7 @@ export const landingPages: LandingPage[] = [
     faqs: [
       {
         q: 'Does ResumeLog read my LinkedIn messages?',
-        a: 'No. It only reads the page in front of you when you press Save, and the Easy Apply review screen when you press Submit.',
+        a: 'No. It only reads the job page in front of you, and nothing is saved until you press Save.',
       },
       {
         q: 'Will LinkedIn know I’m using it?',

@@ -158,70 +158,60 @@ function CaptureFlowInner({ active }: { active: boolean }) {
   )
 }
 
-/* ─────────────────────────── 2. Easy Apply memory ─────────────────────────── */
+/* ─────────────────────────── 2. Job boards ─────────────────────────── */
 
-const QA = [
-  { q: 'Years of experience with React?', a: '5' },
-  { q: 'What is your notice period?', a: '4 weeks' },
-  { q: 'Expected salary (USD / month)?', a: '4,200' },
+const BOARDS = [
+  { name: 'LinkedIn', job: 'Senior Frontend Engineer' },
+  { name: 'Indeed', job: 'React Developer' },
+  { name: 'Glassdoor', job: 'UI Engineer' },
+  { name: 'Ashby', job: 'Product Engineer' },
+  { name: 'Y Combinator', job: 'Founding Engineer' },
 ]
 
-function Typed({ text, play }: { text: string; play: boolean }) {
-  const [n, setN] = useState(play ? 0 : text.length)
-  useEffect(() => {
-    if (!play) return
-    const id = setInterval(() => setN((v) => (v >= text.length ? v : v + 1)), 70)
-    return () => clearInterval(id)
-  }, [play, text])
-  return (
-    <span>
-      {text.slice(0, n)}
-      {play && n < text.length && <span className="ml-px inline-block h-3 w-px translate-y-0.5 animate-pulse bg-zinc-900" />}
-    </span>
-  )
+export function JobBoards({ className = '' }: { className?: string }) {
+  return <Shell className={className}>{(active) => <JobBoardsInner active={active} />}</Shell>
 }
 
-export function EasyApplyMemory({ className = '' }: { className?: string }) {
-  return <Shell className={className}>{(active) => <EasyApplyInner active={active} />}</Shell>
-}
-
-function EasyApplyInner({ active }: { active: boolean }) {
-  // 0..2 answering each question · 3 saved · 4 hold
-  const step = useTimeline([1100, 1200, 1300, 2400, 500], active, 3)
+function JobBoardsInner({ active }: { active: boolean }) {
+  // 0 idle · 1..5 one board saved per step · 6 hold
+  const step = useTimeline([900, 650, 650, 650, 650, 650, 2400], active, 6)
   return (
-    <div className="relative w-full max-w-[380px] px-6 py-10">
-      <Card className="p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-[12px] font-medium">Easy Apply · Northwind Labs</span>
-          <span className="text-subtle text-[10px]">Review</span>
-        </div>
-        <ul className="mt-3 flex flex-col gap-2.5">
-          {QA.map((item, i) => (
-            <li key={item.q} className="border-line rounded-lg border px-3 py-2">
-              <p className="text-muted-foreground text-[11px]">{item.q}</p>
-              <p className="mt-0.5 h-4 text-[12px] font-medium">
-                {step >= i ? <Typed key={`${i}-${step === i}`} text={item.a} play={step === i} /> : null}
-              </p>
-            </li>
-          ))}
+    <div className="w-full max-w-[380px] px-6 py-10">
+      <Card className="overflow-hidden">
+        <div className="border-line text-subtle border-b px-3 py-2 text-[10px] font-medium">Saved from</div>
+        <ul className="flex flex-col">
+          {BOARDS.map((board, i) => {
+            const saved = step > i
+            return (
+              <li
+                key={board.name}
+                className="border-line flex items-center justify-between gap-2 border-b px-3 py-2 last:border-b-0"
+              >
+                <span className="min-w-0">
+                  <span className="block truncate text-[11px] font-medium">{board.job}</span>
+                  <span className="text-subtle block truncate text-[10px]">{board.name}</span>
+                </span>
+                <motion.span
+                  animate={{ scale: step === i + 1 ? [1, 1.12, 1] : 1 }}
+                  transition={{ duration: 0.35, ease }}
+                  className={`flex shrink-0 items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium transition-colors ${
+                    saved ? 'bg-emerald-50 text-emerald-700' : 'bg-zinc-100 text-zinc-500'
+                  }`}
+                >
+                  {saved ? (
+                    <>
+                      <Check size={10} strokeWidth={3} /> Saved
+                    </>
+                  ) : (
+                    'Save'
+                  )}
+                </motion.span>
+              </li>
+            )
+          })}
         </ul>
       </Card>
-      <AnimatePresence>
-        {step >= 3 && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease }}
-            className="shadow-soft absolute right-2 -bottom-1 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium ring-1 ring-black/[0.06]"
-          >
-            <span className="flex size-4 items-center justify-center rounded-full bg-emerald-500 text-white">
-              <Check size={10} strokeWidth={3} />
-            </span>
-            Answers saved to the job
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <p className="text-subtle mt-3 text-center text-[11px]">More job boards on the way</p>
     </div>
   )
 }

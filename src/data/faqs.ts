@@ -62,10 +62,6 @@ export const faqGroups: FaqGroup[] = [
         a: 'Yes. On a LinkedIn profile the extension saves the person’s name, headline and current company. On a company page it saves size, industry and location. People and companies have their own lists in the dashboard.',
       },
       {
-        q: 'Does ResumeLog save my LinkedIn Easy Apply answers?',
-        a: 'Yes. When you press Submit on an Easy Apply form, ResumeLog keeps the questions, your answers and the resume you sent, stored against the job, so you can see exactly what you told them before an interview.',
-      },
-      {
         q: 'Why use a job tracker instead of a spreadsheet?',
         a: 'A spreadsheet only works if you keep typing into it. ResumeLog fills the row in for you when you press Save, including the full job description, which job boards remove once a posting closes.',
       },
@@ -103,7 +99,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'How do I remember which resume I sent to which job?',
-        a: 'Attach the PDF you sent to the job in your tracker. With LinkedIn Easy Apply, the resume you uploaded is saved with the job automatically.',
+        a: 'Attach the PDF you sent to the job in your tracker, and it stays with that job.',
       },
     ],
   },

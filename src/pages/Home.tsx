@@ -8,7 +8,7 @@ import { FaqSection } from '../components/content'
 import { Label, Lede, Pill, Section, Stage } from '../components/ui'
 import { faqGroups } from '../data/faqs'
 import { landingPages } from '../data/landing'
-import { AtsScore, CaptureFlow, EasyApplyMemory, FollowUpOrbit, StatusBoard } from '../components/vignettes'
+import { AtsScore, CaptureFlow, FollowUpOrbit, JobBoards, StatusBoard } from '../components/vignettes'
 import { dashboardUrl, extensionUrl } from '../lib/links'
 import { proPrice, proYearlyPrice } from '../lib/pricing'
 import { screens } from '../lib/screens'
@@ -73,9 +73,9 @@ const steps: Step[] = [
 
 const bento: { title: string; body: string; visual: ReactNode; label?: string }[] = [
   {
-    title: 'Easy Apply, remembered.',
-    body: 'Submit through LinkedIn Easy Apply and your questions, answers and resume are saved with the job.',
-    visual: <EasyApplyMemory className="h-[300px]" />,
+    title: 'Every board you search on.',
+    body: 'Save from LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator, with more job boards on the way.',
+    visual: <JobBoards className="h-[300px]" />,
   },
   {
     title: 'Statuses that move with you.',
@@ -102,7 +102,7 @@ const homeFaqs = faqGroups[0].faqs.slice(0, 3)
 const useCases: Record<string, string> = {
   'job-application-tracker': 'Every application, status and resume in one table.',
   'job-tracker-chrome-extension': 'Save from a side panel on five job boards, with more coming.',
-  'linkedin-job-tracker': 'Keep Easy Apply answers with the job.',
+  'linkedin-job-tracker': 'Save LinkedIn jobs, recruiters and companies.',
   'ats-resume-checker': 'Score your resume against the job, in six parts.',
   'resume-manager': 'Every tailored version, and which one you sent.',
   'job-search-organizer': 'Jobs, people and companies, with a response rate.',

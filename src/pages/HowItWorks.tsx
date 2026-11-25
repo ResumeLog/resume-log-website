@@ -50,7 +50,7 @@ const steps: Step[] = [
   },
   {
     title: 'Apply, and let the log keep up',
-    body: 'Apply wherever the job is. With LinkedIn Easy Apply, your questions and answers are saved when you press Submit. Otherwise set the status to Applied and attach the PDF you sent.',
+    body: 'Apply wherever the job is. Then set the status to Applied and attach the PDF you sent, so the job, the description and your resume stay together.',
     visual: (
       <Stage className="flex h-full items-center justify-center p-6 sm:p-10">
         <ScreenshotFrame {...screens.jobDetail} variant="plain" className="w-full max-w-md" />

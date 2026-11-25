@@ -1,8 +1,8 @@
 # Resume Log — website
 
 The public marketing site for [Resume Log](../resume-log-ai-kb/README.md): a Chrome extension +
-dashboard that automatically captures the jobs, companies, and people you encounter on LinkedIn,
-including what you submitted through Easy Apply.
+dashboard that saves the jobs, companies, and people you find on LinkedIn, Indeed, Glassdoor, Ashby
+and Y Combinator, with more job boards on the way.
 
 A single-page app built with React, TypeScript, and Vite, routed with `react-router-dom`. The
 visual design system (colors, type, and component patterns) is ported from
