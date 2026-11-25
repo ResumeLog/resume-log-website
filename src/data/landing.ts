@@ -118,7 +118,7 @@ export const landingPages: LandingPage[] = [
         id: 'what-it-does',
         heading: 'What does the ResumeLog Chrome extension do?',
         answer:
-          'It saves what you’re looking at on a supported job board. On a job it keeps the title, company, location and full description; on a company page, size, industry and location; on a profile, the person’s name, headline and company. Everything appears in your dashboard.',
+          'It saves what you’re looking at on a supported job board. On a job it keeps the title, company, location and full description. On Indeed, Glassdoor and Y Combinator company pages it fills in size, industry and location. On LinkedIn profiles and company pages it saves the link and you add the details yourself. Everything appears in your dashboard.',
       },
       {
         id: 'offline',
@@ -183,7 +183,7 @@ export const landingPages: LandingPage[] = [
         id: 'people',
         heading: 'Can I track recruiters and hiring managers?',
         answer:
-          'Yes. On a LinkedIn profile, press Save to keep the person’s name, headline and current company. Companies get their own list too, with size, industry and location.',
+          'Yes. On a LinkedIn profile, press Save to keep the link, and add the person’s name, job title and company if you like. ResumeLog never reads LinkedIn profiles or company pages. Companies get their own list too.',
       },
     ],
     faqs: [

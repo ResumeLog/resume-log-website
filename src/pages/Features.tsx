@@ -37,8 +37,8 @@ const features: Feature[] = [
     body: 'The extension opens as a side panel next to LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator, with more job boards on the way. It knows whether you’re on a job, a company page or a profile, and switches to match. Press Save and it’s in your log.',
     points: [
       'Title, company, location and the full job description',
-      'Company size, industry and location',
-      'A person’s name, headline and current company',
+      'Company size, industry and location from Indeed, Glassdoor and Y Combinator',
+      'LinkedIn profiles and company pages: the link is saved, you add the details',
       'Saved locally first, then synced, so a dropped connection loses nothing',
     ],
     visual: (

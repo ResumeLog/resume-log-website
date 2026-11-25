@@ -59,7 +59,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'Can I save recruiters and companies too?',
-        a: 'Yes. On a LinkedIn profile the extension saves the person’s name, headline and current company. On a company page it saves size, industry and location. People and companies have their own lists in the dashboard.',
+        a: 'Yes. On Indeed, Glassdoor and Y Combinator company pages, the extension fills in what the page shows, such as size, industry and location. On LinkedIn profiles and company pages it saves the link and you add the details, such as the person’s name, job title and company; it never reads LinkedIn profiles or company pages. People and companies have their own lists in the dashboard.',
       },
       {
         q: 'Why use a job tracker instead of a spreadsheet?',

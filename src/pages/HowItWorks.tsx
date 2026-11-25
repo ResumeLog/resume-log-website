@@ -32,7 +32,7 @@ const steps: Step[] = [
   },
   {
     title: 'Browse job boards and press Save',
-    body: 'Go through jobs on LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator the way you normally would. When one is worth keeping, press Save. The same works on company pages and recruiters’ profiles. Each save is stored in the extension first and then synced.',
+    body: 'Go through jobs on LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator the way you normally would. When one is worth keeping, press Save. You can save company pages and recruiters’ LinkedIn profiles too; on LinkedIn, ResumeLog keeps the link and you add the details. Each save is stored in the extension first and then synced.',
     visual: (
       <Stage className="flex h-full min-h-[360px] items-end justify-center px-6 pt-10">
         <ScreenshotFrame {...screens.extensionSaved} variant="panel" className="w-[50%] max-w-[240px] translate-y-10" />
