@@ -31,8 +31,8 @@ const steps: Step[] = [
     ),
   },
   {
-    title: 'Browse LinkedIn and press Save',
-    body: 'Go through jobs the way you normally would. When one is worth keeping, press Save. The same works on company pages and recruiters’ profiles. Each save is stored in the extension first and then synced.',
+    title: 'Browse job boards and press Save',
+    body: 'Go through jobs on LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator the way you normally would. When one is worth keeping, press Save. You can save company pages and recruiters’ LinkedIn profiles too; on LinkedIn, ResumeLog keeps the link and you add the details. Each save is stored in the extension first and then synced.',
     visual: (
       <Stage className="flex h-full min-h-[360px] items-end justify-center px-6 pt-10">
         <ScreenshotFrame {...screens.extensionSaved} variant="panel" className="w-[50%] max-w-[240px] translate-y-10" />
@@ -50,7 +50,7 @@ const steps: Step[] = [
   },
   {
     title: 'Apply, and let the log keep up',
-    body: 'Apply wherever the job is. With LinkedIn Easy Apply, your questions and answers are saved when you press Submit. Otherwise set the status to Applied and attach the PDF you sent.',
+    body: 'Apply wherever the job is. Then set the status to Applied and attach the PDF you sent, so the job, the description and your resume stay together.',
     visual: (
       <Stage className="flex h-full items-center justify-center p-6 sm:p-10">
         <ScreenshotFrame {...screens.jobDetail} variant="plain" className="w-full max-w-md" />

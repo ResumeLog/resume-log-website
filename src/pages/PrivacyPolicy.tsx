@@ -11,7 +11,8 @@ const sections: LegalSection[] = [
       'Personally Identifiable Information: We collect your Name and Email Address directly from you when you actively submit them to create a ResumeLog account.',
       'Authentication Information: Passwords or secure authentication tokens generated when you log in.',
       'User-Generated Content: Data you actively input and save into our application, including job titles, company names, recruiter contact details, application statuses, and personal notes.',
-      'Website Content (Extension Data): When you actively click the ResumeLog extension to save a job, the extension reads the text (DOM elements) and URL of the specific job board page you are currently viewing to extract relevant job details (such as job title and company). The extension does not track your general web browsing history or read data on pages where you do not actively invoke it.',
+      'Website Content (Extension Data): When you use the ResumeLog extension to save a job, the extension reads the text (DOM elements) and URL of the specific job board page you are currently viewing to extract relevant job details (such as job title and company). Nothing is saved or sent to us until you press Save.',
+      'Extension Site Access: When you install the extension, Chrome says it can "Read and change all your data on all websites". We ask for access to all sites once so that new job boards work without asking you again. The extension only runs on supported job boards (currently LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator). It does not read other websites and does not track your browsing history.',
     ],
   },
   {

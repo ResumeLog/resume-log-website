@@ -28,10 +28,10 @@ export const landingPages: LandingPage[] = [
     name: 'Job application tracker',
     title: 'Free Job Application Tracker | ResumeLog',
     description:
-      'Track every job application in one table. ResumeLog saves LinkedIn jobs in one click, keeps statuses, resumes and answers, and flags what needs a follow-up.',
+      'Track every job application in one table. ResumeLog saves jobs from LinkedIn, Indeed, Glassdoor and more in one click, keeps statuses and resumes, and flags what needs a follow-up.',
     h1: { lead: 'A job application tracker', tail: 'that fills itself in.' },
     intro:
-      'ResumeLog is a free job application tracker for Chrome. Press Save on a LinkedIn job and it lands in one sortable table with the full description, your status, salary expectation and the resume you sent, so you always know where every application stands.',
+      'ResumeLog is a free job application tracker for Chrome. Press Save on a job on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator and it lands in one sortable table with the full description, your status, salary expectation and the resume you sent, so you always know where every application stands.',
     screen: 'jobsTable',
     sections: [
       {
@@ -44,14 +44,14 @@ export const landingPages: LandingPage[] = [
         id: 'how',
         heading: 'How do I track my job applications with ResumeLog?',
         answer:
-          'Install the Chrome extension, sign in with Google, and press Save on any LinkedIn job. The job appears in your tracker as Bookmarked. Move it to Applied, Interviewing, Negotiating, Accepted or Closed as things happen.',
+          'Install the Chrome extension, sign in with Google, and press Save on a job on any supported job board. The job appears in your tracker as Bookmarked. Move it to Applied, Interviewing, Negotiating, Accepted or Closed as things happen.',
         blocks: [
           {
             type: 'ol',
             items: [
               'Add ResumeLog to Chrome and sign in with Google (about two minutes).',
-              'Open a job on LinkedIn and press Save in the side panel.',
-              'Apply. With Easy Apply, your answers and resume are saved when you press Submit.',
+              'Open a job on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator and press Save in the side panel.',
+              'Apply, then set the status to Applied and attach the resume you sent.',
               'Update the status as replies arrive; the dashboard works out your response rate.',
             ],
           },
@@ -61,19 +61,19 @@ export const landingPages: LandingPage[] = [
         id: 'what-is-saved',
         heading: 'What does each row keep?',
         answer:
-          'Each job keeps the title, company, location and the full job description, plus your status, salary expectation, the PDF resume you sent and any Easy Apply questions and answers. You choose which columns you see and can add your own.',
+          'Each job keeps the title, company, location and the full job description, plus your status, salary expectation and the PDF resume you sent. You choose which columns you see and can add your own.',
       },
       {
         id: 'vs-spreadsheet',
         heading: 'Is it better than a job search spreadsheet?',
         answer:
-          'A spreadsheet works until you stop updating it. ResumeLog fills the row in when you press Save, keeps the job description after LinkedIn takes the posting down, and shows which applications have gone two weeks without a reply.',
+          'A spreadsheet works until you stop updating it. ResumeLog fills the row in when you press Save, keeps the job description after the job board takes the posting down, and shows which applications have gone two weeks without a reply.',
         blocks: [
           {
             type: 'table',
             head: ['', 'Spreadsheet', 'ResumeLog'],
             rows: [
-              ['Adding a job', 'Copy and paste by hand', 'One click on LinkedIn'],
+              ['Adding a job', 'Copy and paste by hand', 'One click on the job page'],
               ['Job description', 'Lost when the posting closes', 'Saved in full'],
               ['Resume you sent', 'Separate folder', 'Attached to the job'],
               ['Follow-ups', 'Remember yourself', 'Flagged after two weeks (Pro)'],
@@ -89,8 +89,8 @@ export const landingPages: LandingPage[] = [
         a: 'Yes. Saving jobs, people and companies and tracking them with statuses is free. Pro ({proPrice}/month or {proYearlyPrice}/year) adds follow-up reminders and unlimited ATS scans.',
       },
       {
-        q: 'Can I track applications from sites other than LinkedIn?',
-        a: 'One-click saving works on LinkedIn today. You can still check your resume against any job by pasting its description into the ATS check.',
+        q: 'Can I track applications from other job sites?',
+        a: 'One-click saving works on LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator, and more job boards are on the way. For any other site, fill the job in by hand in the side panel, and check your resume against it by pasting its description into the ATS check.',
       },
       {
         q: 'Does the tracker apply to jobs for me?',
@@ -108,17 +108,17 @@ export const landingPages: LandingPage[] = [
     name: 'Job tracker Chrome extension',
     title: 'Job Tracker Chrome Extension | ResumeLog',
     description:
-      'A free Chrome extension that saves LinkedIn jobs, companies and recruiters in one click and syncs them to your job tracker dashboard. No copy and paste.',
+      'A free Chrome extension that saves jobs, companies and recruiters from LinkedIn, Indeed, Glassdoor and more in one click and syncs them to your job tracker dashboard. No copy and paste.',
     h1: { lead: 'The job tracker', tail: 'that lives in Chrome.' },
     intro:
-      'ResumeLog is a free Chrome extension that opens as a side panel next to LinkedIn. It recognises whether you’re on a job, a company page or a profile, and saves it to your job tracker in one click, with the full description, synced to your dashboard.',
+      'ResumeLog is a free Chrome extension that opens as a side panel next to the job board you’re on: LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator. It recognises whether you’re on a job, a company page or a profile, and saves it to your job tracker in one click, with the full description, synced to your dashboard.',
     screen: 'extensionDetected',
     sections: [
       {
         id: 'what-it-does',
         heading: 'What does the ResumeLog Chrome extension do?',
         answer:
-          'It saves what you’re looking at on LinkedIn. On a job it keeps the title, company, location and full description; on a company page, size, industry and location; on a profile, the person’s name, headline and company. Everything appears in your dashboard.',
+          'It saves what you’re looking at on a supported job board. On a job it keeps the title, company, location and full description. On Indeed, Glassdoor and Y Combinator company pages it fills in size, industry and location. On LinkedIn profiles and company pages it saves the link and you add the details yourself. Everything appears in your dashboard.',
       },
       {
         id: 'offline',
@@ -130,7 +130,7 @@ export const landingPages: LandingPage[] = [
         id: 'permissions',
         heading: 'What can the extension see?',
         answer:
-          'Only the LinkedIn page in front of you, when you press Save, and the Easy Apply review screen when you press Submit. It doesn’t read your messages or your feed, and it never applies to jobs for you.',
+          'Only the job board page in front of you (LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator), and nothing is saved until you press Save. Chrome’s install prompt says it can read data on all websites because we ask for all sites once, so new job boards work without another prompt. It doesn’t read other sites, your messages or your feed, and it never applies to jobs for you.',
       },
       {
         id: 'install',
@@ -147,7 +147,7 @@ export const landingPages: LandingPage[] = [
       },
       {
         q: 'Which sites does it save from?',
-        a: 'LinkedIn jobs, company pages and profiles today.',
+        a: 'Jobs on LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator; company pages on LinkedIn, Indeed, Glassdoor and Y Combinator; and LinkedIn profiles. More job boards are on the way.',
       },
     ],
     related: [
@@ -159,19 +159,19 @@ export const landingPages: LandingPage[] = [
   {
     slug: 'linkedin-job-tracker',
     name: 'LinkedIn job tracker',
-    title: 'LinkedIn Job Tracker & Easy Apply Log | ResumeLog',
+    title: 'LinkedIn Job Tracker: Save Jobs, Recruiters & Companies | ResumeLog',
     description:
-      'Track LinkedIn jobs and Easy Apply applications automatically. ResumeLog saves the job, your answers and the resume you sent, so nothing gets lost.',
-    h1: { lead: 'Track every LinkedIn job', tail: 'and every Easy Apply.' },
+      'Track LinkedIn jobs, recruiters and companies in one click. ResumeLog keeps the full job description, your status and the resume you sent, so nothing gets lost.',
+    h1: { lead: 'Track every LinkedIn job', tail: 'without copy and paste.' },
     intro:
-      'ResumeLog is a LinkedIn job tracker for Chrome. It saves LinkedIn jobs, recruiters and companies in one click, and when you submit an Easy Apply it keeps the questions, your answers and the resume you uploaded, stored with the job in your tracker.',
+      'ResumeLog is a LinkedIn job tracker for Chrome. It saves LinkedIn jobs, recruiters and companies in one click, and keeps the full job description, your status and the resume you sent together in your tracker.',
     screen: 'jobDetail',
     sections: [
       {
-        id: 'easy-apply',
-        heading: 'How do I keep track of LinkedIn Easy Apply applications?',
+        id: 'applied',
+        heading: 'How do I keep track of jobs I applied to on LinkedIn?',
         answer:
-          'LinkedIn’s own “Applied” list doesn’t keep your answers or a copy of the job description. With ResumeLog installed, pressing Submit on Easy Apply saves the questions, your answers and the resume you sent against the job, so you can review them before a recruiter calls.',
+          'LinkedIn’s own “Applied” list doesn’t keep a copy of the job description, your notes or the resume you sent. Press Save on the job in the ResumeLog side panel, then set it to Applied and attach your resume, so it’s all there when a recruiter calls.',
       },
       {
         id: 'saved-jobs',
@@ -183,13 +183,13 @@ export const landingPages: LandingPage[] = [
         id: 'people',
         heading: 'Can I track recruiters and hiring managers?',
         answer:
-          'Yes. On a LinkedIn profile, press Save to keep the person’s name, headline and current company. Companies get their own list too, with size, industry and location.',
+          'Yes. On a LinkedIn profile, press Save to keep the link, and add the person’s name, job title and company if you like. ResumeLog never reads LinkedIn profiles or company pages. Companies get their own list too.',
       },
     ],
     faqs: [
       {
         q: 'Does ResumeLog read my LinkedIn messages?',
-        a: 'No. It only reads the page in front of you when you press Save, and the Easy Apply review screen when you press Submit.',
+        a: 'No. It only reads the job page in front of you, and nothing is saved until you press Save.',
       },
       {
         q: 'Will LinkedIn know I’m using it?',
@@ -242,7 +242,7 @@ export const landingPages: LandingPage[] = [
         id: 'how-to',
         heading: 'How do I check my resume against a job?',
         answer:
-          'Upload your resume as a Word file, open it in the editor, then pick a job you saved from LinkedIn or paste any job description. Run the ATS check, add the missing keywords that are genuinely true for you, and publish a PDF.',
+          'Upload your resume as a Word file, open it in the editor, then pick a job you saved or paste any job description. Run the ATS check, add the missing keywords that are genuinely true for you, and publish a PDF.',
       },
       {
         id: 'free-vs-pro',
@@ -259,7 +259,7 @@ export const landingPages: LandingPage[] = [
     ],
     faqs: [
       {
-        q: 'Do I have to save the job on LinkedIn first?',
+        q: 'Do I have to save the job first?',
         a: 'No. You can paste any job description into the ATS check.',
       },
       {
@@ -334,7 +334,7 @@ export const landingPages: LandingPage[] = [
         id: 'organize',
         heading: 'How do I organise my job search?',
         answer:
-          'Keep one list of every job with a clear status, one place for every resume version, and a weekly check-in. ResumeLog does the first two as you browse LinkedIn; the dashboard makes the weekly check-in a two-minute job.',
+          'Keep one list of every job with a clear status, one place for every resume version, and a weekly check-in. ResumeLog does the first two as you browse job boards; the dashboard makes the weekly check-in a two-minute job.',
         blocks: [
           {
             type: 'ol',
@@ -363,7 +363,7 @@ export const landingPages: LandingPage[] = [
     faqs: [
       {
         q: 'Does it replace my spreadsheet?',
-        a: 'Yes. Rows fill themselves in from LinkedIn, and you can add your own columns.',
+        a: 'Yes. Rows fill themselves in from the job page, and you can add your own columns.',
       },
       {
         q: 'Is my data private?',

@@ -21,7 +21,6 @@ type Feature = {
 /** Each feature links to the use-case page that targets its search. */
 const learnMore: Record<string, { to: string; label: string }> = {
   capture: { to: '/job-tracker-chrome-extension', label: 'More on the job tracker Chrome extension' },
-  'easy-apply': { to: '/linkedin-job-tracker', label: 'More on the LinkedIn job tracker' },
   tracker: { to: '/job-application-tracker', label: 'More on the job application tracker' },
   dashboard: { to: '/job-search-organizer', label: 'More on the job search organizer' },
   ats: { to: '/ats-resume-checker', label: 'More on the ATS resume checker' },
@@ -32,37 +31,20 @@ const learnMore: Record<string, { to: string; label: string }> = {
 const features: Feature[] = [
   {
     id: 'capture',
-    short: 'LinkedIn capture',
-    title: 'Save jobs, people and companies from LinkedIn',
+    short: 'Job board capture',
+    title: 'Save jobs, people and companies as you browse',
     plan: 'Free',
-    body: 'The extension opens as a side panel next to LinkedIn. It knows whether you’re on a job, a company page or a profile, and switches to match. Press Save and it’s in your log.',
+    body: 'The extension opens as a side panel next to LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator, with more job boards on the way. It knows whether you’re on a job, a company page or a profile, and switches to match. Press Save and it’s in your log.',
     points: [
       'Title, company, location and the full job description',
-      'Company size, industry and location',
-      'A person’s name, headline and current company',
+      'Company size, industry and location from Indeed, Glassdoor and Y Combinator',
+      'LinkedIn profiles and company pages: the link is saved, you add the details',
       'Saved locally first, then synced, so a dropped connection loses nothing',
     ],
     visual: (
       <Stage className="flex h-full min-h-[420px] items-end justify-center gap-6 px-6 pt-10">
         <ScreenshotFrame {...screens.extensionDetected} variant="panel" className="w-[42%] max-w-[230px] translate-y-8" />
         <ScreenshotFrame {...screens.extensionSaved} variant="panel" className="w-[42%] max-w-[230px] translate-y-16" />
-      </Stage>
-    ),
-  },
-  {
-    id: 'easy-apply',
-    short: 'Easy Apply',
-    title: 'Easy Apply answers, kept with the job',
-    plan: 'Free',
-    body: 'Finish a LinkedIn Easy Apply and press Submit: ResumeLog keeps the questions, your answers and the resume you uploaded. Before the call, you can see exactly what you told them.',
-    points: [
-      'Captured automatically when you press Submit',
-      'Works when you reuse a resume LinkedIn already has',
-      'Stored against the job, so it’s there when you open it',
-    ],
-    visual: (
-      <Stage className="flex h-full items-center justify-center p-6 sm:p-10">
-        <ScreenshotFrame {...screens.jobDetail} variant="plain" className="w-full max-w-md" />
       </Stage>
     ),
   },
