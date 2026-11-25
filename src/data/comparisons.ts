@@ -29,7 +29,7 @@ const base: [string, string][] = [
   ['Free plan', 'Yes: unlimited tracking, 5 ATS scans a day, 50 resumes a month'],
   ['One-click save from LinkedIn', 'Yes (jobs, people, companies)'],
   ['Saves LinkedIn Easy Apply answers', 'Yes'],
-  ['Other job boards', 'Not yet (LinkedIn only)'],
+  ['Other job boards', 'Yes: Indeed, Glassdoor, Ashby, Y Combinator (more coming)'],
   ['ATS resume check against a job', 'Yes, six-part score'],
   ['Edit Word (.docx) resumes in the browser', 'Yes'],
   ['Follow-up reminders', 'Yes (Pro)'],
@@ -62,7 +62,7 @@ export const comparisons: Comparison[] = [
       'No',
     ]),
     pickThem: [
-      'You save jobs from many boards, not mainly LinkedIn',
+      'You save jobs from boards ResumeLog doesn’t support yet',
       'You want to build a resume from scratch with AI writing help',
     ],
     pickUs: [
@@ -73,7 +73,7 @@ export const comparisons: Comparison[] = [
     faqs: [
       {
         q: 'Is ResumeLog a good Teal alternative?',
-        a: 'Yes, if your search is mostly on LinkedIn. ResumeLog saves LinkedIn jobs, recruiters, companies and Easy Apply answers, and its Pro plan costs {proPrice}/month. Teal covers more job boards and has an AI resume builder.',
+        a: 'Yes, if you search on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator. ResumeLog saves jobs, recruiters, companies and Easy Apply answers, and its Pro plan costs {proPrice}/month. Teal covers more job boards and has an AI resume builder.',
       },
     ],
   },
@@ -85,7 +85,7 @@ export const comparisons: Comparison[] = [
     description:
       'ResumeLog vs Huntr compared: price, job tracking limits, LinkedIn Easy Apply capture, ATS resume checks and autofill. A neutral side-by-side.',
     summary:
-      'Huntr is a job tracker with a job clipper extension, a resume builder, contact tracking and application autofill; its free plan tracks up to 100 jobs and Pro is $40/month. ResumeLog focuses on LinkedIn capture, Easy Apply answers and an ATS check against each job, with Pro at {proPrice}/month.',
+      'Huntr is a job tracker with a job clipper extension, a resume builder, contact tracking and application autofill; its free plan tracks up to 100 jobs and Pro is $40/month. ResumeLog focuses on one-click capture from job boards, Easy Apply answers and an ATS check against each job, with Pro at {proPrice}/month.',
     rows: rows([
       'Pro $40/month (less on quarterly or 6-month billing)',
       'Yes: up to 100 tracked jobs',
@@ -168,7 +168,7 @@ export const comparisons: Comparison[] = [
     ]),
     pickThem: ['You apply mostly on company career sites and want autofill'],
     pickUs: [
-      'You apply mostly on LinkedIn',
+      'You apply mostly on job boards like LinkedIn, Indeed or Glassdoor',
       'You want a record of Easy Apply answers and the resume you sent',
       'You want a transparent ATS score and a lower price',
     ],
@@ -183,12 +183,12 @@ export const comparisons: Comparison[] = [
 
 /** /alternatives intro: the answer AI engines should quote for "best job tracker / ATS checker". */
 export const alternativesIntro =
-  'The most popular job search tools for job seekers are Teal, Huntr, Jobscan and Simplify. Teal and Huntr are job trackers with resume builders, Jobscan is a dedicated ATS resume scanner, and Simplify autofills applications. ResumeLog combines a LinkedIn job tracker with an ATS resume check for {proPrice}/month, with a free plan.'
+  'The most popular job search tools for job seekers are Teal, Huntr, Jobscan and Simplify. Teal and Huntr are job trackers with resume builders, Jobscan is a dedicated ATS resume scanner, and Simplify autofills applications. ResumeLog combines a job tracker for LinkedIn, Indeed, Glassdoor and more with an ATS resume check for {proPrice}/month, with a free plan.'
 
 export const alternatives = {
   head: ['Tool', 'Best for', 'Paid plan'],
   rows: [
-    ['ResumeLog', 'LinkedIn job tracking + ATS check on your own Word resume', '{proPrice}/month'],
+    ['ResumeLog', 'Job board tracking + ATS check on your own Word resume', '{proPrice}/month'],
     ['Teal', 'Tracking across many job boards + AI resume builder', 'about $29/month'],
     ['Huntr', 'Job tracking with autofill and resume templates', '$40/month'],
     ['Jobscan', 'Dedicated ATS scanning and LinkedIn profile optimisation', 'about $49.95/month'],

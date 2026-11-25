@@ -30,7 +30,7 @@ const ogImage = `${siteUrl}/og-image.png`
  * entity described consistently.
  */
 export const entityDescription =
-  'ResumeLog is a free Chrome extension and web dashboard for job seekers: a job application tracker that saves LinkedIn jobs in one click, plus an ATS resume checker that scores your resume against each job.'
+  'ResumeLog is a free Chrome extension and web dashboard for job seekers: a job application tracker that saves jobs from LinkedIn, Indeed, Glassdoor and more in one click, plus an ATS resume checker that scores your resume against each job.'
 
 export type PageMeta = {
   title: string
@@ -52,18 +52,18 @@ export const pages: Record<string, PageMeta> = {
   '/': {
     title: 'ResumeLog: Job Application Tracker & ATS Resume Checker',
     description:
-      'Free job application tracker and ATS resume checker for Chrome. Save LinkedIn jobs in one click, tailor your resume to each job and follow up on time.',
+      'Free job application tracker and ATS resume checker for Chrome. Save jobs from LinkedIn, Indeed, Glassdoor and more in one click, tailor your resume to each job and follow up on time.',
   },
   '/features': {
     title: 'Features | ResumeLog Job Tracker, ATS Check & Follow-ups',
     description:
-      'Save LinkedIn jobs, people and companies, keep Easy Apply answers, run a six-part ATS resume check, edit Word resumes and get follow-up reminders.',
+      'Save jobs, people and companies from LinkedIn, Indeed, Glassdoor and more, keep Easy Apply answers, run a six-part ATS resume check, edit Word resumes and get follow-up reminders.',
     crumbs: [{ to: '/features', label: 'Features' }],
   },
   '/how-it-works': {
     title: 'How ResumeLog Works | Save, Organise, Tailor, Follow Up',
     description:
-      'How the ResumeLog Chrome extension fits around your LinkedIn job search: save a job, track it in one table, tailor your resume with an ATS check, follow up.',
+      'How the ResumeLog Chrome extension fits around your job search: save a job, track it in one table, tailor your resume with an ATS check, follow up.',
     crumbs: [{ to: '/how-it-works', label: 'How it works' }],
   },
   '/pricing': {
@@ -87,7 +87,7 @@ export const pages: Record<string, PageMeta> = {
   '/alternatives': {
     title: 'Best Job Tracker & ATS Checker Alternatives Compared | ResumeLog',
     description:
-      'Teal, Huntr, Jobscan, Simplify and ResumeLog compared: job tracking, ATS resume checks, LinkedIn capture, autofill and price, side by side.',
+      'Teal, Huntr, Jobscan, Simplify and ResumeLog compared: job tracking, ATS resume checks, job board capture, autofill and price, side by side.',
     crumbs: [{ to: '/alternatives', label: 'Alternatives' }],
   },
   ...Object.fromEntries(
@@ -132,7 +132,7 @@ export const pages: Record<string, PageMeta> = {
   '/get-started': {
     title: 'Get Started with ResumeLog | Install the Chrome Extension',
     description:
-      'Set up ResumeLog in about two minutes: add the Chrome extension, sign in with Google, and save your first LinkedIn job.',
+      'Set up ResumeLog in about two minutes: add the Chrome extension, sign in with Google, and save your first job.',
     crumbs: [{ to: '/get-started', label: 'Get started' }],
   },
   '/privacy-policy': legal('Privacy Policy', 'How ResumeLog collects, uses and protects your data.', '/privacy-policy'),
@@ -193,7 +193,7 @@ const website = {
 
 export const featureList = [
   'Job application tracker with statuses, salary expectation and attached resume',
-  'One-click save of LinkedIn jobs, companies and recruiters',
+  'One-click save of jobs, companies and recruiters from LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator (more job boards coming)',
   'Saves LinkedIn Easy Apply questions, answers and resume',
   'ATS resume checker with a six-part score and missing keywords',
   'Word (.docx) resume editor with PDF publishing and a resume library',
@@ -387,7 +387,7 @@ export function llmsTxt(): string {
 
 > ${entityDescription}
 
-ResumeLog is for job seekers, not recruiters (it is not an applicant tracking system). It never applies to jobs on your behalf. One-click saving works on LinkedIn today; the ATS check works with any pasted job description. Chrome only.
+ResumeLog is for job seekers, not recruiters (it is not an applicant tracking system). It never applies to jobs on your behalf. One-click saving works on LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator today, with more job boards coming; the ATS check works with any pasted job description. Chrome only.
 
 ## Features
 

@@ -16,7 +16,7 @@ const steps = [
   },
   {
     title: 'Save your first job',
-    body: 'Open any job on LinkedIn, open the side panel and press Save. It appears in your dashboard straight away.',
+    body: 'Open any job on LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator, open the side panel and press Save. It appears in your dashboard straight away.',
     action: null,
   },
 ]

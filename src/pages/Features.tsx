@@ -32,10 +32,10 @@ const learnMore: Record<string, { to: string; label: string }> = {
 const features: Feature[] = [
   {
     id: 'capture',
-    short: 'LinkedIn capture',
-    title: 'Save jobs, people and companies from LinkedIn',
+    short: 'Job board capture',
+    title: 'Save jobs, people and companies as you browse',
     plan: 'Free',
-    body: 'The extension opens as a side panel next to LinkedIn. It knows whether you’re on a job, a company page or a profile, and switches to match. Press Save and it’s in your log.',
+    body: 'The extension opens as a side panel next to LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator, with more job boards on the way. It knows whether you’re on a job, a company page or a profile, and switches to match. Press Save and it’s in your log.',
     points: [
       'Title, company, location and the full job description',
       'Company size, industry and location',

@@ -14,7 +14,7 @@ import { proPrice, proYearlyPrice } from '../lib/pricing'
 import { screens } from '../lib/screens'
 
 const strip = [
-  { icon: Bookmark, text: 'Save LinkedIn jobs, people and companies' },
+  { icon: Bookmark, text: 'Save jobs, people and companies from job boards' },
   { icon: Gauge, text: 'ATS check, scored in six parts' },
   { icon: FileText, text: 'Edit Word resumes, publish PDFs' },
   { icon: BellRing, text: 'Follow-up reminders' },
@@ -27,7 +27,7 @@ const steps: Step[] = [
     id: 'capture',
     name: 'Capture',
     lead: 'Save it while you’re looking at it.',
-    tail: 'The side panel sits next to LinkedIn. Press Save and the job, company or person is in your log, full description included.',
+    tail: 'The side panel sits next to the job board: LinkedIn, Indeed, Glassdoor, Ashby and Y Combinator. Press Save and the job, company or person is in your log, full description included.',
     visual: (
       <Stage className="flex justify-center gap-6 px-6 pt-10 pb-0 sm:gap-10">
         <ScreenshotFrame {...screens.extensionDetected} variant="panel" className="w-[42%] max-w-[250px] translate-y-6" />
@@ -101,7 +101,7 @@ const homeFaqs = faqGroups[0].faqs.slice(0, 3)
 /** One line per use-case landing page. */
 const useCases: Record<string, string> = {
   'job-application-tracker': 'Every application, status and resume in one table.',
-  'job-tracker-chrome-extension': 'Save from a side panel next to LinkedIn.',
+  'job-tracker-chrome-extension': 'Save from a side panel on five job boards, with more coming.',
   'linkedin-job-tracker': 'Keep Easy Apply answers with the job.',
   'ats-resume-checker': 'Score your resume against the job, in six parts.',
   'resume-manager': 'Every tailored version, and which one you sent.',
@@ -165,7 +165,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-muted-foreground mx-auto mt-5 max-w-xl text-lg leading-relaxed"
           >
-            ResumeLog is a free job tracker for Chrome. It saves LinkedIn jobs in one click, checks your resume
+            ResumeLog is a free job tracker for Chrome. It saves jobs from LinkedIn, Indeed, Glassdoor and more in one click, checks your resume
             against each one with an ATS scan, and tells you when it’s time to follow up.
           </motion.p>
           <motion.div
@@ -219,7 +219,7 @@ export default function Home() {
           <Lede
             className="mt-5 max-w-xl text-[1.6rem] sm:text-[2.6rem]"
             lead="Your whole job search, in one place."
-            tail="Save it on LinkedIn, tailor your resume for it, and follow up before it goes cold."
+            tail="Save it from the job board, tailor your resume for it, and follow up before it goes cold."
           />
         </Reveal>
         <CaptureFlow className="min-h-[340px]" />

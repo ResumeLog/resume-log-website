@@ -87,7 +87,7 @@ export const guides: Guide[] = [
         blocks: [
           {
             type: 'p',
-            text: 'ResumeLog is one option: a free [job application tracker](/job-application-tracker) that saves LinkedIn jobs from a Chrome side panel. See [how the popular trackers compare](/alternatives).',
+            text: 'ResumeLog is one option: a free [job application tracker](/job-application-tracker) that saves jobs from a Chrome side panel on LinkedIn, Indeed, Glassdoor and more. See [how the popular trackers compare](/alternatives).',
           },
         ],
       },
