@@ -130,7 +130,7 @@ export const landingPages: LandingPage[] = [
         id: 'permissions',
         heading: 'What can the extension see?',
         answer:
-          'Only the LinkedIn page in front of you, when you press Save, and the Easy Apply review screen when you press Submit. It doesn’t read your messages or your feed, and it never applies to jobs for you.',
+          'Only the job board page in front of you (LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator), and nothing is saved until you press Save. Chrome’s install prompt says it can read data on all websites because we ask for all sites once, so new job boards work without another prompt. It doesn’t read other sites, your messages or your feed, and it never applies to jobs for you.',
       },
       {
         id: 'install',

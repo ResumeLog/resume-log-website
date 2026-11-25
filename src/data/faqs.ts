@@ -113,7 +113,7 @@ export const faqGroups: FaqGroup[] = [
     faqs: [
       {
         q: 'What does the extension read?',
-        a: 'Only the LinkedIn page in front of you: when you press Save, and the Easy Apply review screen when you press Submit. Not your messages, not your feed.',
+        a: 'Only the job board page in front of you (LinkedIn, Indeed, Glassdoor, Ashby or Y Combinator), and nothing is saved until you press Save. Chrome’s install prompt says it can read data on all websites because we ask for all sites once, so new job boards work without another prompt. It doesn’t read other sites, your messages or your feed.',
         howItWorks: true,
       },
       {
